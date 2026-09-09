@@ -26,14 +26,14 @@ export default function PortfolioPage() {
     <div className="min-h-screen">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-8 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
           <a
             href="mailto:nyaweragabby@gmail.com"
             className="inline-flex items-center gap-2 rounded-full border border-accent px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-background"
           >
             Get in touch <ArrowUpRight className="size-3.5" />
           </a>
-          <div className="flex items-center gap-6">
+          <div className="hidden items-center gap-6 md:flex">
             <a href="mailto:nyaweragabby@gmail.com" className="text-accent transition-colors hover:text-foreground">
               <Mail className="size-4" />
             </a>
@@ -44,12 +44,12 @@ export default function PortfolioPage() {
               <svg className="size-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 md:gap-6">
             <Link href="/work" className="text-sm text-accent transition-colors hover:text-foreground">Projects</Link>
-            <Link href="/philosophy" className="text-sm text-accent transition-colors hover:text-foreground">Philosophy</Link>
+            <Link href="/philosophy" className="hidden text-sm text-accent transition-colors hover:text-foreground sm:inline">Philosophy</Link>
             <a
-              href="#about"
-              className="rounded-full bg-accent px-5 py-2 text-sm font-medium text-background transition-colors hover:bg-accent/90"
+              href="mailto:nyaweragabby@gmail.com"
+              className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-accent/90 md:px-5"
             >
               Contact
             </a>
@@ -96,6 +96,9 @@ export default function PortfolioPage() {
               <p className="mt-8 text-muted-foreground">
                 A note on the principles that guide every decision.
               </p>
+              <Link href="/philosophy" className="mt-8 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-accent transition-colors hover:text-foreground">
+                Read the full philosophy <ArrowUpRight className="size-3.5" />
+              </Link>
             </div>
             <div>
               <blockquote className="text-2xl leading-relaxed text-foreground/80">
@@ -104,9 +107,6 @@ export default function PortfolioPage() {
               <p className="mt-10 text-lg leading-relaxed text-muted-foreground">
                 I design with restraint — letting clarity, intention, and white space carry the weight. Every detail earns its place, or it doesn&apos;t stay.
               </p>
-              <Link href="/philosophy" className="mt-8 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-foreground transition-colors hover:text-accent">
-                Read the full philosophy <ArrowUpRight className="size-3.5" />
-              </Link>
             </div>
           </div>
         </div>
