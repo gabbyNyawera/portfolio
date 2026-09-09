@@ -116,61 +116,74 @@ export const projects: Project[] = [
       "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&auto=format&fit=crop&q=80",
     caseStudy: {
       heroDescription:
-        "A PWA study companion designed to help Zimbabwean learners access curriculum content and practice skills.",
+        "Designing and vibe-coding a child-friendly study experience. A digital learning platform designed to help students study independently through a simple, structured, and engaging experience.",
       sections: [
         {
           id: "context",
           label: "Context",
           title: "What was this project?",
-          content: "[PROJECT CONTEXT TO BE ADDED]",
+          content:
+            "The Study App is a digital learning platform designed to help students study independently through a simple, structured, and engaging experience. The goal was not to build another content-heavy education platform. Instead, I focused on creating a clear study system that guides learners through their syllabus one section at a time — from learning new material to practicing questions and reviewing completed chapters. The project combined UX/UI design, information architecture, educational UX, and AI-assisted development through vibe coding.",
         },
         {
           id: "challenge",
           label: "The Challenge",
           title: "What problem were we solving?",
-          content: "[DESIGN CHALLENGE TO BE ADDED]",
+          content:
+            "Traditional study materials can feel overwhelming. Students often have to move between textbooks, notes, worksheets, revision guides, and exam papers. This creates friction around a simple question: \"What should I study next?\" I wanted to design an experience where the app could answer that question for the learner. Instead of presenting a large library of disconnected resources, the experience is structured around a clear learning journey: Subject → Section → Learn → Example → Practice → Review → Next Section.",
+          quote:
+            "Make studying feel simple, structured and approachable.",
         },
         {
           id: "research",
-          label: "Research",
-          title: "Discovery and exploration",
-          content: "[RESEARCH CONTENT TO BE ADDED]",
+          label: "Information Architecture",
+          title: "Structuring the learning journey",
+          content:
+            "The initial architecture was built around the syllabus. The app starts with the student's subjects and progressively narrows the experience down to individual learning sections. The core hierarchy follows: Grade → Subjects → Term → Section / Chapter → Learn → Example → Practice → Review → Next Section. This structure became the foundation for both the UX and the eventual codebase. Subjects are divided into three academic terms (Term 1, Term 2, Term 3), with revision separated from the learning journey to keep the main experience focused.",
         },
         {
           id: "insights",
-          label: "Insights",
-          title: "What we learned",
-          content: "[INSIGHTS TO BE ADDED]",
+          label: "The Learning Experience",
+          title: "Breaking studying into smaller actions",
+          content:
+            "One of the most important decisions was to break studying into smaller actions. Rather than displaying an entire chapter as a large block of information, each section follows a simple sequence. Learn: the learner is introduced to the concept using clear, age-appropriate study material. Example: after learning the concept, the student sees an example that demonstrates how the idea works in practice. Practice: the student then answers questions based on the section they have just studied. Review: the final step allows students to revisit the material and identify areas that need more attention.",
         },
         {
           id: "process",
           label: "Design Process",
-          title: "How the design evolved",
-          content: "[DESIGN PROCESS CONTENT TO BE ADDED]",
+          title: "From design to functional prototype",
+          content:
+            "The development process used vibe coding as an extension of the design process. Rather than manually writing every component from scratch, I used AI-assisted development to translate the product architecture and interface decisions into a working application. The process followed: Idea → UX architecture → Wireframes → Design system → AI development prompt → Generated interface → Test → Identify problems → Refine → Repeat. The important part was that AI was not responsible for deciding what the product should be. I defined the product logic and design direction first. AI became the implementation partner.",
         },
         {
           id: "decisions",
           label: "Design Decisions",
           title: "Key choices made",
-          content: "[DESIGN DECISIONS TO BE ADDED]",
+          content:
+            "Designing for children changed the way I approached the interface. The product cannot rely on assumptions that users will understand complex navigation patterns. I focused on: one primary action per screen, reduced cognitive load, visual guidance through progress indicators and cards, clear language in simple and direct terms, and immediate feedback on practice activities. The visual direction was designed specifically for a younger audience — friendly, modern, playful, but still focused. I avoided making the interface look like a traditional school portal.",
         },
         {
           id: "final",
           label: "Final Design",
           title: "The finished work",
-          content: "[FINAL DESIGN IMAGES TO BE ADDED]",
+          content:
+            "The result is a study experience that turns a potentially overwhelming curriculum into a clear sequence of manageable learning activities. Instead of asking \"What do I study?\" the product gives the student a clear path: Choose → Learn → See an Example → Practice → Review → Continue. The interface uses large clear typography, strong visual hierarchy, cards and contained sections, friendly visual language with rounded elements, and consistent interaction patterns across every subject.",
         },
         {
           id: "outcome",
           label: "Outcome",
           title: "What was achieved",
-          content: "[OUTCOME TO BE ADDED]",
+          content:
+            "The project demonstrates how UX design and AI-assisted development can work together to move from product concept to functional prototype much faster. The architecture was intentionally designed to expand — the same product architecture could eventually support multiple grades and curricula without fundamentally changing the core experience. By creating reusable content and UI patterns, adding another subject becomes a content problem rather than a complete redesign.",
         },
         {
           id: "reflection",
           label: "Reflection",
           title: "What I learned",
-          content: "[REFLECTION TO BE ADDED]",
+          content:
+            "Structure matters more than decoration. A beautiful interface cannot compensate for confusing navigation. AI works better with constraints — the more clearly I defined the architecture and interaction patterns, the more useful the AI-generated implementation became. Educational UX requires restraint — every additional feature can create distraction. Vibe coding did not make the design process less important. It made good product thinking more valuable.",
+          quote:
+            "Designed the experience. Structured the system. Used AI to accelerate the build. Tested the product. Iterated on the UX.",
         },
       ],
     },
