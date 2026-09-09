@@ -66,7 +66,7 @@ export default function PhilosophyPage() {
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
               01 — Core Belief
             </p>
-            <h1 className="text-5xl font-extralight leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
+            <h1 className="font-serif text-5xl font-extralight leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
               Design is not
               <br />
               decorative,
@@ -85,7 +85,7 @@ export default function PhilosophyPage() {
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
               02 — Clarity
             </p>
-            <blockquote className="text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
+            <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
               &ldquo;If people don&apos;t understand,
               <br />
               they forget about it.&rdquo;
@@ -115,7 +115,7 @@ export default function PhilosophyPage() {
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
               03 — Functionality
             </p>
-            <blockquote className="text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
+            <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
               &ldquo;Design must be purely
               <br />
               based on function.&rdquo;
@@ -144,7 +144,7 @@ export default function PhilosophyPage() {
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
               04 — Whitespace
             </p>
-            <blockquote className="text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
+            <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
               &ldquo;Whitespace is what
               <br />
               creates focus.&rdquo;
@@ -166,7 +166,7 @@ export default function PhilosophyPage() {
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
               05 — Intentionality
             </p>
-            <blockquote className="text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
+            <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
               &ldquo;Nothing is accidental.&rdquo;
             </blockquote>
             <p className="mt-10 mx-auto max-w-md text-base leading-relaxed text-white/50">
