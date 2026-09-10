@@ -17,7 +17,11 @@ export const metadata: Metadata = {
   description: "Personal site of Gabrielle Nyawera, a product designer crafting calm, considered digital experiences.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
