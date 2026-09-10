@@ -22,6 +22,7 @@ export type Project = {
   category: string;
   featured: boolean;
   image: string;
+  prototypeUrl?: string;
   caseStudy: {
     heroDescription: string;
     sections: CaseStudySection[];
@@ -114,6 +115,7 @@ export const projects: Project[] = [
     featured: true,
     image:
       "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&auto=format&fit=crop&q=80",
+    prototypeUrl: "http://localhost:3001",
     caseStudy: {
       heroDescription:
         "Designing and vibe-coding a child-friendly study experience. A digital learning platform designed to help students study independently through a simple, structured, and engaging experience.",

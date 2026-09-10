@@ -109,7 +109,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
 
       {/* Hero image */}
-      <section className="px-8 pb-20 lg:px-16">
+      <section className="px-8 pb-16 lg:px-16">
         <div className="mx-auto max-w-5xl">
           <div className="overflow-hidden rounded-xl bg-muted">
             <img
@@ -120,6 +120,50 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Interactive Prototype Embed */}
+      {project.prototypeUrl && (
+        <section className="px-8 pb-20 lg:px-16">
+          <div className="mx-auto max-w-5xl">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-accent">
+                  Interactive Preview
+                </p>
+                <h3 className="font-serif text-2xl font-light tracking-tight">
+                  Test the Live Prototype
+                </h3>
+              </div>
+              <a
+                href={project.prototypeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-xs font-medium text-background transition-colors hover:bg-accent/90"
+              >
+                Open in new tab <ArrowUpRight className="size-3" />
+              </a>
+            </div>
+            <div className="overflow-hidden rounded-xl border border-border bg-card shadow-lg">
+              <div className="flex items-center gap-2 border-b border-border bg-muted/50 px-4 py-3">
+                <span className="size-3 rounded-full bg-red-400/80" />
+                <span className="size-3 rounded-full bg-yellow-400/80" />
+                <span className="size-3 rounded-full bg-green-400/80" />
+                <span className="ml-2 text-xs text-muted-foreground font-mono">
+                  {project.prototypeUrl}
+                </span>
+              </div>
+              <div className="relative aspect-[16/10] w-full bg-background">
+                <iframe
+                  src={project.prototypeUrl}
+                  title={`${project.title} Prototype`}
+                  className="absolute inset-0 h-full w-full border-0"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Case study sections */}
       {project.caseStudy.sections.map((section) => (
