@@ -67,7 +67,7 @@ export default function PhilosophyPage() {
         >
           <div className="max-w-3xl text-center">
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              01 — Core Belief
+              Core Belief
             </p>
             <h1 className="font-serif text-5xl font-extralight leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
               Design should
@@ -84,7 +84,7 @@ export default function PhilosophyPage() {
         >
           <div className="max-w-3xl text-center">
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              02 — Clarity
+              Clarity
             </p>
             <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
               &ldquo;If it needs explanation,
@@ -104,33 +104,27 @@ export default function PhilosophyPage() {
           id="clarity-example"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
-          <div className="max-w-4xl w-full">
-            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              03 — Clarity in Practice
-            </p>
-            <div className="grid gap-10 md:grid-cols-2 items-center">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-3">
-                  Study App
-                </p>
-                <p className="text-sm leading-relaxed text-white/50">
-                  The Study App needed to serve Zimbabwean learners across 7
-                  subjects. I stripped every screen down to its essential
-                  function — no decorative elements, no unnecessary chrome.
-                  The result: learners find what they need in two taps.
-                </p>
+          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-[1fr_auto] items-center">
+            <div className="relative">
+              <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
+              <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
+              <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
+              <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
+                <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
               </div>
-              <div className="flex justify-center">
-                <div className="w-56 h-[480px] rounded-[2rem] border border-white/10 bg-white/5 overflow-hidden">
-                  <div className="h-6 w-full bg-white/5" />
-                  <div className="p-4 space-y-3">
-                    <div className="h-3 w-20 bg-white/10 rounded" />
-                    <div className="h-24 w-full bg-white/5 rounded" />
-                    <div className="h-24 w-full bg-white/5 rounded" />
-                    <div className="h-24 w-full bg-white/5 rounded" />
-                  </div>
-                </div>
-              </div>
+            </div>
+            <div className="max-w-xs">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
+                Study App
+              </p>
+              <p className="font-serif text-2xl font-extralight leading-snug tracking-tight text-white/80 mb-4">
+                The Norman Door — push or pull?
+              </p>
+              <p className="text-sm leading-relaxed text-white/40">
+                If you have to think about how to use it, the design has failed.
+                Clarity means the interface disappears — you just act.
+              </p>
             </div>
           </div>
         </section>
@@ -142,7 +136,7 @@ export default function PhilosophyPage() {
         >
           <div className="max-w-3xl text-center">
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              04 — Functionality
+              Functionality
             </p>
             <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
               &ldquo;Form follows function
@@ -162,37 +156,28 @@ export default function PhilosophyPage() {
           id="functionality-example"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
-          <div className="max-w-4xl w-full">
-            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              05 — Functionality in Practice
-            </p>
-            <div className="grid gap-10 md:grid-cols-2 items-center">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-3">
-                  Portfolio
-                </p>
-                <p className="text-sm leading-relaxed text-white/50">
-                  This portfolio itself. Every element has a job: the serif
-                  headings create hierarchy, the warm palette feels human, the
-                  generous spacing lets content breathe. Nothing is decorative —
-                  everything serves the reader.
-                </p>
+          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-[1fr_auto] items-center">
+            <div className="relative">
+              <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
+              <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
+              <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
+              <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
+                <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
               </div>
-              <div className="flex justify-center">
-                <div className="w-80 h-[520px] rounded-[1rem] border border-white/10 bg-white/5 overflow-hidden">
-                  <div className="h-8 w-full bg-white/5 flex items-center px-3 gap-1.5">
-                    <span className="size-2 rounded-full bg-white/10" />
-                    <span className="size-2 rounded-full bg-white/10" />
-                    <span className="size-2 rounded-full bg-white/10" />
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <div className="h-8 w-32 bg-white/10 rounded" />
-                    <div className="h-3 w-48 bg-white/5 rounded" />
-                    <div className="h-3 w-40 bg-white/5 rounded" />
-                    <div className="h-32 w-full bg-white/5 rounded" />
-                  </div>
-                </div>
-              </div>
+            </div>
+            <div className="max-w-xs">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
+                Portfolio
+              </p>
+              <p className="font-serif text-2xl font-extralight leading-snug tracking-tight text-white/80 mb-4">
+                Nothing decorative — everything serves the reader.
+              </p>
+              <p className="text-sm leading-relaxed text-white/40">
+                Every element has a job. Serif headings for hierarchy, warm
+                palette for humanity, generous spacing for breathing room.
+                Form follows function.
+              </p>
             </div>
           </div>
         </section>
@@ -204,7 +189,7 @@ export default function PhilosophyPage() {
         >
           <div className="max-w-3xl text-center">
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              06 — Whitespace
+              Whitespace
             </p>
             <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
               &ldquo;What you leave out
@@ -224,30 +209,28 @@ export default function PhilosophyPage() {
           id="whitespace-example"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
-          <div className="max-w-4xl w-full">
-            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              07 — Whitespace in Practice
-            </p>
-            <div className="grid gap-10 md:grid-cols-2 items-center">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-3">
-                  JQ Face
-                </p>
-                <p className="text-sm leading-relaxed text-white/50">
-                  JQ Face is a fashion brand — the whitespace lets the products
-                  breathe. I used generous margins and padding to create a sense
-                  of luxury. The empty space isn&apos;t empty — it&apos;s intentional.
-                </p>
+          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-[1fr_auto] items-center">
+            <div className="relative">
+              <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
+              <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
+              <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
+              <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
+                <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
               </div>
-              <div className="flex justify-center">
-                <div className="w-56 h-[480px] rounded-[2rem] border border-white/10 bg-white/5 overflow-hidden">
-                  <div className="h-40 w-full bg-white/10" />
-                  <div className="p-6 space-y-2">
-                    <div className="h-3 w-24 bg-white/10 rounded" />
-                    <div className="h-2 w-16 bg-white/5 rounded" />
-                  </div>
-                </div>
-              </div>
+            </div>
+            <div className="max-w-xs">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
+                JQ Face
+              </p>
+              <p className="font-serif text-2xl font-extralight leading-snug tracking-tight text-white/80 mb-4">
+                The empty space isn&apos;t empty.
+              </p>
+              <p className="text-sm leading-relaxed text-white/40">
+                JQ Face is a fashion brand — the whitespace lets the products
+                breathe. Generous margins and padding create a sense of luxury.
+                Restraint isn&apos;t minimalism — it&apos;s focus.
+              </p>
             </div>
           </div>
         </section>
@@ -259,7 +242,7 @@ export default function PhilosophyPage() {
         >
           <div className="max-w-3xl text-center">
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              08 — Intentionality
+              Intentionality
             </p>
             <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
               &ldquo;Nothing is accidental.
@@ -279,32 +262,28 @@ export default function PhilosophyPage() {
           id="intentionality-example"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
-          <div className="max-w-4xl w-full">
-            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              09 — Intentionality in Practice
-            </p>
-            <div className="grid gap-10 md:grid-cols-2 items-center">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-3">
-                  Thais House to Home
-                </p>
-                <p className="text-sm leading-relaxed text-white/50">
-                  A real estate platform where every interaction was designed
-                  with purpose. The search flow was streamlined to three taps.
-                  Property cards showed exactly the information needed to make a
-                  decision — nothing more.
-                </p>
+          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-[1fr_auto] items-center">
+            <div className="relative">
+              <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
+              <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
+              <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
+              <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
+                <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
               </div>
-              <div className="flex justify-center">
-                <div className="w-56 h-[480px] rounded-[2rem] border border-white/10 bg-white/5 overflow-hidden">
-                  <div className="h-32 w-full bg-white/10" />
-                  <div className="p-4 space-y-2">
-                    <div className="h-3 w-28 bg-white/10 rounded" />
-                    <div className="h-2 w-20 bg-white/5 rounded" />
-                    <div className="h-2 w-24 bg-white/5 rounded" />
-                  </div>
-                </div>
-              </div>
+            </div>
+            <div className="max-w-xs">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
+                Thais House to Home
+              </p>
+              <p className="font-serif text-2xl font-extralight leading-snug tracking-tight text-white/80 mb-4">
+                Every interaction designed with purpose.
+              </p>
+              <p className="text-sm leading-relaxed text-white/40">
+                A real estate platform streamlined to three taps. Property cards
+                showed exactly the information needed to make a decision —
+                nothing more, nothing less.
+              </p>
             </div>
           </div>
         </section>
@@ -316,7 +295,7 @@ export default function PhilosophyPage() {
         >
           <div className="max-w-4xl text-center">
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              10 — Design Process
+              Design Process
             </p>
             <h2 className="text-4xl font-extralight leading-[1.1] tracking-tight md:text-6xl">
               How I work
