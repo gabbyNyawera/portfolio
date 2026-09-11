@@ -1,32 +1,34 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-export function SiteFooter() {
+export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
   return (
     <footer className="border-t border-border bg-background">
       {/* CTA section */}
-      <div className="px-8 pt-20 pb-16 lg:px-16">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-7xl">
-            I design experiences
-            <br />
-            that <span className="italic text-accent">feel alive.</span>
-          </h2>
-          <p className="mt-6 max-w-md text-lg text-muted-foreground">
-            Thoughtful interfaces, clear systems, and experiences built around
-            how people actually behave.
-          </p>
-          <Link
-            href="mailto:nyaweragabby@gmail.com"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
-          >
-            Let&apos;s make something worth using. <ArrowUpRight className="size-4" />
-          </Link>
+      {showCta && (
+        <div className="px-8 pt-32 pb-24 lg:px-16">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-7xl">
+              I design experiences
+              <br />
+              that <span className="italic text-accent">feel alive.</span>
+            </h2>
+            <p className="mt-6 max-w-md text-lg text-muted-foreground">
+              Thoughtful interfaces, clear systems, and experiences built around
+              how people actually behave.
+            </p>
+            <Link
+              href="mailto:nyaweragabby@gmail.com"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
+            >
+              Let&apos;s make something worth using. <ArrowUpRight className="size-4" />
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Footer info */}
-      <div className="border-t border-border px-8 py-10 lg:px-16">
+      <div className="px-8 py-10 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 md:grid-cols-3">
             {/* Brand */}
@@ -41,7 +43,7 @@ export function SiteFooter() {
             <div className="flex gap-16">
               <div className="space-y-2">
                 <Link href="/work" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">
-                  Work
+                  Projects
                 </Link>
                 <Link href="/#about" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">
                   About
@@ -73,7 +75,7 @@ export function SiteFooter() {
           </div>
 
           {/* Bottom bar */}
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
+          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 pt-6">
             <p className="text-xs text-muted-foreground">&copy; 2026 Gabe</p>
             <p className="text-xs text-muted-foreground">
               Designed &amp; built with intention.

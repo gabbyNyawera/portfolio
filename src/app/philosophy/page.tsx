@@ -7,11 +7,14 @@ import { PhilosophyNav } from "@/components/philosophy-nav";
 const slides = [
   { id: "core-belief", label: "Core Belief", number: "01" },
   { id: "clarity", label: "Clarity", number: "02" },
-  { id: "functionality", label: "Functionality", number: "03" },
-  { id: "whitespace", label: "Whitespace", number: "04" },
-  { id: "intentionality", label: "Intentionality", number: "05" },
-  { id: "process", label: "Process", number: "06" },
-  { id: "case-study", label: "Case Study", number: "07" },
+  { id: "clarity-example", label: "Clarity in Practice", number: "03" },
+  { id: "functionality", label: "Functionality", number: "04" },
+  { id: "functionality-example", label: "Functionality in Practice", number: "05" },
+  { id: "whitespace", label: "Whitespace", number: "06" },
+  { id: "whitespace-example", label: "Whitespace in Practice", number: "07" },
+  { id: "intentionality", label: "Intentionality", number: "08" },
+  { id: "intentionality-example", label: "Intentionality in Practice", number: "09" },
+  { id: "process", label: "Design Process", number: "10" },
 ];
 
 export default function PhilosophyPage() {
@@ -67,11 +70,9 @@ export default function PhilosophyPage() {
               01 — Core Belief
             </p>
             <h1 className="font-serif text-5xl font-extralight leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
-              Design is not
+              Design should
               <br />
-              decorative,
-              <br />
-              <span className="font-light">it&apos;s communication.</span>
+              <span className="font-light">feel alive.</span>
             </h1>
           </div>
         </section>
@@ -86,113 +87,236 @@ export default function PhilosophyPage() {
               02 — Clarity
             </p>
             <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
-              &ldquo;If people don&apos;t understand,
+              &ldquo;If it needs explanation,
               <br />
-              they forget about it.&rdquo;
+              <span className="font-light">it&apos;s not done.</span>&rdquo;
             </blockquote>
             <p className="mt-10 mx-auto max-w-md text-base leading-relaxed text-white/50">
-              If people have to think too much, the design has already failed.
-              Clarity isn&apos;t about simplifying — it&apos;s about making the
-              complex feel obvious.
-            </p>
-            <div className="mt-12 flex justify-center gap-6">
-              <div className="h-24 w-24 rounded-lg bg-white/5" />
-              <div className="h-24 w-24 rounded-lg bg-white/5" />
-              <div className="h-24 w-24 rounded-lg bg-white/5" />
-            </div>
-            <p className="mt-4 text-[10px] text-white/20">
-              [ Reference images ]
+              Cleverness is easy. Clarity is hard. The best design is the
+              design you don&apos;t notice — it just works. If someone has to
+              think too much, I&apos;ve failed.
             </p>
           </div>
         </section>
 
-        {/* SLIDE 03 — FUNCTIONALITY */}
+        {/* SLIDE 03 — CLARITY EXAMPLE */}
+        <section
+          id="clarity-example"
+          className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
+        >
+          <div className="max-w-4xl w-full">
+            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
+              03 — Clarity in Practice
+            </p>
+            <div className="grid gap-10 md:grid-cols-2 items-center">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-3">
+                  Study App
+                </p>
+                <p className="text-sm leading-relaxed text-white/50">
+                  The Study App needed to serve Zimbabwean learners across 7
+                  subjects. I stripped every screen down to its essential
+                  function — no decorative elements, no unnecessary chrome.
+                  The result: learners find what they need in two taps.
+                </p>
+              </div>
+              <div className="flex justify-center">
+                <div className="w-56 h-[480px] rounded-[2rem] border border-white/10 bg-white/5 overflow-hidden">
+                  <div className="h-6 w-full bg-white/5" />
+                  <div className="p-4 space-y-3">
+                    <div className="h-3 w-20 bg-white/10 rounded" />
+                    <div className="h-24 w-full bg-white/5 rounded" />
+                    <div className="h-24 w-full bg-white/5 rounded" />
+                    <div className="h-24 w-full bg-white/5 rounded" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SLIDE 04 — FUNCTIONALITY */}
         <section
           id="functionality"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
           <div className="max-w-3xl text-center">
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              03 — Functionality
+              04 — Functionality
             </p>
             <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
-              &ldquo;Design must be purely
+              &ldquo;Form follows function
               <br />
-              based on function.&rdquo;
+              <span className="font-light">— not the other way around.</span>&rdquo;
             </blockquote>
             <p className="mt-10 mx-auto max-w-md text-base leading-relaxed text-white/50">
-              Form follows function — not the other way around. Every element
-              should earn its place by solving a problem, not by looking
-              interesting.
-            </p>
-            <div className="mt-12 flex justify-center gap-6">
-              <div className="h-24 w-24 rounded-lg bg-white/5" />
-              <div className="h-24 w-24 rounded-lg bg-white/5" />
-            </div>
-            <p className="mt-4 text-[10px] text-white/20">
-              [ Reference images ]
+              Every element should earn its place by solving a problem, not by
+              looking interesting. If it doesn&apos;t serve a purpose, it
+              doesn&apos;t stay.
             </p>
           </div>
         </section>
 
-        {/* SLIDE 04 — WHITESPACE */}
+        {/* SLIDE 05 — FUNCTIONALITY EXAMPLE */}
+        <section
+          id="functionality-example"
+          className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
+        >
+          <div className="max-w-4xl w-full">
+            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
+              05 — Functionality in Practice
+            </p>
+            <div className="grid gap-10 md:grid-cols-2 items-center">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-3">
+                  Portfolio
+                </p>
+                <p className="text-sm leading-relaxed text-white/50">
+                  This portfolio itself. Every element has a job: the serif
+                  headings create hierarchy, the warm palette feels human, the
+                  generous spacing lets content breathe. Nothing is decorative —
+                  everything serves the reader.
+                </p>
+              </div>
+              <div className="flex justify-center">
+                <div className="w-80 h-[520px] rounded-[1rem] border border-white/10 bg-white/5 overflow-hidden">
+                  <div className="h-8 w-full bg-white/5 flex items-center px-3 gap-1.5">
+                    <span className="size-2 rounded-full bg-white/10" />
+                    <span className="size-2 rounded-full bg-white/10" />
+                    <span className="size-2 rounded-full bg-white/10" />
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <div className="h-8 w-32 bg-white/10 rounded" />
+                    <div className="h-3 w-48 bg-white/5 rounded" />
+                    <div className="h-3 w-40 bg-white/5 rounded" />
+                    <div className="h-32 w-full bg-white/5 rounded" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SLIDE 06 — WHITESPACE */}
         <section
           id="whitespace"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
           <div className="max-w-3xl text-center">
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              04 — Whitespace
+              06 — Whitespace
             </p>
             <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
-              &ldquo;Whitespace is what
+              &ldquo;What you leave out
               <br />
-              creates focus.&rdquo;
+              <span className="font-light">defines what remains.</span>&rdquo;
             </blockquote>
             <p className="mt-10 mx-auto max-w-md text-base leading-relaxed text-white/50">
-              It&apos;s breathing room. The space between elements is just as
-              important as the elements themselves. What you leave out defines
-              what remains.
+              Breathing room. The space between elements is just as important
+              as the elements themselves. Restraint isn&apos;t minimalism — it&apos;s
+              focus.
             </p>
           </div>
         </section>
 
-        {/* SLIDE 05 — INTENTIONALITY */}
+        {/* SLIDE 07 — WHITESPACE EXAMPLE */}
+        <section
+          id="whitespace-example"
+          className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
+        >
+          <div className="max-w-4xl w-full">
+            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
+              07 — Whitespace in Practice
+            </p>
+            <div className="grid gap-10 md:grid-cols-2 items-center">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-3">
+                  JQ Face
+                </p>
+                <p className="text-sm leading-relaxed text-white/50">
+                  JQ Face is a fashion brand — the whitespace lets the products
+                  breathe. I used generous margins and padding to create a sense
+                  of luxury. The empty space isn&apos;t empty — it&apos;s intentional.
+                </p>
+              </div>
+              <div className="flex justify-center">
+                <div className="w-56 h-[480px] rounded-[2rem] border border-white/10 bg-white/5 overflow-hidden">
+                  <div className="h-40 w-full bg-white/10" />
+                  <div className="p-6 space-y-2">
+                    <div className="h-3 w-24 bg-white/10 rounded" />
+                    <div className="h-2 w-16 bg-white/5 rounded" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SLIDE 08 — INTENTIONALITY */}
         <section
           id="intentionality"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
           <div className="max-w-3xl text-center">
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              05 — Intentionality
+              08 — Intentionality
             </p>
             <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
-              &ldquo;Nothing is accidental.&rdquo;
+              &ldquo;Nothing is accidental.
+              <br />
+              <span className="font-light">Every pixel earns its place.</span>&rdquo;
             </blockquote>
             <p className="mt-10 mx-auto max-w-md text-base leading-relaxed text-white/50">
-              Design for human error. Every pixel, every interaction, every
-              word should be there for a reason. If you can&apos;t explain why
-              it exists, it probably shouldn&apos;t.
-            </p>
-            <div className="mt-12 flex justify-center gap-6">
-              <div className="h-24 w-24 rounded-lg bg-white/5" />
-              <div className="h-24 w-24 rounded-lg bg-white/5" />
-              <div className="h-24 w-24 rounded-lg bg-white/5" />
-            </div>
-            <p className="mt-4 text-[10px] text-white/20">
-              [ Reference images ]
+              Design for human error. Every interaction, every word should be
+              there for a reason. If you can&apos;t explain why it exists, it
+              probably shouldn&apos;t.
             </p>
           </div>
         </section>
 
-        {/* SLIDE 06 — DESIGN PROCESS */}
+        {/* SLIDE 09 — INTENTIONALITY EXAMPLE */}
+        <section
+          id="intentionality-example"
+          className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
+        >
+          <div className="max-w-4xl w-full">
+            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
+              09 — Intentionality in Practice
+            </p>
+            <div className="grid gap-10 md:grid-cols-2 items-center">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-3">
+                  Thais House to Home
+                </p>
+                <p className="text-sm leading-relaxed text-white/50">
+                  A real estate platform where every interaction was designed
+                  with purpose. The search flow was streamlined to three taps.
+                  Property cards showed exactly the information needed to make a
+                  decision — nothing more.
+                </p>
+              </div>
+              <div className="flex justify-center">
+                <div className="w-56 h-[480px] rounded-[2rem] border border-white/10 bg-white/5 overflow-hidden">
+                  <div className="h-32 w-full bg-white/10" />
+                  <div className="p-4 space-y-2">
+                    <div className="h-3 w-28 bg-white/10 rounded" />
+                    <div className="h-2 w-20 bg-white/5 rounded" />
+                    <div className="h-2 w-24 bg-white/5 rounded" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SLIDE 10 — DESIGN PROCESS */}
         <section
           id="process"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
           <div className="max-w-4xl text-center">
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              06 — Design Process
+              10 — Design Process
             </p>
             <h2 className="text-4xl font-extralight leading-[1.1] tracking-tight md:text-6xl">
               How I work
@@ -222,35 +346,25 @@ export default function PhilosophyPage() {
                 )
               )}
             </div>
-          </div>
-        </section>
-
-        {/* SLIDE 07 — CASE STUDY */}
-        <section
-          id="case-study"
-          className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
-        >
-          <div className="max-w-3xl text-center">
-            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              07 — Case Study
-            </p>
-            <p className="mb-4 text-[10px] uppercase tracking-[0.2em] text-white/40">
-              Kavara Kavara
-            </p>
-            <h2 className="text-4xl font-extralight leading-[1.1] tracking-tight md:text-6xl">
-              Outdoor Food Culture
-            </h2>
-            <p className="mt-8 mx-auto max-w-md text-base leading-relaxed text-white/50">
-              A storytelling-driven e-commerce experience built around fire,
-              food, and outdoor living. The philosophy in practice.
-            </p>
-            <div className="mt-10">
-              <a
-                href="/projects/kavara-kavara"
-                className="inline-flex items-center gap-2 border border-white/20 px-6 py-3 text-xs font-medium uppercase tracking-wider text-white/70 transition-colors hover:border-white/40 hover:text-white"
-              >
-                View case study <ArrowUpRight className="size-3" />
-              </a>
+            <div className="mt-16">
+              <p className="mb-4 text-[10px] uppercase tracking-[0.2em] text-white/40">
+                See it in action
+              </p>
+              <h3 className="font-serif text-3xl font-extralight tracking-tight md:text-4xl">
+                KAVARA KAVARA
+              </h3>
+              <p className="mt-4 mx-auto max-w-md text-sm leading-relaxed text-white/50">
+                A storytelling-driven e-commerce experience built around fire,
+                food, and outdoor living.
+              </p>
+              <div className="mt-6">
+                <a
+                  href="/work/kavara-kavara"
+                  className="inline-flex items-center gap-2 border border-white/20 px-6 py-3 text-xs font-medium uppercase tracking-wider text-white/70 transition-colors hover:border-white/40 hover:text-white"
+                >
+                  View case study <ArrowUpRight className="size-3" />
+                </a>
+              </div>
             </div>
           </div>
         </section>

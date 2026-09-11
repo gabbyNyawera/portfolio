@@ -45,6 +45,7 @@ export default function PortfolioPage() {
             </a>
           </div>
           <div className="flex items-center gap-4 md:gap-6">
+            <Link href="/" className="text-sm text-accent transition-colors hover:text-foreground">Home</Link>
             <Link href="/work" className="text-sm text-accent transition-colors hover:text-foreground">Projects</Link>
             <Link href="/philosophy" className="hidden text-sm text-accent transition-colors hover:text-foreground sm:inline">Philosophy</Link>
             <a
@@ -86,7 +87,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Philosophy */}
-      <section id="philosophy" className="border-t border-border px-8 py-36">
+      <section id="philosophy" className="bg-muted px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
             <div>
@@ -113,7 +114,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Selected Work */}
-      <section id="projects" className="border-t border-border px-8 py-36">
+      <section id="projects" className="px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <StickySplit
             left={
@@ -167,7 +168,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Education */}
-      <section className="border-t border-border px-8 py-36">
+      <section className="bg-muted px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <StickySplit
             left={
@@ -185,7 +186,7 @@ export default function PortfolioPage() {
                 {education.map((item) => (
                   <div
                     key={item.name}
-                    className="flex items-center justify-between border-b border-border py-5"
+                    className="flex items-center justify-between py-5"
                   >
                     <div>
                       <p className="font-medium">{item.name}</p>
@@ -200,7 +201,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Books */}
-      <section className="border-t border-border px-8 py-36">
+      <section className="px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
             <div>
@@ -215,7 +216,7 @@ export default function PortfolioPage() {
               {books.map((book) => (
                 <div
                   key={book.title}
-                  className="flex items-center justify-between border-b border-border py-5"
+                  className="flex items-center justify-between py-5"
                 >
                   <div>
                     <p className="font-medium">{book.title}</p>

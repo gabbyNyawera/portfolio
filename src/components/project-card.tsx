@@ -13,7 +13,7 @@ export function ProjectCard({
     return (
       <Link
         href={`/work/${project.slug}`}
-        className="group flex gap-6 border-b border-border py-6 transition-colors hover:bg-muted/30"
+        className="group flex gap-6 py-6 transition-colors hover:bg-muted/30"
       >
         <div className="w-48 flex-shrink-0 overflow-hidden rounded-lg">
           <img

@@ -54,6 +54,7 @@ export default async function CaseStudyPage({ params }: Props) {
             </a>
           </div>
           <div className="flex items-center gap-4 md:gap-6">
+            <Link href="/" className="text-sm text-accent transition-colors hover:text-foreground">Home</Link>
             <Link href="/work" className="text-sm text-accent transition-colors hover:text-foreground">Projects</Link>
             <Link href="/philosophy" className="hidden text-sm text-accent transition-colors hover:text-foreground sm:inline">Philosophy</Link>
             <a
@@ -71,7 +72,7 @@ export default async function CaseStudyPage({ params }: Props) {
         <div className="mx-auto max-w-4xl">
           <div className="flex items-center gap-3 text-[10px] uppercase tracking-wider text-muted-foreground">
             <Link href="/work" className="hover:text-foreground transition-colors">
-              Work
+              Projects
             </Link>
             <span className="text-muted-foreground/40">/</span>
             <span>{project.title}</span>
@@ -201,7 +202,7 @@ export default async function CaseStudyPage({ params }: Props) {
       <CaseStudyNav prev={prev} next={next} />
 
       {/* Footer */}
-      <SiteFooter />
+      <SiteFooter showCta={false} />
     </div>
   );
 }

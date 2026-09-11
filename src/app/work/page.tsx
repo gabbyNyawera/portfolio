@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Work — Gabriella Nyawera",
+  title: "Projects — Gabriella Nyawera",
   description: "Selected design and development projects by Gabriella Nyawera.",
 };
 
@@ -36,6 +36,7 @@ export default function WorkPage() {
             </a>
           </div>
           <div className="flex items-center gap-4 md:gap-6">
+            <Link href="/" className="text-sm text-accent transition-colors hover:text-foreground">Home</Link>
             <Link href="/work" className="text-sm text-accent transition-colors hover:text-foreground">Projects</Link>
             <Link href="/philosophy" className="hidden text-sm text-accent transition-colors hover:text-foreground sm:inline">Philosophy</Link>
             <a
@@ -55,7 +56,7 @@ export default function WorkPage() {
             All Projects
           </p>
           <h1 className="font-serif text-5xl font-extralight leading-[1.05] tracking-tight md:text-7xl">
-            Work
+            Projects
           </h1>
           <p className="mt-6 max-w-lg text-lg text-muted-foreground">
             A collection of design and development projects — each one its own

@@ -10,7 +10,7 @@ export function CaseStudyNav({
   next: Project | null;
 }) {
   return (
-    <nav className="border-t border-border px-8 py-10 lg:px-16">
+    <nav className="px-8 py-10 lg:px-16">
       <div className="mx-auto flex max-w-4xl items-center justify-between">
         <Link
           href="/work"
