@@ -42,3 +42,18 @@ body {
   --border: #2a2a2a;
   --accent: #c44b3f;
 }
+
+/* Continuous vertical line for two-column layouts */
+.column-line {
+  position: relative;
+}
+.column-line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 33.33%;
+  width: 2px;
+  background: color-mix(in srgb, var(--border) 40%, transparent);
+  pointer-events: none;
+}

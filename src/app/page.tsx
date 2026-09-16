@@ -43,7 +43,7 @@ export default function PortfolioPage() {
   const featuredProjects = getFeaturedProjects();
 
   return (
-    <div className="min-h-screen">
+    <div className="column-line min-h-screen">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
@@ -110,7 +110,7 @@ export default function PortfolioPage() {
       <section id="philosophy" className="px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
-            <div className="md:border-r-2 md:border-border/40 md:pr-12">
+            <div>
               <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
                 How I<br />think
               </h2>
@@ -224,7 +224,7 @@ export default function PortfolioPage() {
       <section className="px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
-            <div className="md:border-r-2 md:border-border/40 md:pr-12">
+            <div>
               <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
                 What I&apos;m<br />into
               </h2>
