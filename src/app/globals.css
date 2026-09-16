@@ -57,3 +57,8 @@ body {
   background: color-mix(in srgb, var(--border) 40%, transparent);
   pointer-events: none;
 }
+@media (max-width: 639px) {
+  .column-line::before {
+    display: none;
+  }
+}

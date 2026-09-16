@@ -87,10 +87,10 @@ export default function PortfolioPage() {
           <p className="mt-10 max-w-xl text-xl leading-relaxed text-muted-foreground">
             Hey, I&apos;m Gabe a product designer crafting calm, considered digital experiences with a focus on clarity, usability, and the kind of details that make complex things feel obvious.
           </p>
-          <div className="mt-12 flex items-center gap-8">
+          <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:items-center">
             <a
               href="mailto:nyaweragabby@gmail.com"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-accent/90"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-accent/90 sm:w-auto"
             >
               Let&apos;s make something beautiful <ArrowUpRight className="size-4" />
             </a>
