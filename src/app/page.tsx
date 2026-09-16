@@ -11,12 +11,30 @@ const education = [
   { name: "Introduction to User Experience Design", issuer: "Coursera" },
 ];
 
-const books = [
-  { title: "The Design of Everyday Things", author: "Don Norman", status: "read" },
-  { title: "Thinking with Type", author: "Ellen Lupton", status: "read" },
-  { title: "Refactoring UI", author: "Adam Wathan & Steve Schoger", status: "reading" },
-  { title: "Don't Make Me Think", author: "Steve Krug", status: "read" },
-  { title: "Hooked", author: "Nir Eyal", status: "to read" },
+const skills = [
+  { name: "Figma", group: "tools" },
+  { name: "User Research", group: "methods" },
+  { name: "Wireframing", group: "methods" },
+  { name: "Prototyping", group: "methods" },
+  { name: "Design Systems", group: "methods" },
+  { name: "Vibe Coding", group: "code" },
+  { name: "Next.js", group: "code" },
+  { name: "Tailwind CSS", group: "code" },
+  { name: "TypeScript", group: "code" },
+  { name: "Design Thinking", group: "methods" },
+  { name: "Problem Solving", group: "soft" },
+  { name: "Collaboration", group: "soft" },
+  { name: "Communication", group: "soft" },
+  { name: "Empathy", group: "soft" },
+  { name: "Curiosity", group: "soft" },
+];
+
+const hobbies = [
+  "Photography",
+  "Cooking",
+  "Travel",
+  "Music",
+  "Journaling",
 ];
 
 export default function PortfolioPage() {
@@ -200,33 +218,75 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Books */}
+      {/* Skills, Books & Interests */}
       <section className="px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
             <div>
               <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
-                What I&apos;m<br />reading
+                What I&apos;m<br />into
               </h2>
               <p className="mt-8 text-muted-foreground">
-                A few books that shape how I think about design, behavior, and building products people actually want to use.
+                Skills I&apos;m building, books that shape my thinking, and the things that keep me curious outside of work.
               </p>
             </div>
-            <div className="space-y-0">
-              {books.map((book) => (
-                <div
-                  key={book.title}
-                  className="flex items-center justify-between py-5"
-                >
-                  <div>
-                    <p className="font-medium">{book.title}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{book.author}</p>
-                  </div>
-                  <span className="rounded-full bg-foreground/5 px-3 py-1 text-xs text-muted-foreground">
-                    {book.status}
-                  </span>
+            <div className="space-y-16">
+              {/* Skills */}
+              <div>
+                <p className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">Skills</p>
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill) => (
+                    <span
+                      key={skill.name}
+                      className="rounded-full border border-border/60 px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
+                    >
+                      {skill.name}
+                    </span>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Books */}
+              <div>
+                <p className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">Books</p>
+                <div className="space-y-0">
+                  {[
+                    { title: "The Design of Everyday Things", author: "Don Norman", status: "read" },
+                    { title: "Thinking with Type", author: "Ellen Lupton", status: "read" },
+                    { title: "Refactoring UI", author: "Adam Wathan & Steve Schoger", status: "reading" },
+                    { title: "Don't Make Me Think", author: "Steve Krug", status: "read" },
+                    { title: "Hooked", author: "Nir Eyal", status: "to read" },
+                  ].map((book) => (
+                    <div
+                      key={book.title}
+                      className="flex items-center justify-between py-4"
+                    >
+                      <div>
+                        <p className="font-medium">{book.title}</p>
+                        <p className="mt-1 text-sm text-muted-foreground">{book.author}</p>
+                      </div>
+                      <span className="rounded-full bg-foreground/5 px-3 py-1 text-xs text-muted-foreground">
+                        {book.status}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Hobbies */}
+              <div>
+                <p className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">Hobbies</p>
+                <div className="flex flex-wrap gap-2">
+                  {hobbies.map((hobby) => (
+                    <span
+                      key={hobby}
+                      className="rounded-full border border-border/60 px-4 py-2 text-sm text-muted-foreground"
+                    >
+                      {hobby}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

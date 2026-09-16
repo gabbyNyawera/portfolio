@@ -104,25 +104,36 @@ export default function PhilosophyPage() {
           id="clarity-example"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
-          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-[1fr_auto] items-center">
-            <div className="relative">
-              <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
-              <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
-              <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
-              <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
+          <div className="max-w-5xl w-full grid gap-0 md:grid-cols-2 items-center divide-white/10 md:divide-x">
+            <div className="flex gap-4 p-8">
+              <div className="relative flex-1">
+                <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
+                <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
+                <div className="w-full aspect-square bg-white/5 overflow-hidden">
+                  <img src="/images/philosophy/norman-teapot.jpg" alt="Don Norman's Nanna teapot" className="w-full h-full object-cover" />
+                </div>
+              </div>
+              <div className="relative flex-1">
+                <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
+                <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
+                <div className="w-full aspect-square bg-white/5 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
+                </div>
               </div>
             </div>
-            <div className="max-w-xs">
+            <div className="max-w-xs p-8">
               <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
-                Study App
+                Don Norman &amp; The Norman Door
               </p>
               <p className="font-serif text-2xl font-extralight leading-snug tracking-tight text-white/80 mb-4">
-                The Norman Door — push or pull?
+                Push or pull?
               </p>
               <p className="text-sm leading-relaxed text-white/40">
-                If you have to think about how to use it, the design has failed.
+                If you need a sign to explain how to use it, the design has failed.
                 Clarity means the interface disappears — you just act.
               </p>
             </div>
@@ -156,27 +167,38 @@ export default function PhilosophyPage() {
           id="functionality-example"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
-          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-[1fr_auto] items-center">
-            <div className="relative">
-              <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
-              <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
-              <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
-              <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
+          <div className="max-w-5xl w-full grid gap-0 md:grid-cols-2 items-center divide-white/10 md:divide-x">
+            <div className="flex gap-4 p-8">
+              <div className="relative flex-1">
+                <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
+                <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
+                <div className="w-full aspect-square bg-white/5 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
+                </div>
+              </div>
+              <div className="relative flex-1">
+                <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
+                <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
+                <div className="w-full aspect-square bg-white/5 overflow-hidden">
+                  <img src="/images/philosophy/magic-mouse.jpg" alt="Apple Magic Mouse charging upside down" className="w-full h-full object-cover" />
+                </div>
               </div>
             </div>
-            <div className="max-w-xs">
+            <div className="max-w-xs p-8">
               <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
-                Portfolio
+                MUJI Speaker &amp; Apple Magic Mouse
               </p>
               <p className="font-serif text-2xl font-extralight leading-snug tracking-tight text-white/80 mb-4">
-                Nothing decorative — everything serves the reader.
+                Form follows function.
               </p>
               <p className="text-sm leading-relaxed text-white/40">
-                Every element has a job. Serif headings for hierarchy, warm
-                palette for humanity, generous spacing for breathing room.
-                Form follows function.
+                Fukasawa&apos;s MUJI speaker: pull the cord, it plays. The Magic Mouse:
+                beautiful, but you can&apos;t use it while charging. When form overrides
+                function, the design fails.
               </p>
             </div>
           </div>
@@ -209,17 +231,19 @@ export default function PhilosophyPage() {
           id="whitespace-example"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
-          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-[1fr_auto] items-center">
-            <div className="relative">
-              <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
-              <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
-              <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
-              <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
+          <div className="max-w-5xl w-full grid gap-0 md:grid-cols-2 items-center divide-white/10 md:divide-x">
+            <div className="p-8">
+              <div className="relative">
+                <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
+                <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-white/20" />
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-white/20" />
+                <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
+                </div>
               </div>
             </div>
-            <div className="max-w-xs">
+            <div className="max-w-xs p-8">
               <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
                 JQ Face
               </p>
@@ -227,9 +251,9 @@ export default function PhilosophyPage() {
                 The empty space isn&apos;t empty.
               </p>
               <p className="text-sm leading-relaxed text-white/40">
-                JQ Face is a fashion brand — the whitespace lets the products
-                breathe. Generous margins and padding create a sense of luxury.
-                Restraint isn&apos;t minimalism — it&apos;s focus.
+                A fashion brand where whitespace lets the products breathe.
+                Generous margins create luxury. Restraint isn&apos;t minimalism —
+                it&apos;s focus.
               </p>
             </div>
           </div>

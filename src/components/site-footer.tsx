@@ -28,7 +28,7 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
       )}
 
       {/* Footer info */}
-      <div className="px-8 py-10 lg:px-16">
+      <div className="border-t border-border/50 px-8 py-10 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 md:grid-cols-3">
             {/* Brand */}
