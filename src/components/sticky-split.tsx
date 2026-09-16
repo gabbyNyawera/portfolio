@@ -17,7 +17,7 @@ export function StickySplit({
   return (
     <div className={cn("grid gap-12 md:grid-cols-[1fr_2fr] md:gap-20", className)}>
       <div
-        className="md:sticky md:self-start"
+        className="md:pr-12 md:sticky md:self-start"
         style={{ top: stickyTop }}
       >
         {left}

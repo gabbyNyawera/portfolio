@@ -110,7 +110,7 @@ export default function PortfolioPage() {
       <section id="philosophy" className="px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
-            <div>
+            <div className="md:pr-12">
               <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
                 How I<br />think
               </h2>
@@ -224,7 +224,7 @@ export default function PortfolioPage() {
       <section className="px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
-            <div>
+            <div className="md:pr-12">
               <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
                 What I&apos;m<br />into
               </h2>
