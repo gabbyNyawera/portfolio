@@ -6,7 +6,7 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
     <footer className="bg-background">
       {/* CTA section */}
       {showCta && (
-        <div className="px-8 pt-32 pb-24 lg:px-16">
+        <div className="px-5 pt-24 pb-16 sm:px-8 sm:pt-32 sm:pb-24 lg:px-16">
           <div className="mx-auto max-w-6xl">
             <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-7xl">
               I design experiences
@@ -28,7 +28,7 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
       )}
 
       {/* Footer info */}
-      <div className="px-8 py-10 lg:px-16">
+      <div className="px-5 py-8 sm:px-8 sm:py-10 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 md:grid-cols-3">
             {/* Brand */}
