@@ -303,74 +303,112 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "jq-face",
-    title: "JQ Face",
-    slug: "jq-face",
+    id: "jack-reverse",
+    title: "Jack Reverse",
+    slug: "jack-reverse",
     description:
-      "A conceptual project focused on identity, expression, and bold visual design.",
+      "A curated events discovery platform designed to showcase Harare's creative culture.",
     year: "2024",
     role: "Designer",
-    category: "Identity / Concept",
-    featured: false,
+    category: "Platform / UX",
+    featured: true,
     image:
-      "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80",
     caseStudy: {
       heroDescription:
-        "A conceptual project focused on identity, expression, and bold visual design.",
+        "A curated events discovery platform designed to help people discover what's happening in Harare — not through a generic directory, but through an experience that feels connected to the city's creative scene.",
       sections: [
         {
           id: "context",
           label: "Context",
-          title: "What was this project?",
-          content: "[PROJECT CONTEXT TO BE ADDED]",
+          title: "Making Harare's events easier to discover",
+          content:
+            "Harare has a constant flow of events — music, art, food, culture, nightlife, community — but discovering what's actually happening can be fragmented. Jack Reverse was designed around a simple question: What if discovering what's happening in Harare felt as effortless as discovering something you actually want to do? The goal wasn't to build another ticketing platform. Jack Reverse exists to showcase and curate events, helping people discover what's happening and decide where they want to go.",
         },
         {
           id: "challenge",
           label: "The Challenge",
-          title: "What problem were we solving?",
-          content: "[DESIGN CHALLENGE TO BE ADDED]",
+          title: "More than just listing events",
+          content:
+            "The challenge quickly became bigger than simply listing events. A conventional events directory tends to become a grid of event cards, lots of filters, dates and categories, repetitive metadata, and overwhelming amounts of information. That approach is functional, but it doesn't necessarily make people want to explore. For Jack Reverse, the design needed to balance two things: Discovery — help people quickly find something relevant, and Culture — make the platform feel connected to Harare's creative scene rather than like a generic events database.",
+          quote:
+            "Searching should feel like exploration, not administration.",
         },
         {
           id: "research",
-          label: "Research",
-          title: "Discovery and exploration",
-          content: "[RESEARCH CONTENT TO BE ADDED]",
+          label: "Defining the Experience",
+          title: "Mapping the visitor's questions",
+          content:
+            "Before designing individual pages, the experience was mapped around the questions a visitor naturally has. 'What's happening?' leads to Home — a curated introduction to what's happening now. 'What can I do?' leads to Browse Events — a searchable, filterable discovery experience. 'Tell me more about this.' leads to Event Page — the details needed to decide whether to attend. 'What happened?' leads to Past Events — a way to explore previous events and the culture around them. 'I have an event.' leads to Submit Event — a simple route for organisers to get their event onto Jack Reverse.",
         },
         {
           id: "insights",
-          label: "Insights",
-          title: "What we learned",
-          content: "[INSIGHTS TO BE ADDED]",
+          label: "Key Insight",
+          title: "Browse vs Search",
+          content:
+            "One of the more important UX questions was whether Browse and Search were actually solving different problems. If both pages simply presented an event grid with filters, they became redundant. The distinction became clearer: Browse is 'Show me what's happening' — an exploratory experience where users can scan categories, locations, dates and curated selections. Search is 'I know roughly what I'm looking for' — a focused utility for quickly finding a specific event, artist, venue, category or keyword. This distinction helped prevent the site architecture from creating two pages that essentially solved the same problem.",
         },
         {
           id: "process",
           label: "Design Process",
-          title: "How the design evolved",
-          content: "[DESIGN PROCESS CONTENT TO BE ADDED]",
+          title: "Iteration was part of the design",
+          content:
+            "The visual direction wasn't established in a single pass. Several decisions came from deliberately challenging the first solution. Dropdown filters became visible buttons and tags. The large ticket section became a simpler floating action. The sticker inside a box became artwork that breaks out of the layout. The long event page became a more compressed spatial composition. These weren't cosmetic changes. Each iteration came from asking: Is this helping the user, or are we adding UI because that's what event websites normally do?",
         },
         {
           id: "decisions",
           label: "Design Decisions",
-          title: "Key choices made",
-          content: "[DESIGN DECISIONS TO BE ADDED]",
+          title: "Structure meets expression",
+          content:
+            "The visual language is built around a tension between structure and expression. Structure — typography, spacing, grids, hierarchy and consistent components. Expression — editorial layouts, event artwork, stickers, imagery and unexpected positioning. This is important because Jack Reverse isn't trying to make every event look identical. The system needs to create consistency around the content, while allowing the content itself to remain expressive.",
+          columns: [
+            {
+              label: "Structure",
+              items: [
+                "Typography and spacing",
+                "Grids and hierarchy",
+                "Consistent components",
+              ],
+            },
+            {
+              label: "Expression",
+              items: [
+                "Editorial layouts",
+                "Event artwork and stickers",
+                "Unexpected positioning",
+              ],
+            },
+            {
+              label: "Principle",
+              items: [
+                "The grid provides structure",
+                "The artwork provides personality",
+              ],
+            },
+          ],
         },
         {
           id: "final",
           label: "Final Design",
-          title: "The finished work",
-          content: "[FINAL DESIGN IMAGES TO BE ADDED]",
+          title: "A way to experience Harare's event culture",
+          content:
+            "The project became less about designing an 'events website' and more about designing a way to experience Harare's event culture online. Instead of asking 'What components does an events platform need?' the better question became: 'What does someone need to see, feel and understand to decide where they want to be?' That question influenced the hierarchy, search experience, event pages, artwork treatment and information architecture.",
         },
         {
           id: "outcome",
           label: "Outcome",
-          title: "What was achieved",
-          content: "[OUTCOME TO BE ADDED]",
+          title: "Discovery rather than transaction",
+          content:
+            "Jack Reverse evolved into a platform built around discovery rather than transaction. The resulting experience gives users different paths depending on their intent: Explore what's happening through Home and Browse. Find something specific through Search. Understand an event through the Event page. Look back at what's happened through Past Events. Add something to the ecosystem through Submit Event. The design system provides the consistency needed for the platform to scale, while the editorial and expressive elements keep individual events from feeling interchangeable.",
         },
         {
           id: "reflection",
           label: "Reflection",
           title: "What I learned",
-          content: "[REFLECTION TO BE ADDED]",
+          content:
+            "Don't design the category. Design the problem. 'Events website' is a category. 'Help someone decide what they want to do tonight' is a problem. The second produces much better design questions. More UI doesn't necessarily mean more functionality — filters, cards, buttons and sections can make a page feel comprehensive while actually making it harder to understand. A design system shouldn't flatten content — events are inherently visual and expressive, and the system should create consistency without making every event look like the same event.",
+          quote:
+            "Good design isn't just finding a solution. It's knowing when the first solution isn't good enough.",
         },
       ],
     },
