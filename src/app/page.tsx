@@ -30,11 +30,13 @@ const skills = [
 ];
 
 const hobbies = [
-  "Photography",
   "Cooking",
-  "Travel",
+  "Reading",
+  "Crocheting",
+  "Flower Arrangement",
+  "Baking",
+  "Tennis",
   "Music",
-  "Journaling",
 ];
 
 export default function PortfolioPage() {
@@ -222,7 +224,7 @@ export default function PortfolioPage() {
       <section className="px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
-            <div>
+            <div className="md:border-r-2 md:border-border/40 md:pr-12">
               <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
                 What I&apos;m<br />into
               </h2>
@@ -249,7 +251,7 @@ export default function PortfolioPage() {
               {/* Books */}
               <div>
                 <p className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">Books</p>
-                <div className="space-y-0">
+                <div className="flex flex-wrap gap-2">
                   {[
                     { title: "The Design of Everyday Things", author: "Don Norman", status: "read" },
                     { title: "Thinking with Type", author: "Ellen Lupton", status: "read" },
@@ -257,18 +259,12 @@ export default function PortfolioPage() {
                     { title: "Don't Make Me Think", author: "Steve Krug", status: "read" },
                     { title: "Hooked", author: "Nir Eyal", status: "to read" },
                   ].map((book) => (
-                    <div
+                    <span
                       key={book.title}
-                      className="flex items-center justify-between py-4"
+                      className="rounded-full border border-border/60 px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
                     >
-                      <div>
-                        <p className="font-medium">{book.title}</p>
-                        <p className="mt-1 text-sm text-muted-foreground">{book.author}</p>
-                      </div>
-                      <span className="rounded-full bg-foreground/5 px-3 py-1 text-xs text-muted-foreground">
-                        {book.status}
-                      </span>
-                    </div>
+                      {book.title}
+                    </span>
                   ))}
                 </div>
               </div>
