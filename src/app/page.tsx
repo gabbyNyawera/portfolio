@@ -107,10 +107,10 @@ export default function PortfolioPage() {
       </section>
 
       {/* Philosophy */}
-      <section id="philosophy" className="bg-muted px-8 py-32">
+      <section id="philosophy" className="px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
-            <div>
+            <div className="md:border-r-2 md:border-border/40 md:pr-12">
               <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
                 How I<br />think
               </h2>
@@ -188,7 +188,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Education */}
-      <section className="bg-muted px-8 py-32">
+      <section className="px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <StickySplit
             left={
