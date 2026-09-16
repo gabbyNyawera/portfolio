@@ -23,6 +23,10 @@ export function PhilosophyNav({
 }: PhilosophyNavProps) {
   const activeId = slides[activeSlide]?.id;
 
+  const introSlides = slides.filter((s) => s.group === "intro");
+  const philosophySlides = slides.filter((s) => s.group === "philosophy");
+  const processSlides = slides.filter((s) => s.group === "process");
+
   return (
     <>
       {/* Desktop: left sidebar */}
@@ -36,8 +40,8 @@ export function PhilosophyNav({
           </a>
 
           <div className="space-y-0.5">
-            {/* Core Belief — top level */}
-            {slides.filter((s) => s.group === "intro").map((slide, i) => {
+            {/* Intro slides — top level */}
+            {introSlides.map((slide) => {
               const slideIndex = slides.indexOf(slide);
               return (
                 <button
@@ -61,20 +65,24 @@ export function PhilosophyNav({
               );
             })}
 
-            {/* Design Philosophy — section header + indented children */}
+            {/* Design Philosophy — section header */}
             <div className="pt-4 pb-1 px-6">
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/20">
                 Design Philosophy
               </p>
             </div>
-            {slides.filter((s) => s.group === "philosophy").map((slide) => {
+
+            {/* Philosophy slides — principle + example pairs */}
+            {philosophySlides.map((slide) => {
               const slideIndex = slides.indexOf(slide);
+              const isExample = slide.id.includes("-example");
               return (
                 <button
                   key={slide.id}
                   onClick={() => onSlideClick(slideIndex)}
                   className={cn(
-                    "group flex w-full items-center gap-3 pl-10 pr-6 py-2 text-left text-xs transition-all duration-300",
+                    "group flex w-full items-center gap-3 py-1.5 text-left text-xs transition-all duration-300",
+                    isExample ? "pl-12 pr-6" : "pl-10 pr-6",
                     activeId === slide.id
                       ? "text-white"
                       : "text-white/40 hover:text-white/70"
@@ -86,13 +94,15 @@ export function PhilosophyNav({
                       activeId === slide.id ? "w-4 bg-white" : "w-2 bg-white/20"
                     )}
                   />
-                  <span>{slide.label}</span>
+                  <span className={cn(isExample && "text-white/30")}>
+                    {slide.label}
+                  </span>
                 </button>
               );
             })}
 
             {/* Design Process — top level */}
-            {slides.filter((s) => s.group === "process").map((slide) => {
+            {processSlides.map((slide) => {
               const slideIndex = slides.indexOf(slide);
               return (
                 <button
