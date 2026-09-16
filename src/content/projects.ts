@@ -32,73 +32,112 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "kavara-kavara",
-    title: "Kavara Kavara",
+    title: "KAVARA KAVARA",
     slug: "kavara-kavara",
     description:
-      "A storytelling-driven e-commerce experience built around fire, food, and outdoor living.",
+      "A storytelling-driven brand and digital experience built around fire, food, and outdoor living.",
     year: "2024",
     role: "Designer",
-    category: "E-commerce / Brand",
+    category: "Brand / Digital Experience",
     featured: true,
     image:
       "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80",
     caseStudy: {
       heroDescription:
-        "A storytelling-driven e-commerce experience built around fire, food, and outdoor living.",
+        "A brand and digital experience designed around one central idea: Outdoor Food Culture. Rather than designing a conventional restaurant website, the goal was to create a digital world that makes people feel the brand before they visit it.",
       sections: [
         {
           id: "context",
           label: "Context",
-          title: "What was this project?",
-          content: "[PROJECT CONTEXT TO BE ADDED]",
+          title: "What is KAVARA KAVARA?",
+          content:
+            "KAVARA KAVARA is an outdoor food culture brand built around one central idea: Outdoor Food Culture. It is about what happens when food moves outside — the fire being lit, smoke moving through the air, people gathering around a table, food cooking slowly, stories getting longer, friends and family staying a little later than planned. At its heart, KAVARA KAVARA is not simply about what is being served. It is about the culture around the food.",
         },
         {
           id: "challenge",
           label: "The Challenge",
-          title: "What problem were we solving?",
-          content: "[DESIGN CHALLENGE TO BE ADDED]",
+          title: "How do you design a feeling?",
+          content:
+            "The challenge was to create a digital presence that communicated something difficult to describe through conventional website language. KAVARA KAVARA needed to feel premium without feeling luxurious, outdoor without becoming rustic or cliché, contemporary without chasing trends, warm without becoming overly sentimental, and editorial without becoming overly formal. The central question became: How do you design a website that makes someone feel an outdoor meal before they have experienced one?",
+          quote:
+            "How do you design a website that makes someone feel an outdoor meal before they have experienced one?",
         },
         {
           id: "research",
-          label: "Research",
-          title: "Discovery and exploration",
-          content: "[RESEARCH CONTENT TO BE ADDED]",
+          label: "Finding the Core",
+          title: "Reducing everything to one pillar",
+          content:
+            "The project became clearer once everything was reduced to one pillar: Outdoor Food Culture. This became the filter for every major decision. If it was visual, it needed to feel outdoors. If it was copy, it needed to sound human. If it was a layout, it needed to feel intentional. If it was an interaction, it needed to have a reason. If it did not contribute to the feeling of Outdoor Food Culture, it did not need to be there.",
         },
         {
           id: "insights",
-          label: "Insights",
-          title: "What we learned",
-          content: "[INSIGHTS TO BE ADDED]",
+          label: "Guiding Posts",
+          title: "Three principles",
+          content:
+            "Every design decision was judged against three principles. Premium — premium comes from craft rather than luxury. The design uses restraint, typography, spacing, photography and composition to create quality. The goal was never to make KAVARA KAVARA look expensive — it was to make it look considered. Clever and well thought out — nothing should exist simply because it looks good. Every element should have a purpose. Make people feel something — the website should create emotion before it creates conversion: warmth, curiosity, belonging, nostalgia, hunger, connection, relaxation, the desire to gather.",
         },
         {
           id: "process",
-          label: "Design Process",
-          title: "How the design evolved",
-          content: "[DESIGN PROCESS CONTENT TO BE ADDED]",
+          label: "Visual Direction",
+          title: "Between hospitality and editorial",
+          content:
+            "The visual direction sits between hospitality and editorial design. The website should feel like a beautifully art-directed food publication, an outdoor lifestyle journal, a premium hospitality brand, and a visual story about gathering. It should not feel like a restaurant template, a food delivery platform, a luxury hotel, or a corporate website. The design relies heavily on space, scale, imagery and typography.",
         },
         {
           id: "decisions",
           label: "Design Decisions",
-          title: "Key choices made",
-          content: "[DESIGN DECISIONS TO BE ADDED]",
+          title: "Typography, colour, and voice",
+          content:
+            "Typography pairs Rotherham for expressive moments — large display headlines, hero statements, quotes — with Made Tommy for structure and usability: navigation, headings, body copy, buttons. The colour system is deliberately restrained: green as the primary brand colour connecting to nature, white for space and contrast, beige for warmth and a tactile, natural quality. The palette is intentionally narrow so that photography, typography and the brand anchors carry the visual experience. The voice speaks like someone who has cooked over fire for years — experienced, relaxed, confident, never trying too hard.",
+          columns: [
+            {
+              label: "Typography",
+              items: [
+                "Rotherham — expressive display",
+                "Made Tommy — structure and UI",
+                "Editorial expression + functional clarity",
+              ],
+            },
+            {
+              label: "Colour",
+              items: [
+                "Green — nature and outdoors",
+                "White — space and contrast",
+                "Beige — warmth and tactility",
+              ],
+            },
+            {
+              label: "Brand Anchors",
+              items: [
+                "Fire, smoke, embers, wood",
+                "Outdoor tables, cushions, umbrellas",
+                "Shared plates, friends and family",
+              ],
+            },
+          ],
         },
         {
           id: "final",
           label: "Final Design",
-          title: "The finished work",
-          content: "[FINAL DESIGN IMAGES TO BE ADDED]",
+          title: "The resulting design language",
+          content:
+            "The resulting KAVARA KAVARA language can be described as Editorial + Outdoor + Fire + Hospitality + Culture. It combines premium typography, natural colour, documentary photography, outdoor environments, editorial layouts, handcrafted illustration, cultural details, and human storytelling. The result should feel recognisable even before the logo is seen. Every major design decision was tested against six questions: Does it feel outdoors? Does it feel real? Does it feel premium? Is it clever and intentional? Does it make you feel something? Does it feel like KAVARA KAVARA?",
         },
         {
           id: "outcome",
           label: "Outcome",
-          title: "What was achieved",
-          content: "[OUTCOME TO BE ADDED]",
+          title: "Designing around a feeling",
+          content:
+            "KAVARA KAVARA became an exercise in designing a brand around a feeling rather than a product. The challenge was not simply to create a beautiful restaurant website. It was to build a visual system capable of communicating a culture — a culture of fire, food, gathering, and taking your time outside. The central idea of Outdoor Food Culture became the thread connecting the brand identity, typography, colour, imagery, copy and website experience.",
         },
         {
           id: "reflection",
           label: "Reflection",
           title: "What I learned",
-          content: "[REFLECTION TO BE ADDED]",
+          content:
+            "The experience progression follows Feel, Understand, Discover, Desire. First the visitor feels the world. Then they understand what KAVARA KAVARA is. Then they discover the food, people and ideas behind it. Finally, they want to experience it themselves. A major part of the project was resisting the temptation to fill every space. The website uses whitespace as part of the identity — large images are given room, large type is allowed to breathe, quotes become visual moments, and illustration interrupts the rhythm.",
+          quote:
+            "Outdoor Food Culture by KAVARA KAVARA.",
         },
       ],
     },
