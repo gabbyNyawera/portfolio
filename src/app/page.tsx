@@ -82,10 +82,10 @@ export default function PortfolioPage() {
       <section className="px-8 pt-40 pb-40">
         <div className="mx-auto max-w-6xl">
           <h1 className="font-serif text-6xl font-light leading-[1.1] tracking-tight md:text-8xl">
-            Gabe — Product<br />Designer.
+            Gabe Product<br />Designer.
           </h1>
           <p className="mt-10 max-w-xl text-xl leading-relaxed text-muted-foreground">
-            Hey, I&apos;m Gabe — a product designer crafting calm, considered digital experiences.
+            Hey, I&apos;m Gabe a product designer crafting calm, considered digital experiences.
           </p>
           <p className="mt-4 max-w-xl text-xl leading-relaxed text-muted-foreground">
             With a focus on clarity, usability, and the kind of details that make complex things feel obvious.
