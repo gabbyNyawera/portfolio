@@ -5,16 +5,12 @@ import { ArrowUpRight } from "lucide-react";
 import { PhilosophyNav } from "@/components/philosophy-nav";
 
 const slides = [
-  { id: "core-belief", label: "Core Belief", number: "01" },
-  { id: "clarity", label: "Clarity", number: "02" },
-  { id: "clarity-example", label: "Clarity in Practice", number: "03" },
-  { id: "functionality", label: "Functionality", number: "04" },
-  { id: "functionality-example", label: "Functionality in Practice", number: "05" },
-  { id: "whitespace", label: "Whitespace", number: "06" },
-  { id: "whitespace-example", label: "Whitespace in Practice", number: "07" },
-  { id: "intentionality", label: "Intentionality", number: "08" },
-  { id: "intentionality-example", label: "Intentionality in Practice", number: "09" },
-  { id: "process", label: "Design Process", number: "10" },
+  { id: "core-belief", label: "Core Belief", group: "intro" },
+  { id: "clarity", label: "Clarity", group: "philosophy" },
+  { id: "functionality", label: "Functionality", group: "philosophy" },
+  { id: "whitespace", label: "Whitespace", group: "philosophy" },
+  { id: "intentionality", label: "Intentionality", group: "philosophy" },
+  { id: "process", label: "Design Process", group: "process" },
 ];
 
 export default function PhilosophyPage() {
@@ -82,29 +78,24 @@ export default function PhilosophyPage() {
           id="clarity"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
-          <div className="max-w-3xl text-center">
-            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              Clarity
-            </p>
-            <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
-              &ldquo;If it needs explanation,
-              <br />
-              <span className="font-light">it&apos;s not done.</span>&rdquo;
-            </blockquote>
-            <p className="mt-10 mx-auto max-w-md text-base leading-relaxed text-white/50">
-              Cleverness is easy. Clarity is hard. The best design is the
-              design you don&apos;t notice — it just works. If someone has to
-              think too much, I&apos;ve failed.
-            </p>
-          </div>
-        </section>
-
-        {/* SLIDE 03 — CLARITY EXAMPLE */}
-        <section
-          id="clarity-example"
-          className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
-        >
-          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-[1fr_auto] items-center">
+          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-2 items-center">
+            {/* Principle */}
+            <div>
+              <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
+                Clarity
+              </p>
+              <blockquote className="font-serif text-3xl font-extralight leading-snug tracking-tight md:text-5xl">
+                &ldquo;If it needs explanation,
+                <br />
+                <span className="font-light">it&apos;s not done.</span>&rdquo;
+              </blockquote>
+              <p className="mt-8 text-sm leading-relaxed text-white/50 max-w-sm">
+                Cleverness is easy. Clarity is hard. The best design is the
+                design you don&apos;t notice — it just works. If someone has to
+                think too much, I&apos;ve failed.
+              </p>
+            </div>
+            {/* Example */}
             <div className="relative">
               <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
               <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
@@ -113,50 +104,44 @@ export default function PhilosophyPage() {
               <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
                 <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
               </div>
-            </div>
-            <div className="max-w-xs">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
-                Study App
-              </p>
-              <p className="font-serif text-2xl font-extralight leading-snug tracking-tight text-white/80 mb-4">
-                The Norman Door — push or pull?
-              </p>
-              <p className="text-sm leading-relaxed text-white/40">
-                If you have to think about how to use it, the design has failed.
-                Clarity means the interface disappears — you just act.
-              </p>
+              <div className="mt-6">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2">
+                  Study App
+                </p>
+                <p className="font-serif text-lg font-extralight text-white/70">
+                  The Norman Door — push or pull?
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-white/40">
+                  If you have to think about how to use it, the design has failed.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* SLIDE 04 — FUNCTIONALITY */}
+        {/* SLIDE 03 — FUNCTIONALITY */}
         <section
           id="functionality"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
-          <div className="max-w-3xl text-center">
-            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              Functionality
-            </p>
-            <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
-              &ldquo;Form follows function
-              <br />
-              <span className="font-light">— not the other way around.</span>&rdquo;
-            </blockquote>
-            <p className="mt-10 mx-auto max-w-md text-base leading-relaxed text-white/50">
-              Every element should earn its place by solving a problem, not by
-              looking interesting. If it doesn&apos;t serve a purpose, it
-              doesn&apos;t stay.
-            </p>
-          </div>
-        </section>
-
-        {/* SLIDE 05 — FUNCTIONALITY EXAMPLE */}
-        <section
-          id="functionality-example"
-          className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
-        >
-          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-[1fr_auto] items-center">
+          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-2 items-center">
+            {/* Principle */}
+            <div>
+              <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
+                Functionality
+              </p>
+              <blockquote className="font-serif text-3xl font-extralight leading-snug tracking-tight md:text-5xl">
+                &ldquo;Form follows function
+                <br />
+                <span className="font-light">— not the other way around.</span>&rdquo;
+              </blockquote>
+              <p className="mt-8 text-sm leading-relaxed text-white/50 max-w-sm">
+                Every element should earn its place by solving a problem, not by
+                looking interesting. If it doesn&apos;t serve a purpose, it
+                doesn&apos;t stay.
+              </p>
+            </div>
+            {/* Example */}
             <div className="relative">
               <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
               <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
@@ -165,51 +150,44 @@ export default function PhilosophyPage() {
               <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
                 <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
               </div>
-            </div>
-            <div className="max-w-xs">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
-                Portfolio
-              </p>
-              <p className="font-serif text-2xl font-extralight leading-snug tracking-tight text-white/80 mb-4">
-                Nothing decorative — everything serves the reader.
-              </p>
-              <p className="text-sm leading-relaxed text-white/40">
-                Every element has a job. Serif headings for hierarchy, warm
-                palette for humanity, generous spacing for breathing room.
-                Form follows function.
-              </p>
+              <div className="mt-6">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2">
+                  Portfolio
+                </p>
+                <p className="font-serif text-lg font-extralight text-white/70">
+                  Nothing decorative — everything serves the reader.
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-white/40">
+                  Serif headings for hierarchy, warm palette for humanity, generous spacing for breathing room.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* SLIDE 06 — WHITESPACE */}
+        {/* SLIDE 04 — WHITESPACE */}
         <section
           id="whitespace"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
-          <div className="max-w-3xl text-center">
-            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              Whitespace
-            </p>
-            <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
-              &ldquo;What you leave out
-              <br />
-              <span className="font-light">defines what remains.</span>&rdquo;
-            </blockquote>
-            <p className="mt-10 mx-auto max-w-md text-base leading-relaxed text-white/50">
-              Breathing room. The space between elements is just as important
-              as the elements themselves. Restraint isn&apos;t minimalism — it&apos;s
-              focus.
-            </p>
-          </div>
-        </section>
-
-        {/* SLIDE 07 — WHITESPACE EXAMPLE */}
-        <section
-          id="whitespace-example"
-          className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
-        >
-          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-[1fr_auto] items-center">
+          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-2 items-center">
+            {/* Principle */}
+            <div>
+              <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
+                Whitespace
+              </p>
+              <blockquote className="font-serif text-3xl font-extralight leading-snug tracking-tight md:text-5xl">
+                &ldquo;What you leave out
+                <br />
+                <span className="font-light">defines what remains.</span>&rdquo;
+              </blockquote>
+              <p className="mt-8 text-sm leading-relaxed text-white/50 max-w-sm">
+                Breathing room. The space between elements is just as important
+                as the elements themselves. Restraint isn&apos;t minimalism — it&apos;s
+                focus.
+              </p>
+            </div>
+            {/* Example */}
             <div className="relative">
               <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
               <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
@@ -218,51 +196,44 @@ export default function PhilosophyPage() {
               <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
                 <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
               </div>
-            </div>
-            <div className="max-w-xs">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
-                JQ Face
-              </p>
-              <p className="font-serif text-2xl font-extralight leading-snug tracking-tight text-white/80 mb-4">
-                The empty space isn&apos;t empty.
-              </p>
-              <p className="text-sm leading-relaxed text-white/40">
-                JQ Face is a fashion brand — the whitespace lets the products
-                breathe. Generous margins and padding create a sense of luxury.
-                Restraint isn&apos;t minimalism — it&apos;s focus.
-              </p>
+              <div className="mt-6">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2">
+                  JQ Face
+                </p>
+                <p className="font-serif text-lg font-extralight text-white/70">
+                  The empty space isn&apos;t empty.
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-white/40">
+                  Generous margins and padding create a sense of luxury. Restraint isn&apos;t minimalism — it&apos;s focus.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* SLIDE 08 — INTENTIONALITY */}
+        {/* SLIDE 05 — INTENTIONALITY */}
         <section
           id="intentionality"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
         >
-          <div className="max-w-3xl text-center">
-            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
-              Intentionality
-            </p>
-            <blockquote className="font-serif text-4xl font-extralight leading-snug tracking-tight md:text-6xl">
-              &ldquo;Nothing is accidental.
-              <br />
-              <span className="font-light">Every pixel earns its place.</span>&rdquo;
-            </blockquote>
-            <p className="mt-10 mx-auto max-w-md text-base leading-relaxed text-white/50">
-              Design for human error. Every interaction, every word should be
-              there for a reason. If you can&apos;t explain why it exists, it
-              probably shouldn&apos;t.
-            </p>
-          </div>
-        </section>
-
-        {/* SLIDE 09 — INTENTIONALITY EXAMPLE */}
-        <section
-          id="intentionality-example"
-          className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"
-        >
-          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-[1fr_auto] items-center">
+          <div className="max-w-5xl w-full grid gap-12 md:grid-cols-2 items-center">
+            {/* Principle */}
+            <div>
+              <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-white/30">
+                Intentionality
+              </p>
+              <blockquote className="font-serif text-3xl font-extralight leading-snug tracking-tight md:text-5xl">
+                &ldquo;Nothing is accidental.
+                <br />
+                <span className="font-light">Every pixel earns its place.</span>&rdquo;
+              </blockquote>
+              <p className="mt-8 text-sm leading-relaxed text-white/50 max-w-sm">
+                Design for human error. Every interaction, every word should be
+                there for a reason. If you can&apos;t explain why it exists, it
+                probably shouldn&apos;t.
+              </p>
+            </div>
+            {/* Example */}
             <div className="relative">
               <div className="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-white/20" />
               <div className="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-white/20" />
@@ -271,24 +242,22 @@ export default function PhilosophyPage() {
               <div className="w-full aspect-[4/3] bg-white/5 overflow-hidden">
                 <div className="w-full h-full bg-gradient-to-br from-white/10 to-white/5" />
               </div>
-            </div>
-            <div className="max-w-xs">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
-                Thais House to Home
-              </p>
-              <p className="font-serif text-2xl font-extralight leading-snug tracking-tight text-white/80 mb-4">
-                Every interaction designed with purpose.
-              </p>
-              <p className="text-sm leading-relaxed text-white/40">
-                A real estate platform streamlined to three taps. Property cards
-                showed exactly the information needed to make a decision —
-                nothing more, nothing less.
-              </p>
+              <div className="mt-6">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2">
+                  Thais House to Home
+                </p>
+                <p className="font-serif text-lg font-extralight text-white/70">
+                  Every interaction designed with purpose.
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-white/40">
+                  Streamlined to three taps. Property cards show exactly what you need to decide — nothing more.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* SLIDE 10 — DESIGN PROCESS */}
+        {/* SLIDE 06 — DESIGN PROCESS */}
         <section
           id="process"
           className="flex h-screen w-screen flex-shrink-0 snap-start items-center justify-center px-8"

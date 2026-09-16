@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 type Slide = {
   id: string;
   label: string;
-  number: string;
+  group: string;
 };
 
 type PhilosophyNavProps = {
@@ -21,44 +21,105 @@ export function PhilosophyNav({
   onSlideClick,
   total,
 }: PhilosophyNavProps) {
+  const activeId = slides[activeSlide]?.id;
+
   return (
     <>
       {/* Desktop: left sidebar */}
-      <nav className="fixed left-0 top-0 bottom-0 z-40 hidden w-52 flex-col justify-between border-r border-white/10 bg-[#111111]/90 px-5 py-10 backdrop-blur-md lg:flex">
+      <nav className="fixed left-0 top-0 bottom-0 z-40 hidden w-56 flex-col justify-between border-r border-white/10 bg-[#111111]/95 px-0 py-10 backdrop-blur-md lg:flex">
         <div>
           <a
             href="/"
-            className="mb-10 inline-block text-[10px] font-medium uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-white/80"
+            className="mb-10 inline-block px-6 text-[10px] font-medium uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-white/80"
           >
             ← Back
           </a>
 
           <div className="space-y-0.5">
-            {slides.map((slide, i) => (
-              <button
-                key={slide.id}
-                onClick={() => onSlideClick(i)}
-                className={cn(
-                  "group flex w-full items-center gap-3 py-1.5 text-left text-xs transition-all duration-300",
-                  activeSlide === i
-                    ? "text-white"
-                    : "text-white/30 hover:text-white/60"
-                )}
-              >
-                <span
+            {/* Core Belief — top level */}
+            {slides.filter((s) => s.group === "intro").map((slide, i) => {
+              const slideIndex = slides.indexOf(slide);
+              return (
+                <button
+                  key={slide.id}
+                  onClick={() => onSlideClick(slideIndex)}
                   className={cn(
-                    "h-px transition-all duration-300",
-                    activeSlide === i ? "w-4 bg-white" : "w-2 bg-white/20"
+                    "group flex w-full items-center gap-3 px-6 py-2 text-left text-xs transition-all duration-300",
+                    activeId === slide.id
+                      ? "text-white"
+                      : "text-white/40 hover:text-white/70"
                   )}
-                />
-                <span>{slide.label}</span>
-              </button>
-            ))}
+                >
+                  <span
+                    className={cn(
+                      "h-px transition-all duration-300",
+                      activeId === slide.id ? "w-4 bg-white" : "w-2 bg-white/20"
+                    )}
+                  />
+                  <span>{slide.label}</span>
+                </button>
+              );
+            })}
+
+            {/* Design Philosophy — section header + indented children */}
+            <div className="pt-4 pb-1 px-6">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/20">
+                Design Philosophy
+              </p>
+            </div>
+            {slides.filter((s) => s.group === "philosophy").map((slide) => {
+              const slideIndex = slides.indexOf(slide);
+              return (
+                <button
+                  key={slide.id}
+                  onClick={() => onSlideClick(slideIndex)}
+                  className={cn(
+                    "group flex w-full items-center gap-3 pl-10 pr-6 py-2 text-left text-xs transition-all duration-300",
+                    activeId === slide.id
+                      ? "text-white"
+                      : "text-white/40 hover:text-white/70"
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "h-px transition-all duration-300",
+                      activeId === slide.id ? "w-4 bg-white" : "w-2 bg-white/20"
+                    )}
+                  />
+                  <span>{slide.label}</span>
+                </button>
+              );
+            })}
+
+            {/* Design Process — top level */}
+            {slides.filter((s) => s.group === "process").map((slide) => {
+              const slideIndex = slides.indexOf(slide);
+              return (
+                <button
+                  key={slide.id}
+                  onClick={() => onSlideClick(slideIndex)}
+                  className={cn(
+                    "group flex w-full items-center gap-3 px-6 py-2 text-left text-xs transition-all duration-300",
+                    activeId === slide.id
+                      ? "text-white"
+                      : "text-white/40 hover:text-white/70"
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "h-px transition-all duration-300",
+                      activeId === slide.id ? "w-4 bg-white" : "w-2 bg-white/20"
+                    )}
+                  />
+                  <span>{slide.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* Slide counter */}
-        <div className="space-y-3">
+        <div className="space-y-3 px-6">
           <div className="text-[10px] tabular-nums text-white/30">
             {activeSlide + 1} / {total}
           </div>
