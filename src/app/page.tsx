@@ -81,8 +81,8 @@ export default function PortfolioPage() {
       {/* Hero */}
       <section className="px-5 pt-28 pb-16 sm:px-8 sm:pt-40 sm:pb-40">
         <div className="mx-auto max-w-6xl">
-          <h1 className="font-serif text-6xl font-light leading-[1.1] tracking-tight md:text-8xl">
-            Gabe<br />Product Designer.
+          <h1 className="font-serif text-[2.75rem] font-light leading-[1.05] tracking-tight sm:text-6xl md:text-8xl">
+            Gabe Product Designer.
           </h1>
           <p className="mt-10 max-w-xl text-xl leading-relaxed text-muted-foreground">
             Hey, I&apos;m Gabe a product designer crafting calm, considered digital experiences with a focus on clarity, usability, and the kind of details that make complex things feel obvious.
