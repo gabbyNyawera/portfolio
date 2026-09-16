@@ -48,10 +48,10 @@ export default function PortfolioPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
           <a
-            href="mailto:nyaweragabby@gmail.com"
-            className="inline-flex items-center gap-2 rounded-full border border-accent px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-background"
+            href="/"
+            className="inline-flex size-10 items-center justify-center rounded-full bg-accent text-sm font-medium text-background transition-colors hover:bg-accent/90"
           >
-            Get in touch <ArrowUpRight className="size-3.5" />
+            G
           </a>
           <div className="hidden items-center gap-6 md:flex">
             <a href="mailto:nyaweragabby@gmail.com" className="text-accent transition-colors hover:text-foreground">
@@ -87,18 +87,13 @@ export default function PortfolioPage() {
           <p className="mt-10 max-w-xl text-xl leading-relaxed text-muted-foreground">
             Hey, I&apos;m Gabe a product designer crafting calm, considered digital experiences with a focus on clarity, usability, and the kind of details that make complex things feel obvious.
           </p>
-          <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:items-center">
+          <div className="mt-12">
             <a
               href="mailto:nyaweragabby@gmail.com"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-accent/90 sm:w-auto"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-accent/90"
             >
               Let&apos;s make something beautiful <ArrowUpRight className="size-4" />
             </a>
-            <div className="flex items-center gap-5 text-sm text-accent">
-              <a href="mailto:nyaweragabby@gmail.com" className="transition-colors hover:text-foreground">Email</a>
-              <a href="https://github.com/gabbyNyawera" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-foreground">GitHub</a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-foreground">LinkedIn</a>
-            </div>
           </div>
         </div>
       </section>
@@ -157,11 +152,9 @@ export default function PortfolioPage() {
                     className="group block"
                   >
                     <div className="overflow-hidden rounded-2xl bg-muted">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
+                      <div className="flex aspect-video w-full items-center justify-center bg-accent/10">
+                        <span className="text-sm text-muted-foreground">{project.title}</span>
+                      </div>
                     </div>
                     <div className="mt-6 flex items-start justify-between">
                       <div>

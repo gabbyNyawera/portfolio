@@ -19,10 +19,10 @@ export default function WorkPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
           <a
-            href="mailto:nyaweragabby@gmail.com"
-            className="inline-flex items-center gap-2 rounded-full border border-accent px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-background"
+            href="/"
+            className="inline-flex size-10 items-center justify-center rounded-full bg-accent text-sm font-medium text-background transition-colors hover:bg-accent/90"
           >
-            Get in touch <ArrowUpRight className="size-3.5" />
+            G
           </a>
           <div className="hidden items-center gap-6 md:flex">
             <a href="mailto:nyaweragabby@gmail.com" className="text-accent transition-colors hover:text-foreground">
