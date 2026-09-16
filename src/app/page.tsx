@@ -79,7 +79,7 @@ export default function PortfolioPage() {
       </nav>
 
       {/* Hero */}
-      <section className="px-5 pt-28 pb-28 sm:px-8 sm:pt-40 sm:pb-40">
+      <section className="px-5 pt-28 pb-16 sm:px-8 sm:pt-40 sm:pb-40">
         <div className="mx-auto max-w-6xl">
           <h1 className="font-serif text-6xl font-light leading-[1.1] tracking-tight md:text-8xl">
             Gabe<br />Product Designer.
@@ -105,11 +105,11 @@ export default function PortfolioPage() {
 
       {/* Philosophy through Skills — continuous line */}
       <div className="column-line">
-      <section id="philosophy" className="px-5 py-24 sm:px-8 sm:py-32">
+      <section id="philosophy" className="px-5 py-16 sm:px-8 sm:py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
             <div className="md:pr-12">
-              <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
+              <h2 className="font-serif text-[3.5rem] font-light leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
                 How I<br />think
               </h2>
               <p className="mt-8 text-muted-foreground">
