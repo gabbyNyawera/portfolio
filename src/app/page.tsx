@@ -43,7 +43,7 @@ export default function PortfolioPage() {
   const featuredProjects = getFeaturedProjects();
 
   return (
-    <div className="column-line min-h-screen">
+    <div className="min-h-screen">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
@@ -85,7 +85,7 @@ export default function PortfolioPage() {
             Gabe — Product<br />Designer.
           </h1>
           <p className="mt-10 max-w-xl text-xl leading-relaxed text-muted-foreground">
-            I&apos;m Gabe — a product designer crafting calm, considered digital experiences.
+            Hey, I&apos;m Gabe — a product designer crafting calm, considered digital experiences.
           </p>
           <p className="mt-4 max-w-xl text-xl leading-relaxed text-muted-foreground">
             With a focus on clarity, usability, and the kind of details that make complex things feel obvious.
@@ -95,7 +95,7 @@ export default function PortfolioPage() {
               href="mailto:nyaweragabby@gmail.com"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-accent/90"
             >
-              Get in touch <Mail className="size-4" />
+              Let&apos;s make something beautiful <ArrowUpRight className="size-4" />
             </a>
             <div className="flex items-center gap-5 text-sm text-accent">
               <a href="mailto:nyaweragabby@gmail.com" className="transition-colors hover:text-foreground">Email</a>
@@ -106,7 +106,8 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Philosophy */}
+      {/* Philosophy through Skills — continuous line */}
+      <div className="column-line">
       <section id="philosophy" className="px-8 py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
@@ -287,6 +288,7 @@ export default function PortfolioPage() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* Footer */}
       <SiteFooter />

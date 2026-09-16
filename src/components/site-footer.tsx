@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
   return (
-    <footer className="border-t border-border bg-background">
+    <footer className="bg-background">
       {/* CTA section */}
       {showCta && (
         <div className="px-8 pt-32 pb-24 lg:px-16">
@@ -28,7 +28,7 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
       )}
 
       {/* Footer info */}
-      <div className="border-t border-border/50 px-8 py-10 lg:px-16">
+      <div className="px-8 py-10 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 md:grid-cols-3">
             {/* Brand */}
