@@ -138,7 +138,7 @@ export default function PortfolioPage() {
             left={
               <>
                 <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
-                  What I&apos;ve<br />built
+                  What I&apos;ve built
                 </h2>
                 <p className="mt-8 text-muted-foreground">
                   Three projects where design did the quiet work — making complex things feel obvious.
@@ -192,7 +192,7 @@ export default function PortfolioPage() {
             left={
               <>
                 <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
-                  Always<br />learning
+                  Always learning
                 </h2>
                 <p className="mt-8 text-muted-foreground">
                   Certifications and specializations I&apos;ve completed — and a few I&apos;m currently working through.
@@ -224,7 +224,7 @@ export default function PortfolioPage() {
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
             <div className="md:pr-12">
               <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
-                What I&apos;m<br />into
+                What I&apos;m into
               </h2>
               <p className="mt-8 text-muted-foreground">
                 Skills I&apos;m building, books that shape my thinking, and the things that keep me curious outside of work.
