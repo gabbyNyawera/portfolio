@@ -53,7 +53,7 @@ export function StickyInterests() {
 
       {/* Right panel - scrollable */}
       <div className="w-full sm:w-[65%]">
-        {interests.map((interest) => (
+        {interests.map((interest, index) => (
           <div
             key={interest.id}
             className={index < interests.length - 1 ? "border-b border-border/40" : ""}
