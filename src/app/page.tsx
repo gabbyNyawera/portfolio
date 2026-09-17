@@ -118,7 +118,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Selected Work */}
-      <section id="projects">
+      <section id="projects" className="pt-24 sm:pt-32">
         <HorizontalProjects projects={featuredProjects} />
       </section>
 
