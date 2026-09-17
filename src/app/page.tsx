@@ -118,19 +118,6 @@ export default function PortfolioPage() {
 
       {/* Selected Work */}
       <section id="projects">
-        <div className="px-5 py-10 sm:px-8 sm:py-16">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
-              What I&apos;ve built
-            </h2>
-            <p className="mt-8 text-muted-foreground">
-              Three projects where design did the quiet work — making complex things feel obvious.
-            </p>
-            <Link href="/work" className="mt-8 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-accent transition-colors hover:text-foreground">
-              View all projects <ArrowUpRight className="size-3.5" />
-            </Link>
-          </div>
-        </div>
         <HorizontalProjects projects={featuredProjects} />
       </section>
 
