@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
 type Interest = {
   id: string;
@@ -36,6 +36,35 @@ const interests: Interest[] = [
 
 export function StickyInterests() {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const itemRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+
+  const displayId = hoveredId || activeId;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            setActiveId(entry.target.getAttribute("data-id"));
+          }
+        });
+      },
+      { threshold: 0.5, rootMargin: "-20% 0px -30% 0px" }
+    );
+
+    itemRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const setRef = (id: string) => (el: HTMLDivElement | null) => {
+    if (el) {
+      itemRefs.current.set(id, el);
+    }
+  };
 
   return (
     <div className="flex flex-col sm:flex-row">
@@ -56,14 +85,19 @@ export function StickyInterests() {
         {interests.map((interest, index) => (
           <div
             key={interest.id}
+            ref={setRef(interest.id)}
+            data-id={interest.id}
             className={index < interests.length - 1 ? "border-b border-border/40" : ""}
-            onMouseEnter={() => setActiveId(interest.id)}
-            onMouseLeave={() => setActiveId(null)}
+            onMouseEnter={() => setHoveredId(interest.id)}
+            onMouseLeave={() => setHoveredId(null)}
           >
             <div className="py-8 sm:py-12">
               <div className="flex items-baseline gap-4">
                 <span className="font-serif text-lg text-accent">{interest.number}</span>
-                <h3 className="font-serif text-3xl font-light tracking-tight transition-colors duration-300 sm:text-4xl md:text-5xl" style={{ color: activeId === interest.id ? "var(--accent)" : "" }}>
+                <h3
+                  className="font-serif text-3xl font-light tracking-tight transition-colors duration-300 sm:text-4xl md:text-5xl"
+                  style={{ color: displayId === interest.id ? "var(--accent)" : "" }}
+                >
                   {interest.title}
                 </h3>
               </div>
@@ -73,8 +107,8 @@ export function StickyInterests() {
             <div
               className="overflow-hidden transition-all duration-500 ease-in-out"
               style={{
-                maxHeight: activeId === interest.id ? "400px" : "0px",
-                opacity: activeId === interest.id ? 1 : 0,
+                maxHeight: displayId === interest.id ? "400px" : "0px",
+                opacity: displayId === interest.id ? 1 : 0,
               }}
             >
               <div className="pb-8 sm:pb-12">
