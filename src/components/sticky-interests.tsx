@@ -56,7 +56,7 @@ export function StickyInterests() {
         {interests.map((interest) => (
           <div
             key={interest.id}
-            className="border-b border-border/40"
+            className={index < interests.length - 1 ? "border-b border-border/40" : ""}
             onMouseEnter={() => setActiveId(interest.id)}
             onMouseLeave={() => setActiveId(null)}
           >
