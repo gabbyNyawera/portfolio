@@ -43,7 +43,7 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
     <div ref={containerRef} className="relative h-[400vh]">
       <div className="sticky top-0 flex h-screen">
         {/* Left panel - fixed */}
-        <div className="hidden w-[35%] flex-col justify-between border-r border-border/40 py-16 pl-5 pr-8 sm:flex sm:pl-8 lg:pl-16 lg:pr-12">
+        <div className="hidden w-[35%] flex-col justify-between py-16 pl-5 pr-8 sm:flex sm:pl-8 lg:pl-16 lg:pr-12">
           <div>
             <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
               What I&apos;ve
