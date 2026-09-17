@@ -91,7 +91,7 @@ export default function PortfolioPage() {
 
       {/* Philosophy through Skills — continuous line */}
       <div className="column-line">
-      <section id="philosophy" className="px-5 py-10 sm:px-8 sm:py-32">
+      <section id="philosophy" className="px-5 pt-20 pb-10 sm:px-8 sm:pt-24 sm:py-32">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
             <div className="md:pr-12">
@@ -118,12 +118,12 @@ export default function PortfolioPage() {
       </section>
 
       {/* Selected Work */}
-      <section id="projects" className="pt-20 sm:pt-28">
+      <section id="projects" className="pt-20 sm:pt-24">
         <HorizontalProjects projects={featuredProjects} />
       </section>
 
       {/* Education */}
-      <section className="px-5 py-10 sm:px-8 sm:py-32">
+      <section className="px-5 pt-20 pb-10 sm:px-8 sm:pt-24 sm:py-32">
         <div className="mx-auto max-w-6xl">
           <StickySplit
             left={
@@ -156,7 +156,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Skills, Books & Interests */}
-      <section className="px-5 py-10 sm:py-0">
+      <section className="px-5 pt-20 pb-10 sm:pt-24 sm:py-0">
         <StickyInterests />
       </section>
       </div>

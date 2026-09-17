@@ -7,6 +7,7 @@
   --muted-foreground: #6B5D52;
   --border: rgba(44, 33, 27, 0.18);
   --accent: #D9653B;
+  --header-height: 72px;
 }
 
 @theme inline {
@@ -26,6 +27,11 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Consistent scroll offset for fixed header */
+section[id] {
+  scroll-margin-top: calc(var(--header-height) + 2rem);
 }
 
 ::selection {

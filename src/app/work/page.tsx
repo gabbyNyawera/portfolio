@@ -39,7 +39,7 @@ export default function WorkPage() {
       </nav>
 
       {/* Header */}
-      <section className="px-8 pb-16 pt-28 lg:px-16">
+      <section className="px-8 pb-16 pt-20 sm:pt-24 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground">
             All Projects

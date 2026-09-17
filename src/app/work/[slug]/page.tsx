@@ -57,7 +57,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </nav>
 
       {/* Hero */}
-      <section className="px-8 pt-28 pb-16 lg:px-16">
+      <section className="px-8 pt-20 pb-16 sm:pt-24 lg:px-16">
         <div className="mx-auto max-w-4xl">
           <div className="flex items-center gap-3 text-[10px] uppercase tracking-wider text-muted-foreground">
             <Link href="/work" className="hover:text-foreground transition-colors">
