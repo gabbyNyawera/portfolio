@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f0eb;
-  --foreground: #1a1a1a;
-  --muted: #ebe5de;
-  --muted-foreground: #6b6560;
-  --border: #d9d3cc;
-  --accent: #c44b3f;
+  --background: #F5F0E8;
+  --foreground: #2C211B;
+  --muted: #EDE8E0;
+  --muted-foreground: #6B5D52;
+  --border: rgba(44, 33, 27, 0.18);
+  --accent: #D9653B;
 }
 
 @theme inline {
@@ -36,11 +36,11 @@ body {
 /* Philosophy page dark theme */
 .philosophy-dark {
   --background: #111111;
-  --foreground: #f0ece6;
+  --foreground: #F5F0E8;
   --muted: #1a1a1a;
   --muted-foreground: #8a8580;
-  --border: #2a2a2a;
-  --accent: #c44b3f;
+  --border: rgba(245, 240, 232, 0.12);
+  --accent: #D9653B;
 }
 
 /* Continuous vertical line for two-column layouts */
