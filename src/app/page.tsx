@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { getFeaturedProjects } from "@/content/projects";
 import { StickySplit } from "@/components/sticky-split";
+import { HorizontalProjects } from "@/components/horizontal-projects";
 import { SiteFooter } from "@/components/site-footer";
 
 const education = [
@@ -116,55 +117,21 @@ export default function PortfolioPage() {
       </section>
 
       {/* Selected Work */}
-      <section id="projects" className="px-5 py-10 sm:px-8 sm:py-32">
-        <div className="mx-auto max-w-6xl">
-          <StickySplit
-            left={
-              <>
-                <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
-                  What I&apos;ve built
-                </h2>
-                <p className="mt-8 text-muted-foreground">
-                  Three projects where design did the quiet work — making complex things feel obvious.
-                </p>
-                <Link href="/work" className="mt-8 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-accent transition-colors hover:text-foreground">
-                  View all projects <ArrowUpRight className="size-3.5" />
-                </Link>
-              </>
-            }
-            right={
-              <div className="space-y-32">
-                {featuredProjects.map((project) => (
-                  <Link
-                    key={project.id}
-                    href={`/work/${project.slug}`}
-                    className="group block"
-                  >
-                    <div className="overflow-hidden rounded-2xl bg-muted">
-                      <div className="flex aspect-video w-full items-center justify-center bg-accent/10">
-                        <span className="text-sm text-muted-foreground">{project.title}</span>
-                      </div>
-                    </div>
-                    <div className="mt-6 flex items-start justify-between">
-                      <div>
-                        <p className="text-sm text-muted-foreground">
-                          {project.year} — {project.category}
-                        </p>
-                        <h3 className="mt-2 text-2xl font-light">{project.title}</h3>
-                        <p className="mt-2 max-w-md text-muted-foreground">
-                          {project.description}
-                        </p>
-                      </div>
-                      <span className="mt-2 text-sm font-medium text-accent transition-colors group-hover:text-foreground">
-                        View case study
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            }
-          />
+      <section id="projects">
+        <div className="px-5 py-10 sm:px-8 sm:py-16">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
+              What I&apos;ve built
+            </h2>
+            <p className="mt-8 text-muted-foreground">
+              Three projects where design did the quiet work — making complex things feel obvious.
+            </p>
+            <Link href="/work" className="mt-8 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-accent transition-colors hover:text-foreground">
+              View all projects <ArrowUpRight className="size-3.5" />
+            </Link>
+          </div>
         </div>
+        <HorizontalProjects projects={featuredProjects} />
       </section>
 
       {/* Education */}
