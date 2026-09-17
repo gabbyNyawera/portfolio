@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 
 type Interest = {
   id: string;
@@ -36,32 +36,6 @@ const interests: Interest[] = [
 
 export function StickyInterests() {
   const [activeId, setActiveId] = useState<string | null>(null);
-  const itemRefs = useRef<Map<string, HTMLDivElement>>(new Map());
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
-            setActiveId(entry.target.getAttribute("data-id"));
-          }
-        });
-      },
-      { threshold: 0.3, rootMargin: "-10% 0px -40% 0px" }
-    );
-
-    itemRefs.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const setRef = (id: string) => (el: HTMLDivElement | null) => {
-    if (el) {
-      itemRefs.current.set(id, el);
-    }
-  };
 
   return (
     <div className="flex flex-col sm:flex-row">
@@ -82,14 +56,14 @@ export function StickyInterests() {
         {interests.map((interest) => (
           <div
             key={interest.id}
-            ref={setRef(interest.id)}
-            data-id={interest.id}
             className="border-b border-border/40"
+            onMouseEnter={() => setActiveId(interest.id)}
+            onMouseLeave={() => setActiveId(null)}
           >
             <div className="py-8 sm:py-12">
               <div className="flex items-baseline gap-4">
                 <span className="font-serif text-lg text-accent">{interest.number}</span>
-                <h3 className="font-serif text-3xl font-light tracking-tight sm:text-4xl md:text-5xl">
+                <h3 className="font-serif text-3xl font-light tracking-tight transition-colors duration-300 sm:text-4xl md:text-5xl" style={{ color: activeId === interest.id ? "var(--accent)" : "" }}>
                   {interest.title}
                 </h3>
               </div>
