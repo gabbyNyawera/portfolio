@@ -69,7 +69,7 @@ export function StickyInterests() {
   return (
     <div className="flex flex-col sm:flex-row">
       {/* Left panel - fixed on desktop */}
-      <div className="sticky top-0 flex h-auto flex-col justify-center py-16 pl-5 pr-8 sm:h-screen sm:w-[35%] sm:py-16 sm:pl-8 lg:pl-16 lg:pr-12">
+      <div className="sticky top-0 flex h-auto flex-col justify-start py-16 pl-5 pr-8 sm:h-screen sm:w-[35%] sm:py-16 sm:pl-8 lg:pl-16 lg:pr-12">
         <h2 className="font-serif text-[2.5rem] font-light leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
           What I&apos;m
           <br />
