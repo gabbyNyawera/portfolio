@@ -68,7 +68,7 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
         </div>
 
         {/* Right panel - horizontal scroll */}
-        <div className="flex w-full flex-col sm:w-[65%]">
+        <div className="flex w-full flex-col overflow-hidden sm:w-[65%]">
           <div
             ref={scrollRef}
             className="flex h-full flex-1 transition-none"
