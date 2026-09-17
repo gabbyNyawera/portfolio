@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getFeaturedProjects } from "@/content/projects";
 import { StickySplit } from "@/components/sticky-split";
 import { HorizontalProjects } from "@/components/horizontal-projects";
+import { StickyInterests } from "@/components/sticky-interests";
 import { SiteFooter } from "@/components/site-footer";
 
 const education = [
@@ -155,71 +156,8 @@ export default function PortfolioPage() {
       </section>
 
       {/* Skills, Books & Interests */}
-      <section className="px-5 py-10 sm:px-8 sm:py-32">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-20 md:grid-cols-[1fr_2fr]">
-            <div className="md:pr-12">
-              <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
-                What I&apos;m into
-              </h2>
-              <p className="mt-8 text-muted-foreground">
-                Skills I&apos;m building, books that shape my thinking, and the things that keep me curious outside of work.
-              </p>
-            </div>
-            <div className="space-y-16">
-              {/* Skills */}
-              <div>
-                <p className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">Skills</p>
-                <div className="flex flex-wrap gap-2">
-                  {skills.map((skill) => (
-                    <span
-                      key={skill.name}
-                      className="rounded-full border border-border/60 px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
-                    >
-                      {skill.name}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Books */}
-              <div>
-                <p className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">Books</p>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    { title: "The Design of Everyday Things", author: "Don Norman", status: "read" },
-                    { title: "Thinking with Type", author: "Ellen Lupton", status: "read" },
-                    { title: "Refactoring UI", author: "Adam Wathan & Steve Schoger", status: "reading" },
-                    { title: "Don't Make Me Think", author: "Steve Krug", status: "read" },
-                    { title: "Hooked", author: "Nir Eyal", status: "to read" },
-                  ].map((book) => (
-                    <span
-                      key={book.title}
-                      className="rounded-full border border-border/60 px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
-                    >
-                      {book.title}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Hobbies */}
-              <div>
-                <p className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">Hobbies</p>
-                <div className="flex flex-wrap gap-2">
-                  {hobbies.map((hobby) => (
-                    <span
-                      key={hobby}
-                      className="rounded-full border border-border/60 px-4 py-2 text-sm text-muted-foreground"
-                    >
-                      {hobby}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section className="px-5 py-10 sm:py-0">
+        <StickyInterests />
       </section>
       </div>
 
