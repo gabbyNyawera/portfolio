@@ -41,7 +41,7 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
 
   return (
     <div ref={containerRef} className="relative h-[400vh]">
-      <div className="sticky top-0 flex h-screen">
+      <div className="sticky top-0 flex h-screen pt-[52px]">
         {/* Left panel - fixed */}
         <div className="hidden w-[35%] flex-col justify-between py-16 pl-5 pr-8 sm:flex sm:pl-8 lg:pl-16 lg:pr-12">
           <div>
