@@ -68,3 +68,21 @@ section[id] {
     display: none;
   }
 }
+
+/* Smooth scroll for interests panel */
+.interests-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.interests-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.interests-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.interests-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
