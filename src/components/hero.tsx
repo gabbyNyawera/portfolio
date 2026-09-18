@@ -46,7 +46,7 @@ export function Hero() {
           <h1 className="font-serif text-6xl font-light leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
             Gabe
             <br />
-            Product Designer.
+            <span className="text-4xl md:text-5xl lg:text-6xl">Product Designer.</span>
           </h1>
 
           <p className="mt-8 max-w-md text-lg leading-relaxed text-muted-foreground md:text-xl">
@@ -103,7 +103,7 @@ export function Hero() {
           <img
             src="/images/hero/gabe-illustration.png"
             alt="Gabe - Product Designer"
-            className="relative z-10 w-full max-w-[400px] md:max-w-[500px]"
+            className="relative z-10 w-full max-w-[300px] md:max-w-[375px]"
           />
         </div>
       </div>

@@ -11,7 +11,12 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const totalProjects = projects.length;
+  const isSingleProject = totalProjects === 1;
+
   useEffect(() => {
+    if (isSingleProject) return;
+
     const container = containerRef.current;
     if (!container) return;
 
@@ -26,7 +31,7 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
       if (maxScroll > 0) {
         const progress = Math.max(0, Math.min(1, scrolled / maxScroll));
         setScrollProgress(progress);
-        setActiveIndex(Math.round(progress * (projects.length - 1)));
+        setActiveIndex(Math.round(progress * (totalProjects - 1)));
       }
     };
 
@@ -34,10 +39,72 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [projects.length]);
+  }, [totalProjects, isSingleProject]);
 
-  const totalProjects = projects.length;
   const translateX = scrollProgress * (totalProjects - 1) * -100;
+
+  if (isSingleProject) {
+    const project = projects[0];
+    return (
+      <div className="px-5 sm:px-8 lg:px-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12">
+            <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
+              What I&apos;ve
+              <br />
+              built
+            </h2>
+            <p className="mt-8 max-w-xs text-muted-foreground">
+              A project where design did the quiet work — making complex things feel obvious.
+            </p>
+          </div>
+
+          <Link
+            href={`/work/${project.slug}`}
+            className="group block w-full"
+          >
+            <div className="grid gap-8 md:grid-cols-[1.2fr_1fr]">
+              {/* Visual */}
+              <div className="overflow-hidden rounded-2xl bg-muted">
+                <div className="flex aspect-[4/3] w-full items-center justify-center bg-accent/10 md:min-h-[450px]">
+                  <span className="text-sm text-muted-foreground">
+                    {project.title}
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col justify-center">
+                <h3 className="font-serif text-4xl font-light tracking-tight md:text-5xl">
+                  {project.title}
+                </h3>
+
+                <p className="mt-6 max-w-md text-muted-foreground">
+                  {project.description}
+                </p>
+
+                {/* Tags */}
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {project.category.split(" / ").map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-border/60 px-3 py-1 text-[10px] uppercase tracking-wider text-muted-foreground"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-8 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-accent transition-colors group-hover:text-foreground">
+                  View project <ArrowRight className="size-4" />
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={containerRef} className="relative h-[400vh]">
@@ -51,7 +118,7 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
               built
             </h2>
             <p className="mt-8 max-w-xs text-muted-foreground">
-              Three projects where design did the quiet work — making complex things feel obvious.
+              Projects where design did the quiet work — making complex things feel obvious.
             </p>
           </div>
 

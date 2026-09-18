@@ -41,8 +41,7 @@ export function PhilosophyReveal() {
 
       if (maxScroll > 0) {
         const progress = Math.max(0, Math.min(1, scrolled / maxScroll));
-        // First 20% = intro, then each principle gets 20%
-        const totalItems = principles.length + 1; // +1 for intro
+        const totalItems = principles.length + 1;
         const index = Math.floor(progress * totalItems) - 1;
         setActiveIndex(Math.min(index, principles.length - 1));
       }

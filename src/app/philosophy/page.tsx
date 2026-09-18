@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { PhilosophyNav } from "@/components/philosophy-nav";
+import { SiteHeader } from "@/components/site-header";
 
 const slides = [
   { id: "core-belief", label: "Core Belief", group: "intro" },
@@ -47,6 +48,8 @@ export default function PhilosophyPage() {
 
   return (
     <div className="philosophy-dark min-h-screen bg-[#111111] text-[#f0ece6]">
+      <SiteHeader />
+
       {/* Nav overlay */}
       <PhilosophyNav
         slides={slides}
