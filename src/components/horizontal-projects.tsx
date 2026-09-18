@@ -60,13 +60,7 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
 
           {/* Progress indicator */}
           <div className="flex items-center gap-4">
-            <span className="font-serif text-3xl font-light text-accent">
-              {String(activeIndex + 1).padStart(2, "0")}
-            </span>
             <div className="h-px flex-1 bg-border/40" />
-            <span className="text-sm text-muted-foreground">
-              {String(totalProjects).padStart(2, "0")}
-            </span>
           </div>
         </div>
 
