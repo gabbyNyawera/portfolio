@@ -97,6 +97,12 @@
       "skillPath": "skills/misc/migrate-to-shoehorn/SKILL.md",
       "computedHash": "7d31e494a384d1a5b88d1dec6e1f50e673ef1a60f7b0b6e92babfbb242f79b62"
     },
+    "pr": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "skillPath": "skills/in-progress/pr/SKILL.md",
+      "computedHash": "955f1e70167dc12e928d80bb22f51b9c4825d2477e949adf83c54d42eaf7aff5"
+    },
     "prototype": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -119,7 +125,7 @@
       "source": "mattpocock/skills",
       "sourceType": "github",
       "skillPath": "skills/in-progress/retro/SKILL.md",
-      "computedHash": "371bfc87b0fbb221e2e802e51385b5e1461c052cfa1186b18d4b441c00383eb5"
+      "computedHash": "e63bb774fba4e601edfffc56bbd5c938d76c8faa2dff49456dff3b1e679cd3b6"
     },
     "scaffold-exercises": {
       "source": "mattpocock/skills",
