@@ -10,10 +10,20 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const totalProjects = projects.length;
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+
     const container = containerRef.current;
     if (!container) return;
 
@@ -36,10 +46,61 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [totalProjects]);
+  }, [totalProjects, isMobile]);
 
   const translateX = scrollProgress * (totalProjects - 1) * -100;
 
+  // Mobile: simple vertical stack
+  if (isMobile) {
+    return (
+      <div className="px-5">
+        <div className="mb-8">
+          <h2 className="font-serif text-4xl font-light leading-[1.1] tracking-tight">
+            What I&apos;ve
+            <br />
+            built
+          </h2>
+          <p className="mt-6 text-sm text-muted-foreground">
+            Projects where design did the quiet work.
+          </p>
+        </div>
+
+        <div className="space-y-8">
+          {projects.map((project) => (
+            <Link
+              key={project.id}
+              href={`/work/${project.slug}`}
+              className="group block"
+            >
+              <div className="overflow-hidden rounded-xl bg-muted">
+                <div className="flex aspect-[4/3] w-full items-center justify-center bg-accent/10">
+                  <span className="text-sm text-muted-foreground">
+                    {project.title}
+                  </span>
+                </div>
+              </div>
+              <div className="mt-4">
+                <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                  {project.year} — {project.category}
+                </p>
+                <h3 className="mt-2 text-xl font-medium tracking-tight font-serif">
+                  {project.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {project.description}
+                </p>
+                <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-accent">
+                  View project <ArrowRight className="size-3" />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop: horizontal scroll
   return (
     <div ref={containerRef} className="relative h-[400vh]">
       <div className="sticky top-0 flex h-screen pt-[52px]">
@@ -92,11 +153,6 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
 
                     {/* Content */}
                     <div className="flex flex-col justify-center">
-                      {/* Mobile progress */}
-                      <p className="mb-4 font-serif text-lg text-accent sm:hidden">
-                        {String(i + 1).padStart(2, "0")} / {String(totalProjects).padStart(2, "0")}
-                      </p>
-
                       <h3 className="font-serif text-4xl font-light tracking-tight md:text-5xl">
                         {project.title}
                       </h3>
