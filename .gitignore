@@ -35,6 +35,12 @@ yarn-error.log*
 
 # vercel
 .vercel
+/vercel/
+/.vercel
+
+# storybook
+/storybook-static
+/storybook-static/
 
 # typescript
 *.tsbuildinfo
