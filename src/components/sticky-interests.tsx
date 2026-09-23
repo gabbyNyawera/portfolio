@@ -6,12 +6,20 @@ import { interests } from "@/content/interests";
 export function StickyInterests() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
+    const mq = window.matchMedia("(max-width: 639px)");
+    const updateIsMobile = () => setIsMobile(mq.matches);
+    updateIsMobile();
+    mq.addEventListener("change", updateIsMobile);
+
     const handleScroll = () => {
+      if (window.innerWidth < 640) return;
+
       const rect = container.getBoundingClientRect();
       const containerHeight = container.offsetHeight;
       const viewportHeight = window.innerHeight;
@@ -28,12 +36,15 @@ export function StickyInterests() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      mq.removeEventListener("change", updateIsMobile);
+    };
   }, []);
 
   return (
-    <div ref={containerRef} className="relative h-[300vh]">
-      <div className="sticky top-0 flex h-screen pt-[52px]">
+    <div ref={containerRef} className="relative sm:h-[300vh]">
+      <div className="relative flex pt-[52px] sm:sticky sm:top-0 sm:h-screen sm:overflow-hidden">
         {/* Left panel - fixed */}
         <div className="hidden flex-col justify-start py-16 pl-5 pr-8 sm:flex sm:w-[35%] sm:pl-8 lg:pl-16 lg:pr-12">
           <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
@@ -68,7 +79,10 @@ export function StickyInterests() {
                   key={interest.id}
                   className={index < interests.length - 1 ? "border-b border-border/40" : ""}
                 >
-                  <div className="py-6 sm:py-8">
+                  <div
+                    className="cursor-pointer py-6 sm:cursor-default sm:py-8"
+                    onClick={() => setActiveIndex(isActive && isMobile ? -1 : index)}
+                  >
                     <div className="flex items-baseline gap-4">
                       <span className="font-serif text-lg text-accent">{interest.number}</span>
                       <h3
@@ -84,7 +98,7 @@ export function StickyInterests() {
                   <div
                     className="overflow-hidden transition-all duration-500 ease-in-out"
                     style={{
-                      maxHeight: isActive ? "400px" : "0px",
+                      maxHeight: isActive ? "600px" : "0px",
                       opacity: isActive ? 1 : 0,
                     }}
                   >
