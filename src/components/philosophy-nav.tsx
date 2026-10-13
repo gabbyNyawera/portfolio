@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 type Slide = {
@@ -32,12 +33,12 @@ export function PhilosophyNav({
       {/* Desktop: left sidebar */}
       <nav className="fixed left-0 top-0 bottom-0 z-40 hidden w-56 flex-col justify-between border-r border-white/10 bg-[#111111]/95 px-0 py-10 backdrop-blur-md lg:flex">
         <div>
-          <a
+          <Link
             href="/"
             className="mb-10 inline-block px-6 text-[10px] font-medium uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-white/80"
           >
             ← Back
-          </a>
+          </Link>
 
           <div className="space-y-0.5">
             {/* Intro slides — top level */}
@@ -144,12 +145,12 @@ export function PhilosophyNav({
 
       {/* Mobile: bottom slide indicator */}
       <nav className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between border-t border-white/10 bg-[#111111]/90 px-5 py-3 backdrop-blur-md lg:hidden">
-        <a
+        <Link
           href="/"
           className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/40"
         >
           ← Back
-        </a>
+        </Link>
         <div className="flex items-center gap-3">
           <span className="text-[10px] text-white/40">
             {slides[activeSlide]?.label}

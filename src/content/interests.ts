@@ -4,6 +4,7 @@ export type Interest = {
   title: string;
   description: string;
   items?: string[];
+  featured?: boolean;
 };
 
 export const interests: Interest[] = [
@@ -20,6 +21,7 @@ export const interests: Interest[] = [
     title: "Books",
     description: "Reading shapes how I think about design, people, and the world.",
     items: ["The Design of Everyday Things", "Thinking with Type", "Refactoring UI", "Don't Make Me Think", "Hooked"],
+    featured: true,
   },
   {
     id: "hobbies",

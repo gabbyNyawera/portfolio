@@ -16,8 +16,22 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: "Gabrielle Nyawera — Product Designer",
   description: "Personal site of Gabrielle Nyawera, a product designer crafting calm, considered digital experiences.",
+  openGraph: {
+    title: "Gabrielle Nyawera — Product Designer",
+    description: "Calm, considered digital experiences with a focus on clarity, usability, and the details that make complex things feel obvious.",
+    type: "website",
+    siteName: "Gabrielle Nyawera",
+    images: [{ url: "/images/hero/gabe-illustration.png", alt: "Gabrielle Nyawera — Product Designer" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gabrielle Nyawera — Product Designer",
+    description: "Calm, considered digital experiences with a focus on clarity, usability, and the details that make complex things feel obvious.",
+    images: ["/images/hero/gabe-illustration.png"],
+  },
 };
 
 export default function RootLayout({

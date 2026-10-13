@@ -28,7 +28,7 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
       )}
 
       {/* Footer info */}
-      <div className="px-5 py-8 sm:px-8 sm:py-10 lg:px-16">
+      <div className="dark-section bg-background px-5 py-8 sm:px-8 sm:py-10 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 md:grid-cols-3">
             {/* Brand */}
@@ -45,45 +45,46 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
                 <Link href="/work" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">
                   Projects
                 </Link>
-                <Link href="/#about" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">
-                  About
-                </Link>
                 <Link href="/philosophy" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">
                   Philosophy
                 </Link>
-                <Link href="/#contact" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Résumé
+                </a>
+                <a href="mailto:nyaweragabby@gmail.com" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">
                   Contact
-                </Link>
+                </a>
               </div>
             </div>
 
             {/* Social */}
             <div className="space-y-2">
               <a href="mailto:nyaweragabby@gmail.com" className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
-                gabby@email.com <ArrowUpRight className="size-3" />
+                nyaweragabby@gmail.com <ArrowUpRight className="size-3" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
-                LinkedIn <ArrowUpRight className="size-3" />
-              </a>
-              <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
+              <a href="https://dribbble.com/gabrielle_n" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
                 Dribbble <ArrowUpRight className="size-3" />
               </a>
-              <a href="https://behance.net" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
+              <a href="https://www.behance.net/gabrielnyawerah" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
                 Behance <ArrowUpRight className="size-3" />
+              </a>
+              <a href="https://github.com/gabbyNyawera" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                GitHub <ArrowUpRight className="size-3" />
               </a>
             </div>
           </div>
 
           {/* Bottom bar */}
           <div className="mt-12 flex flex-wrap items-center justify-between gap-4 pt-6">
-            <p className="text-xs text-muted-foreground">&copy; 2026 Gabe</p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-sm text-muted-foreground">&copy; 2026 Gabe</p>
+            <p className="text-sm text-muted-foreground">
               Designed &amp; built with intention.
             </p>
-            <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-green-500" />
-              <p className="text-xs text-muted-foreground">Available for selected projects</p>
-            </div>
           </div>
         </div>
       </div>

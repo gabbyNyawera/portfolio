@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PhilosophyNav } from "@/components/philosophy-nav";
 import { SiteHeader } from "@/components/site-header";
@@ -47,7 +48,7 @@ export default function PhilosophyPage() {
   };
 
   return (
-    <div className="philosophy-dark min-h-screen bg-[#111111] text-[#f0ece6]">
+    <div className="dark-section min-h-screen bg-[#111111] text-[#f0ece6]">
       <SiteHeader />
 
       {/* Nav overlay */}
@@ -364,12 +365,12 @@ export default function PhilosophyPage() {
                 food, and outdoor living.
               </p>
               <div className="mt-6">
-                <a
+                <Link
                   href="/work/kavara-kavara"
                   className="inline-flex items-center gap-2 border border-white/20 px-6 py-3 text-xs font-medium uppercase tracking-wider text-white/70 transition-colors hover:border-white/40 hover:text-white"
                 >
                   View case study <ArrowUpRight className="size-3" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -379,13 +380,13 @@ export default function PhilosophyPage() {
       {/* Footer */}
       <footer className="fixed bottom-0 right-0 z-30 hidden px-8 py-6 lg:block">
         <div className="flex items-center gap-6">
-          <p className="text-[10px] text-white/20">&copy; 2026 Gabriella Nyawera</p>
-          <a
+          <p className="text-[10px] text-white/20">&copy; 2026 Gabrielle Nyawera</p>
+          <Link
             href="/"
             className="text-[10px] text-white/20 transition-colors hover:text-white/60"
           >
             Back to home
-          </a>
+          </Link>
         </div>
       </footer>
     </div>

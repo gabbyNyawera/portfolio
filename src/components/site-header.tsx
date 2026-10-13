@@ -15,6 +15,14 @@ export function SiteHeader() {
           <Link href="/work" className="text-sm text-accent transition-colors hover:text-foreground">Projects</Link>
           <Link href="/philosophy" className="hidden text-sm text-accent transition-colors hover:text-foreground sm:inline">Philosophy</Link>
           <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-accent transition-colors hover:text-foreground"
+          >
+            Résumé
+          </a>
+          <a
             href="mailto:nyaweragabby@gmail.com"
             className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-accent/90 md:px-5"
           >

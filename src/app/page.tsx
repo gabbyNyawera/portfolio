@@ -1,5 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import { getFeaturedProjects } from "@/content/projects";
 import { HorizontalProjects } from "@/components/horizontal-projects";
 import { StickyInterests } from "@/components/sticky-interests";

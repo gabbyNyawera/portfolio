@@ -6,8 +6,8 @@ import { SiteHeader } from "@/components/site-header";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Projects — Gabriella Nyawera",
-  description: "Selected design and development projects by Gabriella Nyawera.",
+  title: "Projects — Gabrielle Nyawera",
+  description: "Selected design and development projects by Gabrielle Nyawera.",
 };
 
 export default function WorkPage() {

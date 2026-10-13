@@ -132,7 +132,7 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
             className="flex h-full flex-1 transition-none"
             style={{ transform: `translateX(${translateX}%)` }}
           >
-            {projects.map((project, i) => (
+            {projects.map((project) => (
               <div
                 key={project.id}
                 className="flex h-full w-full flex-shrink-0 items-center px-5 sm:px-8 lg:px-12"
