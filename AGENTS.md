@@ -85,8 +85,8 @@ content/
 ### Tokens
 
 - Use existing CSS custom properties from `src/app/globals.css`.
-- Colors: `background`, `foreground`, `primary`, `muted`, `border`.
-- Fonts: `--font-sans` (Geist), `--font-mono` (Geist Mono).
+- Colors: `background`, `foreground`, `muted`, `muted-foreground`, `border`, `accent` (burnt amber `#B4531F`).
+- Fonts: `--font-sans` (Inter), `--font-serif` (Newsreader), `--font-mono` (Geist Mono).
 
 ### Utilities
 

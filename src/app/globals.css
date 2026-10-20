@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F5F0E8;
-  --foreground: #2C211B;
-  --muted: #EDE8E0;
-  --muted-foreground: #6B5D52;
-  --border: rgba(44, 33, 27, 0.18);
-  --accent: #D9653B;
+  --background: #F8F8F8;
+  --foreground: #17171A;
+  --muted: #EEEEF0;
+  --muted-foreground: #6A6A70;
+  --border: #E4E4E7;
+  --accent: #B4531F;
+  --accent-foreground: #F8F8F8;
   --header-height: 72px;
 }
 
@@ -17,8 +18,11 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: var(--font-fraunces), Georgia, serif;
 }
 
 body {
@@ -41,12 +45,13 @@ section[id] {
 
 /* Dark section theme */
 .dark-section {
-  --background: #111111;
-  --foreground: #F5F0E8;
-  --muted: #1a1a1a;
-  --muted-foreground: #EDE8E0;
-  --border: rgba(245, 240, 232, 0.12);
-  --accent: #D9653B;
+  --background: #0A0A0A;
+  --foreground: #F1F4F2;
+  --muted: #141414;
+  --muted-foreground: #9BA8A2;
+  --border: #2A2E2C;
+  --accent: #E8A46A;
+  --accent-foreground: #0A0A0A;
 }
 
 /* Continuous vertical line for two-column layouts */
@@ -66,6 +71,27 @@ section[id] {
 @media (max-width: 639px) {
   .column-line::before {
     display: none;
+  }
+}
+
+/* Swipe hint arrow for the horizontal philosophy scroller */
+@keyframes swipe-hint {
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(6px);
+    opacity: 0.9;
+  }
+}
+.swipe-hint-arrow {
+  animation: swipe-hint 1.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .swipe-hint-arrow {
+    animation: none;
   }
 }
 
