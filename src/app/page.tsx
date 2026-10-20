@@ -1,14 +1,20 @@
 import { getFeaturedProjects } from "@/content/projects";
 import { HorizontalProjects } from "@/components/horizontal-projects";
-import { StickyInterests } from "@/components/sticky-interests";
+import { InterestsPrototype } from "@/components/prototype/interests-prototype";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
 import { PhilosophyReveal } from "@/components/philosophy-reveal";
 import { education } from "@/content/education";
 
-export default function PortfolioPage() {
+export default async function PortfolioPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   const featuredProjects = getFeaturedProjects();
+  const rawVariant = (await searchParams).variant;
+  const variant = typeof rawVariant === "string" ? rawVariant : undefined;
 
   return (
     <div className="min-h-screen">
@@ -29,7 +35,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Education */}
-      <section className="px-5 pt-12 pb-6 sm:px-8 sm:pt-16 sm:py-20">
+      <section id="learning" className="px-5 pt-12 pb-6 sm:px-8 sm:pt-16 sm:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-20">
             <div>
@@ -65,8 +71,8 @@ export default function PortfolioPage() {
       </section>
 
       {/* Skills, Books & Interests */}
-      <section className="pt-12 pb-12 sm:pt-16 sm:pb-16">
-        <StickyInterests />
+      <section id="into" className="pt-12 pb-12 sm:pt-16 sm:pb-16">
+        <InterestsPrototype variant={variant} />
       </section>
       </div>
 
