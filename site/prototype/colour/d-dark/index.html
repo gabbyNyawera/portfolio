@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth antialiased">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prototype D — Light ground, black chrome</title>
+  <link rel="stylesheet" href="/assets/css/site.css" />
+</head>
+<body class="flex min-h-full flex-col bg-background text-foreground">
+
+  <!-- Black header -->
+  <header style="background: #101010; color: #FFFFFF">
+    <div class="container-page flex h-[76px] items-center justify-between gap-6">
+      <a href="#" class="flex items-center gap-2.5">
+        <span class="relative flex size-9 items-center justify-center rounded-[9px]" style="background: #F9C74F">
+          <span class="font-display text-[26px] italic leading-none" style="color: #101010">G</span>
+          <span class="absolute bottom-[7px] right-[7px] size-[3px] rounded-full" style="background: #101010"></span>
+        </span>
+        <span class="font-display text-2xl tracking-tight">Gabe.</span>
+      </a>
+      <nav class="flex items-center gap-5 text-[10px] font-medium uppercase tracking-[0.16em] text-white/55 sm:gap-7">
+        <a href="#work" class="hover:text-white">Work</a>
+        <a href="#" class="hidden hover:text-white sm:inline">Philosophy</a>
+        <a href="#" class="hidden hover:text-white sm:inline">Résumé</a>
+        <a href="#contact" class="inline-flex h-10 items-center rounded-full px-4 font-medium" style="background: #F9C74F; color: #101010">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- White hero -->
+    <section class="border-b border-border">
+      <div class="container-page grid items-center gap-12 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
+        <div>
+          <p class="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+            <span class="size-1.5" style="background: #F9C74F"></span> Harare · Product designer
+          </p>
+          <h1 class="mt-5 font-display text-[clamp(3.5rem,7.5vw,7rem)] leading-[0.9] tracking-[-0.03em]">Gabe</h1>
+          <p class="font-display text-[clamp(1.8rem,3vw,2.6rem)] leading-tight">
+            Product <em>Designer.</em>
+          </p>
+          <p class="lede measure mt-6">
+            I design calm, considered digital products — with a focus on clarity,
+            usability, and the details that make complex things feel obvious.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-6">
+            <a href="#contact" class="inline-flex h-12 items-center gap-3 rounded-full px-6 text-sm font-medium" style="background: #101010; color: #FFFFFF">
+              Let's make something
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+            </a>
+            <a href="#work" class="border-b-2 border-foreground pb-1.5 text-[11px] font-medium uppercase tracking-[0.18em]">View selected work</a>
+          </div>
+        </div>
+        <div class="mx-auto w-full max-w-[26rem]">
+          <div class="overflow-hidden rounded-t-full border border-border p-4 pt-8" style="background: #FBF4E4">
+            <img src="/images/hero/gabe-illustration.webp" alt="Illustration of Gabrielle" class="w-full" width="1024" height="1024" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- White work -->
+    <section id="work">
+      <div class="container-page py-12">
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <h2 class="display-2">Selected work</h2>
+            <p class="mt-4 max-w-md text-lg leading-relaxed text-muted-foreground">The brief, the decisions, and what shipped.</p>
+          </div>
+          <a href="#" class="text-[10px] font-medium uppercase tracking-[0.18em]" style="color: #2A3FC8">All projects →</a>
+        </div>
+
+        <div class="mt-10 grid gap-8 md:grid-cols-2">
+          <a href="#" class="group">
+            <div class="overflow-hidden rounded-lg border border-border">
+              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&amp;auto=format&amp;fit=crop&amp;q=80" alt="KAVARA KAVARA" class="aspect-[16/10] w-full object-cover" loading="lazy" />
+            </div>
+            <div class="mt-4 flex items-baseline justify-between gap-4">
+              <h3 class="title">KAVARA KAVARA</h3>
+              <span class="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground">2024</span>
+            </div>
+            <p class="mt-1 text-sm text-muted-foreground">Brand / Digital experience</p>
+          </a>
+          <a href="#" class="group">
+            <div class="overflow-hidden rounded-lg border border-border">
+              <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=900&amp;auto=format&amp;fit=crop&amp;q=80" alt="Study App" class="aspect-[16/10] w-full object-cover" loading="lazy" />
+            </div>
+            <div class="mt-4 flex items-baseline justify-between gap-4">
+              <h3 class="title">Study App</h3>
+              <span class="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground">2026</span>
+            </div>
+            <p class="mt-1 text-sm text-muted-foreground">Education / PWA</p>
+          </a>
+        </div>
+
+        <a href="#" class="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-lg p-5" style="background: #F9C74F; color: #101010">
+          <div class="flex items-center gap-4">
+            <div class="size-12 rounded-md" style="background: linear-gradient(135deg, #2A3FC8 0%, #101010 100%)"></div>
+            <div>
+              <h3 class="title">Portfolio</h3>
+              <p class="mt-1 text-sm opacity-70">Personal / Web design</p>
+            </div>
+          </div>
+          <span class="text-[10px] font-medium uppercase tracking-[0.18em]">2026 →</span>
+        </a>
+
+        <p class="mt-10 max-w-3xl font-display text-[clamp(1.6rem,2.8vw,2.4rem)] leading-[1.2]">
+          Good design is mostly <mark style="background: #F9C74F; padding: 0 0.1em;">subtle</mark>: the right thing, in the right place, at the right moment.
+        </p>
+      </div>
+    </section>
+
+    <!-- Black statement -->
+    <section style="background: #101010; color: #FFFFFF">
+      <div class="container-page grid gap-8 py-16 lg:grid-cols-[0.4fr_1fr] lg:gap-14">
+        <p class="text-[10px] font-medium uppercase tracking-[0.2em] text-white/45">Philosophy</p>
+        <p class="max-w-2xl font-display text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.18] tracking-[-0.01em]">
+          Structure before surface. The details are how you prove you were
+          <em style="color: #F9C74F">paying attention.</em>
+        </p>
+      </div>
+    </section>
+
+    <!-- Accent strip, closing the page -->
+    <section style="background: #F9C74F; color: #101010">
+      <div class="container-page flex flex-wrap items-center justify-between gap-x-10 gap-y-4 py-10">
+        <p class="font-display text-[clamp(1.4rem,2.2vw,1.9rem)] leading-none tracking-[-0.01em]">The details are the design.</p>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-[10px] font-medium uppercase tracking-[0.18em]">
+          <span>Design systems</span>
+          <span>Open to work</span>
+          <span>Harare · 17:38</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Black footer -->
+  <footer id="contact" style="background: #101010; color: #FFFFFF">
+    <div class="container-page py-14">
+      <p class="font-display text-[clamp(2.25rem,4.8vw,4.25rem)] leading-[1.02] tracking-[-0.02em]">
+        I design experiences<br />that <span style="color: #F9C74F">feel alive.</span>
+      </p>
+      <div class="mt-10 flex flex-wrap items-end justify-between gap-6 border-t border-white/15 pt-6 text-[11px] uppercase tracking-[0.18em] text-white/50">
+        <a href="#" class="hover:text-white">nyaweragabby@gmail.com ↗</a>
+        <span>Harare · 17:38</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

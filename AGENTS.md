@@ -20,87 +20,116 @@ This is a single-context repo using a root `CONTEXT.md` and `docs/adr/`. See `do
 
 ## 1. Architecture Principles
 
-1. Content must remain separate from presentation.
-2. Prefer reusable components over duplicated markup.
-3. Keep pages thin and compositional.
-4. Do not introduce abstractions without a clear reason.
+1. The shipped site is plain HTML in `site/`. There is no framework runtime.
+2. Content lives in the page that renders it. Do not add a data layer without a clear reason.
+3. Prefer shared patterns over one-off styles. Where plain HTML forces duplication (site
+   chrome), keep every copy in sync and note it in the change.
+4. Do not introduce abstractions, build steps, or dependencies without explicit justification.
 5. Do not create new design tokens when an existing token applies.
-6. Do not hardcode project-specific content into reusable components.
-7. Components should have a single clear responsibility.
-8. Preserve existing architecture unless there is a measurable reason to change it.
-9. Do not add dependencies without explicit justification.
-10. Optimize for readability and future human editing, not cleverness.
+6. Preserve the existing visual language unless there is a measurable reason to change it.
+7. Keep JavaScript small, progressive, and optional: the page must read without it.
+8. Optimize for readability and future human editing, not cleverness.
+9. `src/` is the retired Next.js app, kept for reference until it is deleted. Do not add new
+   work there.
 
 ---
 
 ## 2. Tech Stack
 
-- **Framework**: Next.js (App Router)
-- **Styling**: Tailwind CSS v4
-- **Components**: shadcn/ui (base-nova style)
-- **Language**: TypeScript
-- **Icons**: lucide-react
+- **Pages**: HTML5, one `index.html` per route under `site/`
+- **Styling**: Tailwind CSS v4, compiled once to `site/assets/css/site.css`
+- **Behaviour**: vanilla JavaScript in `site/assets/js/site.js`
+- **Fonts**: self-hosted woff2 subsets in `site/assets/fonts/`
+- **Build**: Node scripts only — `scripts/build-css.cjs`, `scripts/serve-static.cjs`
+- **Legacy**: Next.js App Router + TypeScript + shadcn/ui in `src/` (reference only)
 
 ---
 
-## 3. Component Conventions
+## 3. Conventions
 
 ### File Structure
 
 ```
-src/
-  app/
-    page.tsx              # Portfolio home (thin, compositional)
-    layout.tsx            # Root layout
-  components/
-    ui/                   # shadcn/ui primitives
-content/
-  projects.ts            # Projects data
+site/
+  index.html                  # Home
+  work/index.html             # Project archive
+  work/<slug>/index.html      # One page per case study
+  philosophy/index.html       # Philosophy deck
+  design-system/              # Catalogue and studies
+  prototype/                  # Throwaway design prototypes
+  404.html
+  assets/
+    css/source.css            # Tailwind source + tokens (edit this)
+    css/site.css              # Compiled output (never edit)
+    css/fonts.css             # Self-hosted @font-face
+    js/site.js                # All client behaviour
+    fonts/                    # woff2 subsets
+    images/                   # Local imagery
+scripts/
+  build-css.cjs               # Compiles source.css
+  serve-static.cjs            # Local server (port 3200)
+  check-links.cjs             # Internal link/asset check
+  audit-static.cjs            # Headless route + console audit
+  extract-static.mjs          # One-time migration from the legacy app
+  extract-fonts.mjs           # One-time font lift from the legacy build
 ```
 
 ### Naming
 
 | What | Convention | Example |
 |---|---|---|
-| Files | kebab-case | `project-card.tsx` |
-| Components | PascalCase | `ProjectCard` |
-| Variables | camelCase | `projectCount` |
-| Types | PascalCase | `Project` |
+| Page files | `index.html` inside a route folder | `site/work/study-app/index.html` |
+| Assets and scripts | kebab-case | `site-logo`, `check-links.cjs` |
+| JS variables | camelCase | `activeSlide` |
+| CSS utilities | the existing Tailwind/design-system names | `container-page`, `display-2` |
 
-### Props
+### HTML
 
-- Define inline as object literal types.
-- Use `React.ReactNode` for children.
-- Use `?` for optional props.
+- Use semantic elements and one `<h1>` per page.
+- Repeat the header and footer from an existing page when adding a route. They are not
+  templated; keep the copies identical.
+- Keep `loading="lazy"` on below-the-fold and remote images.
+- Preserve `aria-*` labels on icon-only controls.
 
-### Imports
+### JavaScript
 
-- Always use `@/` alias.
-- External libraries first, then `@/` path imports.
+- One file: `site/assets/js/site.js`. Add a small, guarded block; do not add a dependency.
+- Every behaviour must degrade: content stays visible without JS (see the `.js` guard).
+- Respect `prefers-reduced-motion` and fine-pointer checks.
+
+### Imports and assets
+
+- Use root-absolute paths (`/assets/...`, `/images/...`) so pages work at any route depth.
+- Do not reference `/_next/` or the retired `src/` tree from `site/`.
 
 ---
 
 ## 4. Design System Rules
 
+The full source of truth is `docs/design-system.md`.
+
 ### Tokens
 
-- Use existing CSS custom properties from `src/app/globals.css`.
-- Colors: `background`, `foreground`, `muted`, `muted-foreground`, `border`, `accent` (burnt amber `#B4531F`).
-- Fonts: `--font-sans` (Inter), `--font-serif` (Newsreader), `--font-mono` (Geist Mono).
+- Use the CSS custom properties in `site/assets/css/source.css`.
+- Colours: `background` (white `#FFFFFF`), `surface`, `surface-strong`, `foreground`
+  (ink `#101010`), `muted`, `muted-foreground`, `border`, `accent` (signal yellow
+  `#F9C74F`), `accent-foreground`, `accent-soft`, `accent-ink` (text accent blue
+  `#2A3FC8`).
+- Fonts: `--font-sans` (Inter), `--font-serif` / `--font-display` (Instrument Serif).
+- Dark sections use `.dark-section` (ink dusk) and override the same tokens — never a
+  separate palette.
 
 ### Utilities
 
-- Always use `cn()` from `@/lib/utils` for conditional classnames.
-
-### shadcn/ui Components
-
-- Import from `@/components/ui/[component]`.
-- Use variant props, not manual class overrides.
+- Use `.container-page`, `.section-y`, `.display-1/2/3`, `.lede`, `.eyebrow`, `.surface-card`,
+  `.tag`, `.asset-frame`, `.ledger`, `.halftone`, and `.link-arrow` before inventing styles.
+- Conditional classes are plain string concatenation or `classList` — there is no `cn()`.
 
 ### Responsive
 
 - Mobile-first: `sm:`, `md:`, `lg:` breakpoints.
-- Max width constraint: `max-w-2xl` for content pages.
+- Page content uses `.container-page`; reading content uses `.measure`.
+- Interactive targets should be at least 44px tall on touch.
 
 ---
 
@@ -119,7 +148,7 @@ Types: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`
 
 - Never commit secrets or environment variables.
 - One logical change per commit.
-- Run lint and build before committing.
+- Run `npm run build` and `npm run check:links` before committing site changes.
 
 ---
 
@@ -128,27 +157,19 @@ Types: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`
 ### Starting a Task
 
 1. Read this AGENTS.md first.
-2. Check existing components before creating new ones.
-3. Plan the change — list files to create/modify.
+2. Check `site/` and `docs/design-system.md` before inventing markup or styles.
+3. Plan the change — list the pages and assets to modify.
 
 ### During Implementation
 
-1. Follow architecture principles strictly.
-2. Keep pages thin — extract logic to components.
-3. Use existing shadcn/ui components and design tokens.
+1. Follow the architecture principles strictly.
+2. Edit `site/assets/css/source.css` for styles, then run `npm run build`.
+3. Keep `site/assets/js/site.js` dependency-free and progressive.
+4. When changing chrome, update every page that shows it.
 
 ### Completing a Task
 
-1. Run `npm run lint` — fix all errors.
-2. Run `npm run build` — confirm no build failures.
-3. Verify the page renders correctly.
-
-<!-- BEGIN:nextjs-agent-rules -->
-
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->
+1. Run `npm run build` — compile the stylesheet.
+2. Run `npm run check:links` — confirm every internal link and asset resolves.
+3. Run `npm run check:site` — confirm no console errors or broken images across routes.
+4. Verify the page renders at desktop and mobile widths.

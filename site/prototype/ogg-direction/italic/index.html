@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth antialiased">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Display italics — chasing the Ogg swash</title>
+  <meta name="description" content="A specimen sheet of open-licence display italics judged against Ogg: contrast, stress, swash and weight range.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    @font-face { font-family: "Playfair Display"; font-style: normal; font-weight: 400 900; font-display: swap; src: url(/prototype/ogg-direction/fonts/playfair-display-normal.woff2) format("woff2"); }
+    @font-face { font-family: "Playfair Display"; font-style: italic; font-weight: 400 900; font-display: swap; src: url(/prototype/ogg-direction/fonts/playfair-display-italic.woff2) format("woff2"); }
+    @font-face { font-family: "Playfair"; font-style: normal; font-weight: 300 900; font-display: swap; src: url(/prototype/ogg-direction/fonts/playfair-normal.woff2) format("woff2"); }
+    @font-face { font-family: "Playfair"; font-style: italic; font-weight: 300 900; font-display: swap; src: url(/prototype/ogg-direction/fonts/playfair-italic.woff2) format("woff2"); }
+    @font-face { font-family: "Bodoni Moda"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/prototype/ogg-direction/fonts/bodoni-moda-normal.woff2) format("woff2"); }
+    @font-face { font-family: "Bodoni Moda"; font-style: italic; font-weight: 400 700; font-display: swap; src: url(/prototype/ogg-direction/fonts/bodoni-moda-italic.woff2) format("woff2"); }
+    @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 300 600; font-display: swap; src: url(/prototype/ogg-direction/fonts/cormorant-garamond-normal.woff2) format("woff2"); }
+    @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 300 600; font-display: swap; src: url(/prototype/ogg-direction/fonts/cormorant-garamond-italic.woff2) format("woff2"); }
+    @font-face { font-family: "DM Serif Display"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/dm-serif-display-normal.woff2) format("woff2"); }
+    @font-face { font-family: "DM Serif Display"; font-style: italic; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/dm-serif-display-italic.woff2) format("woff2"); }
+    @font-face { font-family: "EB Garamond"; font-style: italic; font-weight: 400 600; font-display: swap; src: url(/prototype/ogg-direction/fonts/eb-garamond-italic.woff2) format("woff2"); }
+
+    /* ---- Specimen scaffolding ---- */
+    .study h1, .study h2, .study h3 { text-wrap: balance; }
+    .study-kicker { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-ink); }
+    .study-muted { color: var(--muted-foreground); }
+    .study code { white-space: nowrap; }
+    .study-bar {
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+      background: color-mix(in srgb, var(--background) 92%, transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    .thesis { font-size: clamp(2.5rem, 6vw, 4.75rem); line-height: 0.98; letter-spacing: -0.03em; }
+
+    /* Specimen sheet rows */
+    .face {
+      display: grid;
+      gap: 1.75rem;
+      padding-block: clamp(2.5rem, 4vw, 3.5rem);
+      border-top: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+    }
+    @media (min-width: 940px) {
+      .face { grid-template-columns: 17rem minmax(0, 1fr); gap: 3.5rem; }
+    }
+    .face-meta { display: flex; flex-direction: column; gap: 0.6rem; }
+    .face-rank { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.2em; color: var(--accent-ink); }
+    .face-name { font-size: 1.35rem; line-height: 1.1; letter-spacing: -0.01em; }
+    .face-tag {
+      display: inline-flex; align-self: flex-start; margin-top: 0.1rem;
+      font-size: 0.5625rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent-ink); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      border-radius: 999px; padding: 0.25rem 0.6rem;
+    }
+    .face-desc { font-size: 0.8125rem; line-height: 1.7; color: var(--muted-foreground); margin-top: 0.25rem; }
+    .traits { margin-top: 0.5rem; display: grid; gap: 0.4rem; font-size: 0.6875rem; }
+    .trait { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px dashed color-mix(in srgb, var(--border) 90%, transparent); padding-bottom: 0.35rem; }
+    .trait dt { color: var(--muted-foreground); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.5625rem; }
+    .trait dd { font-variant-numeric: tabular-nums; letter-spacing: 0.14em; color: var(--foreground); }
+    .trait dd i { color: color-mix(in srgb, var(--border) 100%, transparent); font-style: normal; }
+
+    .specimen { display: flex; flex-direction: column; gap: 1rem; }
+    .spec-lg {
+      font-size: clamp(5rem, 12vw, 9.5rem);
+      line-height: 0.82;
+      letter-spacing: -0.03em;
+      font-style: italic;
+      white-space: nowrap;
+    }
+    .spec-head { font-size: clamp(1.5rem, 3vw, 2.35rem); line-height: 1.06; letter-spacing: -0.02em; font-style: italic; max-width: 22ch; }
+    .spec-sm { font-size: 1rem; line-height: 1.7; color: var(--muted-foreground); font-style: italic; max-width: 44ch; }
+    .spec-foot { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.5rem; padding-top: 0.75rem; border-top: 1px solid color-mix(in srgb, var(--border) 70%, transparent); font-size: 0.6875rem; color: var(--muted-foreground); }
+    .spec-foot b { font-weight: 500; color: var(--foreground); }
+
+    /* Logo test */
+    .monos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: color-mix(in srgb, var(--border) 80%, transparent); border: 1px solid color-mix(in srgb, var(--border) 80%, transparent); border-radius: var(--radius-card); overflow: hidden; }
+    .mono { background: var(--surface); padding: 1.25rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+    .mono-g { font-size: 3rem; line-height: 1; font-style: italic; }
+    .mono-lbl { font-size: 0.5rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); text-align: center; }
+
+    .notes { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+    .notes th, .notes td { text-align: left; padding: 0.85rem 1rem 0.85rem 0; border-bottom: 1px solid color-mix(in srgb, var(--border) 80%, transparent); vertical-align: top; }
+    .notes th { font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--muted-foreground); }
+    .notes td:first-child { font-weight: 500; white-space: nowrap; padding-right: 1.5rem; }
+
+    @media (max-width: 640px) {
+      .spec-lg { font-size: clamp(4.5rem, 22vw, 7rem); }
+      .monos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .notes td:first-child { white-space: normal; }
+    }
+  </style>
+</head>
+<body class="study flex min-h-full flex-col bg-background text-foreground">
+
+  <header class="study-bar sticky top-0 z-50">
+    <div class="container-page flex min-h-[68px] flex-wrap items-center justify-between gap-4 py-3">
+      <div class="flex items-baseline gap-4">
+        <span class="study-kicker">Display italics</span>
+        <span class="hidden text-[0.8125rem] study-muted sm:inline">Six open faces judged against Ogg</span>
+      </div>
+      <div class="flex items-baseline gap-6">
+        <a class="link-arrow text-[0.6875rem] uppercase tracking-[0.16em]" href="/prototype/ogg-direction/">The direction</a>
+        <a class="link-arrow text-[0.6875rem] uppercase tracking-[0.16em]" href="/prototype/ogg-direction/bold/">Louder options</a>
+        <a class="link-arrow text-[0.6875rem] uppercase tracking-[0.16em]" href="/">Back to site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <!-- 1. The problem -->
+    <section class="container-page pt-14 pb-12 md:pt-20 md:pb-16">
+      <p class="study-kicker">The target</p>
+      <h1 class="thesis mt-5 max-w-3xl" style="font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 500;">
+        The swash is<br>the whole point.
+      </h1>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 md:gap-12">
+        <p class="lede">
+          Ogg is not really a didone with a nice italic bolted on. Its italic is a chancery hand —
+          pen-written structure, sweeping entry strokes, wide bowls — drawn at didone contrast.
+          That combination is rare, and almost nothing free attempts it.
+        </p>
+        <div>
+          <p class="text-[0.9375rem] leading-relaxed study-muted">
+            So the honest framing is not “which of these is Ogg”. It is which trait you are
+            actually buying: the <strong class="font-medium text-foreground">gesture</strong> of the
+            swash, the <strong class="font-medium text-foreground">contrast</strong> of the hairline,
+            or a <strong class="font-medium text-foreground">family</strong> with enough weights to
+            run a whole site.
+          </p>
+          <p class="mt-3 text-[0.9375rem] leading-relaxed study-muted">
+            No free face delivers all three. Each row below is scored against the reference on
+            that basis, and the ranking is mine, not a spec sheet.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Candidate sheet -->
+    <section class="container-page pb-6">
+
+      <!-- 01 -->
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">01</p>
+          <h2 class="face-name" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500;">Playfair Display</h2>
+          <span class="face-tag">Closest overall</span>
+          <p class="face-desc">The best free compromise. A true italic with real calligraphic entry strokes and exit tails, set over a didone skeleton, with a 400–900 range that covers everything from a lede to a poster.</p>
+          <dl class="traits">
+            <div class="trait"><dt>Contrast</dt><dd>●●●●<i>○</i></dd></div>
+            <div class="trait"><dt>Swash</dt><dd>●●●<i>○○</i></dd></div>
+            <div class="trait"><dt>Weights</dt><dd>400–900</dd></div>
+            <div class="trait"><dt>Files</dt><dd>76kb</dd></div>
+          </dl>
+        </div>
+        <div class="specimen">
+          <p class="spec-lg" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500;">Ogg</p>
+          <p class="spec-head" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500;">Calm, considered, quietly distinctive.</p>
+          <p class="spec-sm" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 400;">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="spec-foot"><b>Holds up at 1rem.</b> <span>Hairlines survive because the contrast is generous rather than extreme.</span></p>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">02</p>
+          <h2 class="face-name" style="font-family: 'Instrument Serif', Georgia, serif;">Instrument Serif</h2>
+          <span class="face-tag">Closest gesture</span>
+          <p class="face-desc">If you only judge the sweep of the O and the tail of the g, this is the nearest thing free — and it is already on the site. Its weakness is range: one weight, so every headline has the same pressure.</p>
+          <dl class="traits">
+            <div class="trait"><dt>Contrast</dt><dd>●●●●<i>○</i></dd></div>
+            <div class="trait"><dt>Swash</dt><dd>●●●●<i>○</i></dd></div>
+            <div class="trait"><dt>Weights</dt><dd>400 only</dd></div>
+            <div class="trait"><dt>Files</dt><dd>already hosted</dd></div>
+          </dl>
+        </div>
+        <div class="specimen">
+          <p class="spec-lg" style="font-family: 'Instrument Serif', Georgia, serif;">Ogg</p>
+          <p class="spec-head" style="font-family: 'Instrument Serif', Georgia, serif;">Calm, considered, quietly distinctive.</p>
+          <p class="spec-sm" style="font-family: 'Instrument Serif', Georgia, serif;">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="spec-foot"><b>Best shape, no range.</b> <span>At 2.5rem and up it is lovely; below that the hairlines go brittle.</span></p>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">03</p>
+          <h2 class="face-name" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 500;">Bodoni Moda</h2>
+          <span class="face-tag">Closest contrast</span>
+          <p class="face-desc">The most extreme thick-thin of the six, with an optical-size axis that keeps the hairlines viable as the size changes. But its italic is a sloped roman, not a hand — the swash and the roundness are missing.</p>
+          <dl class="traits">
+            <div class="trait"><dt>Contrast</dt><dd>●●●●●</dd></div>
+            <div class="trait"><dt>Swash</dt><dd>●●<i>○○○</i></dd></div>
+            <div class="trait"><dt>Weights</dt><dd>400–700</dd></div>
+            <div class="trait"><dt>Files</dt><dd>100kb</dd></div>
+          </dl>
+        </div>
+        <div class="specimen">
+          <p class="spec-lg" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 500; font-variation-settings: 'opsz' 96;">Ogg</p>
+          <p class="spec-head" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 500; font-variation-settings: 'opsz' 96;">Calm, considered, quietly distinctive.</p>
+          <p class="spec-sm" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 400; font-variation-settings: 'opsz' 16;">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="spec-foot"><b>Sharp, not soft.</b> <span>Reads fashion magazine before it reads portfolio; the italic never quite relaxes.</span></p>
+        </div>
+      </article>
+
+      <!-- 04 -->
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">04</p>
+          <h2 class="face-name" style="font-family: 'Playfair', Georgia, serif; font-weight: 500;">Playfair</h2>
+          <span class="face-tag">Refined variant</span>
+          <p class="face-desc">The newer Playfair, with an optical-size axis alongside weight. Marginally more elegant than Playfair Display at poster sizes, but 40kb heavier for a difference you can only see in a direct overlay.</p>
+          <dl class="traits">
+            <div class="trait"><dt>Contrast</dt><dd>●●●●<i>○</i></dd></div>
+            <div class="trait"><dt>Swash</dt><dd>●●●<i>○○</i></dd></div>
+            <div class="trait"><dt>Weights</dt><dd>300–900</dd></div>
+            <div class="trait"><dt>Files</dt><dd>117kb</dd></div>
+          </dl>
+        </div>
+        <div class="specimen">
+          <p class="spec-lg" style="font-family: 'Playfair', Georgia, serif; font-weight: 500; font-variation-settings: 'opsz' 1200;">Ogg</p>
+          <p class="spec-head" style="font-family: 'Playfair', Georgia, serif; font-weight: 500; font-variation-settings: 'opsz' 1200;">Calm, considered, quietly distinctive.</p>
+          <p class="spec-sm" style="font-family: 'Playfair', Georgia, serif; font-weight: 400; font-variation-settings: 'opsz' 20;">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="spec-foot"><b>Only worth it at poster scale.</b> <span>For a portfolio the plain Playfair Display does the same job for less weight.</span></p>
+        </div>
+      </article>
+
+      <!-- 05 -->
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">05</p>
+          <h2 class="face-name" style="font-family: 'DM Serif Display', Georgia, serif;">DM Serif Display</h2>
+          <span class="face-tag">Heavier cut</span>
+          <p class="face-desc">The closest in weight: thick stems, quick transitions, big round bowls. It reads sturdier and more commercial than Ogg — less pen, more poster — and there is only the one weight.</p>
+          <dl class="traits">
+            <div class="trait"><dt>Contrast</dt><dd>●●●●<i>○</i></dd></div>
+            <div class="trait"><dt>Swash</dt><dd>●●<i>○○○</i></dd></div>
+            <div class="trait"><dt>Weights</dt><dd>400 only</dd></div>
+            <div class="trait"><dt>Files</dt><dd>48kb</dd></div>
+          </dl>
+        </div>
+        <div class="specimen">
+          <p class="spec-lg" style="font-family: 'DM Serif Display', Georgia, serif;">Ogg</p>
+          <p class="spec-head" style="font-family: 'DM Serif Display', Georgia, serif;">Calm, considered, quietly distinctive.</p>
+          <p class="spec-sm" style="font-family: 'DM Serif Display', Georgia, serif;">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="spec-foot"><b>Confident, a little blunt.</b> <span>Works well for a wordmark; gets shouty across a whole page of headlines.</span></p>
+        </div>
+      </article>
+
+      <!-- 06 -->
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">06</p>
+          <h2 class="face-name" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500;">Cormorant Garamond</h2>
+          <span class="face-tag">Closest hand</span>
+          <p class="face-desc">Genuinely chancery — the most pen-like italic here, with the swash movement Ogg is built on. What it lacks is weight: at display size it floats, and it refuses to be the loud element on a page.</p>
+          <dl class="traits">
+            <div class="trait"><dt>Contrast</dt><dd>●●<i>○○○</i></dd></div>
+            <div class="trait"><dt>Swash</dt><dd>●●●●●</dd></div>
+            <div class="trait"><dt>Weights</dt><dd>300–600</dd></div>
+            <div class="trait"><dt>Files</dt><dd>75kb</dd></div>
+          </dl>
+        </div>
+        <div class="specimen">
+          <p class="spec-lg" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500;">Ogg</p>
+          <p class="spec-head" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500;">Calm, considered, quietly distinctive.</p>
+          <p class="spec-sm" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400;">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="spec-foot"><b>Beautiful, too quiet.</b> <span>Better as an accent inside a heading than as the whole voice.</span></p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- 3. Logo test -->
+    <section class="container-page pb-16 md:pb-24">
+      <p class="study-kicker">The other test</p>
+      <h2 class="display-3 mt-2 max-w-2xl">One letter decides it</h2>
+      <p class="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed study-muted">
+        Your mark is a single italic G. Whichever face wins has to carry it at 24px in the header and
+        at 96px in the footer — that is a harsher test than a headline.
+      </p>
+      <div class="monos mt-8">
+        <div class="mono"><span class="mono-g" style="font-family: 'Playfair Display', serif; font-weight: 500;">G</span><span class="mono-lbl">Playfair Display</span></div>
+        <div class="mono"><span class="mono-g" style="font-family: 'Instrument Serif', serif;">G</span><span class="mono-lbl">Instrument Serif</span></div>
+        <div class="mono"><span class="mono-g" style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-variation-settings: 'opsz' 96;">G</span><span class="mono-lbl">Bodoni Moda</span></div>
+        <div class="mono"><span class="mono-g" style="font-family: 'DM Serif Display', serif;">G</span><span class="mono-lbl">DM Serif Display</span></div>
+      </div>
+    </section>
+
+    <!-- 4. Verdict -->
+    <section class="container-page pb-20 md:pb-28">
+      <p class="study-kicker">The call</p>
+      <h2 class="display-3 mt-2 max-w-2xl">Free gets you about seventy per cent</h2>
+      <p class="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed study-muted">
+        If the site stays open-licence, switch the display slot to Playfair Display and keep
+        Newsreader and Figtree underneath. You gain the swash, the weight range and the italic
+        emphasis; you lose Ogg's particular softness, which no free face has.
+      </p>
+
+      <table class="notes mt-8">
+        <thead>
+          <tr><th>If you value…</th><th>Pick</th><th>Because</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>The gesture</td>
+            <td>Playfair Display</td>
+            <td>Closest swash plus a usable 400–900 range. The default answer, and the right one.</td>
+          </tr>
+          <tr>
+            <td>The contrast</td>
+            <td>Bodoni Moda</td>
+            <td>Sharpest hairlines and an opsz axis, at the cost of any calligraphic warmth.</td>
+          </tr>
+          <tr>
+            <td>Shopping nothing</td>
+            <td>Instrument Serif</td>
+            <td>Already hosted and already close. You would be buying range, not shape.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="surface-card p-6">
+          <p class="study-kicker">If you want the real thing</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Ogg is a Sharp Type licence. Web use is typically sold per traffic tier and does not
+            permit redistributing the files, so self-hosting stays inside your account with the
+            foundry. Ask them directly for a quote rather than guessing from a price list — and ask
+            what happens at the next tier, because a portfolio that gets shared can cross one.
+          </p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Adjacent faces to look at in the same room: Canela (Commercial Type), Editorial New and
+            Migra (Pangram Pangram), Reckless (Displaay), Domaine Display (Klim). All are didone- or
+            chancery-adjacent display families, not substitutes — look at their italics specifically.
+          </p>
+        </div>
+        <div class="surface-card p-6">
+          <p class="study-kicker">The hybrid that actually works</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Buy one licence for the display slot only. Keep Newsreader and Figtree, which are free
+            and already carrying the reading. That is roughly 30kb of free text faces plus a single
+            licensed display file — the smallest possible commercial footprint, and the one place
+            where a bought face earns its money.
+          </p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Set a display face at 1.75rem and up, italic once per screen, and everything below that
+            in Newsreader. Do not let a bought display face set body copy; that is how licences get
+            expensive and pages get worse.
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-10 text-[0.8125rem] leading-relaxed study-muted">
+        Throwaway prototype — <code class="text-foreground">site/prototype/ogg-direction/italic/</code>.
+        Fonts are latin subsets, self-hosted in the parent folder. Nothing here touches
+        <code class="text-foreground">site/assets/css/source.css</code> or the shipped pages.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>

@@ -21,6 +21,7 @@ export type Project = {
   role: string;
   category: string;
   featured: boolean;
+  lead?: boolean;
   image: string;
   caseStudy: {
     heroDescription: string;
@@ -39,6 +40,7 @@ export const projects: Project[] = [
     role: "Designer",
     category: "Brand / Digital Experience",
     featured: true,
+    lead: true,
     image:
       "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80",
     caseStudy: {
@@ -150,7 +152,7 @@ export const projects: Project[] = [
     year: "2024",
     role: "Designer",
     category: "Platform / UX",
-    featured: true,
+    featured: false,
     image:
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80",
     caseStudy: {
@@ -338,6 +340,156 @@ export const projects: Project[] = [
       ],
     },
   },
+  {
+    id: "portfolio",
+    title: "Portfolio",
+    slug: "portfolio",
+    description:
+      "A warm editorial portfolio designed and built from scratch — design system, prototype exploration, and a static HTML build.",
+    year: "2026",
+    role: "Designer & Developer",
+    category: "Personal / Web Design",
+    featured: true,
+    image: "",
+    caseStudy: {
+      heroDescription:
+        "A portfolio for a product designer should do more than list projects. This one is a designed system and a working build: a green editorial language, five homepage prototypes tested against each other, and a static HTML build that carries the same rules from page to page.",
+      sections: [
+        {
+          id: "context",
+          label: "Context",
+          title: "Why build the site myself",
+          content:
+            "The portfolio had to do a specific job: help a hiring manager understand how I think within a short scan, then give them enough depth to stay. That meant the site itself had to be evidence of the work — the typography, the spacing, the system, the code — not a container for evidence stored somewhere else. Building it also let me test layout ideas quickly instead of arguing about them in the abstract.",
+        },
+        {
+          id: "audience",
+          label: "Audience",
+          title: "Designing for a 30-second scan",
+          content:
+            "The primary reader is a hiring manager with a tab full of portfolios. They are not reading linearly. They are looking for a point of view, a signal of craft, and proof that the work is real. The structure reflects that: a clear position at the top, selected work immediately after, and supporting material — philosophy, learning, interests — only once the work has earned attention.",
+        },
+        {
+          id: "direction",
+          label: "Design Direction",
+          title: "Green editorial, not another template",
+          content:
+            "The visual direction is a contemporary print publication that happens to be interactive. Paper white, forest ink, and one green carry the personality. Instrument Serif does the expressive work in headlines and pull quotes; Inter handles body copy, navigation and metadata. The palette is deliberately narrow so photography, illustration and type provide the richness.",
+          columns: [
+            {
+              label: "Material",
+              items: [
+                "Paper — the page itself",
+                "Forest — ink and dusk sections",
+                "Grove green — the single pop",
+              ],
+            },
+            {
+              label: "Type",
+              items: [
+                "Instrument Serif — display",
+                "Inter — body and UI",
+                "No mono family",
+              ],
+            },
+            {
+              label: "Rules",
+              items: [
+                "One green moment per page",
+                "Dark sections are the same material at dusk",
+                "Nothing floats",
+              ],
+            },
+          ],
+        },
+        {
+          id: "system",
+          label: "The System",
+          title: "Tokens before pages",
+          content:
+            "The site is built on a small set of decisions rather than one-off styles. Colour, spacing, type, radius, motion and z-index live as tokens. Recurring utilities — container-page, section-y, the display scale, eyebrow, surface-card, ledger and halftone — carry the print feel. The G monogram is the only mark, and it flips from forest-on-paper to lime-on-dusk without a second component. The result is a system that can grow without every new page inventing its own rules.",
+          columns: [
+            {
+              label: "Foundations",
+              items: [
+                "Colour and dusk tokens",
+                "Type scale",
+                "Spacing and radius",
+              ],
+            },
+            {
+              label: "Utilities",
+              items: [
+                "container-page and section-y",
+                "surface-card",
+                "ledger and halftone",
+              ],
+            },
+            {
+              label: "Identity",
+              items: [
+                "The G plate",
+                "Instrument Serif wordmark",
+                "One mark only",
+              ],
+            },
+          ],
+        },
+        {
+          id: "prototype",
+          label: "Prototype",
+          title: "Five layouts, one decision",
+          content:
+            "Before committing to a homepage, I built five grayscale layout studies: an editorial stack, resume columns, an image-led gallery, a typographic catalogue, and a bento grid. They shared the same content and the same skeleton theme, so the comparison was about structure rather than colour. The exercise made the trade-offs visible: a horizontal project scroll created a strong moment but hid the other projects; a bento grid felt energetic but fragmented; the editorial stack was the calmest path through the work. The prototype was deliberately throwaway. The final homepage keeps the clarity of the stack and drops the gimmicks.",
+          quote: "Compare structures in grey before you argue about colour.",
+        },
+        {
+          id: "build",
+          label: "Build",
+          title: "Designing and shipping in the same medium",
+          content:
+            "The site is a plain HTML build with Tailwind CSS v4 compiled at build time and a small vanilla-JavaScript behaviour layer. Content lives in the page that renders it, and case studies are real pages rather than generated routes. The build is part of the design process: spacing that looks right in a mockup has to survive real breakpoints, real copy lengths and real image loading.",
+          columns: [
+            {
+              label: "Stack",
+              items: ["Static HTML", "Tailwind CSS v4", "Vanilla JS"],
+            },
+            {
+              label: "Content",
+              items: [
+                "Content in page markup",
+                "Static case-study routes",
+                "Separate copy and layout",
+              ],
+            },
+            {
+              label: "Motion",
+              items: [
+                "IntersectionObserver reveals",
+                "One axis only",
+                "Reduced-motion fallback",
+              ],
+            },
+          ],
+        },
+        {
+          id: "accessibility",
+          label: "Accessibility",
+          title: "The details that keep it usable",
+          content:
+            "The system sets a visible focus ring on every interactive element, keeps touch targets at 44px or larger, and collapses transforms and durations under prefers-reduced-motion. Colour pairs are chosen for contrast: grove green on paper, lime on forest, never the reverse. The custom cursor is an enhancement that never replaces the native pointer and is hidden on touch devices. These are not extras; they are part of what makes the site feel considered.",
+        },
+        {
+          id: "reflection",
+          label: "Reflection",
+          title: "What the prototype taught me",
+          content:
+            "The most useful part of the project was the part that never shipped. Building five disposable homepages made it obvious which decisions were structural and which were decoration. The final site is quieter than the prototypes, and that is the point. The next iteration is about depth rather than surface: real project imagery, outcomes with numbers, and case studies that show the process instead of only describing it.",
+          quote: "The prototype is where you find out what the design is actually for.",
+        },
+      ],
+    },
+  },
 ];
 
 export function getFeaturedProjects(): Project[] {
@@ -348,9 +500,22 @@ export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }
 
+/**
+ * Order used by the /work archive and by case-study navigation: the lead
+ * project first, then featured projects, then the rest.
+ */
+export function getArchiveProjects(): Project[] {
+  const lead = projects.find((p) => p.lead) ?? projects[0];
+  const rest = projects
+    .filter((p) => p !== lead)
+    .sort((a, b) => Number(b.featured) - Number(a.featured));
+  return [lead, ...rest];
+}
+
 export function getAdjacentProjects(slug: string) {
-  const index = projects.findIndex((p) => p.slug === slug);
-  const prev = index > 0 ? projects[index - 1] : null;
-  const next = index < projects.length - 1 ? projects[index + 1] : null;
+  const ordered = getArchiveProjects();
+  const index = ordered.findIndex((p) => p.slug === slug);
+  const prev = index > 0 ? ordered[index - 1] : null;
+  const next = index >= 0 && index < ordered.length - 1 ? ordered[index + 1] : null;
   return { prev, next };
 }

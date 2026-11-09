@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth antialiased">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Display, with teeth — five loud options</title>
+  <meta name="description" content="A specimen sheet for a portfolio display face that has to earn attention: Melodrama, Boska, Zodiak, Gloock and Panchang.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    /* ---- Faces new to the site ---- */
+    @font-face { font-family: "Melodrama"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/bold/melodrama-normal-400.woff2) format("woff2"); }
+    @font-face { font-family: "Melodrama"; font-style: normal; font-weight: 500; font-display: swap; src: url(/prototype/ogg-direction/fonts/bold/melodrama-normal-500.woff2) format("woff2"); }
+    @font-face { font-family: "Melodrama"; font-style: normal; font-weight: 700; font-display: swap; src: url(/prototype/ogg-direction/fonts/bold/melodrama-normal-700.woff2) format("woff2"); }
+    @font-face { font-family: "Boska"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/bold/boska-normal-400.woff2) format("woff2"); }
+    @font-face { font-family: "Boska"; font-style: normal; font-weight: 500; font-display: swap; src: url(/prototype/ogg-direction/fonts/bold/boska-normal-500.woff2) format("woff2"); }
+    @font-face { font-family: "Boska"; font-style: italic; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/bold/boska-italic-400.woff2) format("woff2"); }
+    @font-face { font-family: "Boska"; font-style: italic; font-weight: 500; font-display: swap; src: url(/prototype/ogg-direction/fonts/bold/boska-italic-500.woff2) format("woff2"); }
+    @font-face { font-family: "Zodiak"; font-style: normal; font-weight: 700; font-display: swap; src: url(/prototype/ogg-direction/fonts/bold/zodiak-normal-700.woff2) format("woff2"); }
+    @font-face { font-family: "Gloock"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/bold/gloock-normal-400.woff2) format("woff2"); }
+    @font-face { font-family: "Panchang"; font-style: normal; font-weight: 600; font-display: swap; src: url(/prototype/ogg-direction/fonts/bold/panchang-normal-600.woff2) format("woff2"); }
+
+    /* ---- Scaffolding ---- */
+    .study h1, .study h2, .study h3 { text-wrap: balance; }
+    .study-kicker { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-ink); }
+    .study-muted { color: var(--muted-foreground); }
+    .study code { white-space: nowrap; }
+    .study-bar {
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+      background: color-mix(in srgb, var(--background) 92%, transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    /* ---- Hero ---- */
+    .bold-hero { position: relative; overflow: hidden; }
+    .bold-hero::before {
+      content: ""; position: absolute; z-index: 0; inset: -30% -20% auto auto; width: 46rem; height: 46rem;
+      background: radial-gradient(circle at center, color-mix(in srgb, var(--accent-soft) 80%, transparent), transparent 62%);
+      pointer-events: none;
+    }
+    .bold-hero > * { position: relative; z-index: 1; }
+    .melo { font-family: Melodrama, Georgia, serif; font-weight: 500; letter-spacing: -0.02em; }
+    .hero-line {
+      font-family: Melodrama, Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(3rem, 9.6vw, 8.25rem);
+      line-height: 0.86;
+      letter-spacing: -0.035em;
+      margin-top: 1.25rem;
+    }
+    .hero-line em {
+      font-family: Boska, Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--accent-ink);
+    }
+
+    /* ---- Mechanisms ---- */
+    .mechs { display: grid; gap: 1px; background: color-mix(in srgb, var(--border) 80%, transparent); border-block: 1px solid color-mix(in srgb, var(--border) 80%, transparent); }
+    @media (min-width: 820px) { .mechs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .mech { background: var(--background); padding: 1.75rem; display: flex; flex-direction: column; gap: 0.6rem; }
+    .mech-num { font-size: 0.5625rem; letter-spacing: 0.2em; color: var(--accent-ink); }
+    .mech-title { font-size: 1.0625rem; font-weight: 500; letter-spacing: -0.01em; }
+    .mech-body { font-size: 0.8125rem; line-height: 1.7; color: var(--muted-foreground); }
+
+    /* ---- Specimen rows ---- */
+    .face { display: grid; gap: 1.75rem; padding-block: clamp(2.75rem, 4.5vw, 4rem); border-top: 1px solid color-mix(in srgb, var(--border) 85%, transparent); }
+    @media (min-width: 980px) { .face { grid-template-columns: 18rem minmax(0, 1fr); gap: 3.5rem; } }
+    .face-meta { display: flex; flex-direction: column; gap: 0.55rem; }
+    .face-rank { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.2em; color: var(--accent-ink); }
+    .face-name { font-size: 1.5rem; line-height: 1.05; letter-spacing: -0.015em; }
+    .face-mech { font-size: 0.5625rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); margin-top: 0.15rem; }
+    .face-desc { font-size: 0.8125rem; line-height: 1.7; color: var(--muted-foreground); margin-top: 0.4rem; }
+    .face-specs { margin-top: 0.5rem; display: grid; gap: 0.35rem; font-size: 0.6875rem; }
+    .spec-line { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dashed color-mix(in srgb, var(--border) 90%, transparent); padding-bottom: 0.3rem; }
+    .spec-line dt { font-size: 0.5625rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-foreground); }
+    .spec-line dd { color: var(--foreground); }
+
+    .poster {
+      font-size: clamp(2.6rem, 7vw, 6rem);
+      line-height: 0.94;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+    .poster-sub { margin-top: 1rem; font-size: 0.9375rem; line-height: 1.7; color: var(--muted-foreground); max-width: 46ch; }
+    .poster-foot { margin-top: 1.25rem; font-size: 0.6875rem; color: var(--muted-foreground); display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; }
+
+    /* Dark interlude */
+    .interlude { background: var(--dusk-background); color: var(--dusk-foreground); position: relative; overflow: hidden; }
+    .interlude::before { content: ""; position: absolute; inset: auto -10% -50% 25%; height: 30rem; background: radial-gradient(ellipse at center, color-mix(in srgb, var(--dusk-accent) 26%, transparent), transparent 68%); pointer-events: none; }
+    .interlude-inner { position: relative; padding-block: clamp(3rem, 6vw, 5rem); }
+    .interlude .study-kicker { color: var(--dusk-accent); }
+    .interlude-note { color: var(--dusk-muted-foreground); }
+    .interlude-line {
+      font-family: Melodrama, Georgia, serif; font-weight: 700;
+      font-size: clamp(2.25rem, 6.4vw, 5rem); line-height: 0.9; letter-spacing: -0.03em;
+      color: var(--dusk-foreground);
+    }
+    .interlude-line em { font-family: Boska, Georgia, serif; font-style: italic; font-weight: 400; color: var(--dusk-accent); letter-spacing: -0.02em; }
+
+    /* ---- Treatments ---- */
+    .treat-grid { display: grid; gap: 1.25rem; }
+    @media (min-width: 900px) { .treat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .treat { display: flex; flex-direction: column; overflow: hidden; }
+    .treat-stage { position: relative; height: 12rem; overflow: hidden; display: grid; align-content: center; padding-inline: 1.5rem; background: var(--surface-strong); }
+    .treat-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .treat-title { font-size: 0.9375rem; font-weight: 500; }
+    .treat-copy { font-size: 0.8125rem; line-height: 1.65; color: var(--muted-foreground); }
+
+    .crop-word {
+      font-family: Melodrama, Georgia, serif; font-weight: 700;
+      font-size: 8.5rem; line-height: 0.8; letter-spacing: -0.04em;
+      white-space: nowrap; margin-left: -0.6rem;
+    }
+    .weights { display: grid; gap: 0.1rem; font-family: Melodrama, Georgia, serif; line-height: 1; }
+    .weights span { font-size: 2.4rem; letter-spacing: -0.02em; }
+    .colour-demo { font-family: Melodrama, Georgia, serif; font-weight: 500; font-size: 2rem; line-height: 1.05; letter-spacing: -0.02em; }
+    .colour-demo em { font-family: Boska, Georgia, serif; font-style: italic; font-weight: 400; color: var(--accent-ink); }
+
+    /* ---- Notes ---- */
+    .notes { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+    .notes th, .notes td { text-align: left; padding: 0.85rem 1rem 0.85rem 0; border-bottom: 1px solid color-mix(in srgb, var(--border) 80%, transparent); vertical-align: top; }
+    .notes th { font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--muted-foreground); }
+    .notes td:first-child { font-weight: 500; white-space: nowrap; padding-right: 1.5rem; }
+
+    @media (max-width: 640px) {
+      .notes td:first-child { white-space: normal; }
+      .treat-stage { height: 10rem; }
+      .crop-word { font-size: 6.5rem; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .weights span { transition: font-weight 320ms var(--ease-out-expo); }
+      .weights:hover span { font-weight: 700; }
+    }
+  </style>
+</head>
+<body class="study flex min-h-full flex-col bg-background text-foreground">
+
+  <header class="study-bar sticky top-0 z-50">
+    <div class="container-page flex min-h-[68px] flex-wrap items-center justify-between gap-4 py-3">
+      <div class="flex items-baseline gap-4">
+        <span class="study-kicker">Display, with teeth</span>
+        <span class="hidden text-[0.8125rem] study-muted sm:inline">Five faces that earn the front of the page</span>
+      </div>
+      <div class="flex items-baseline gap-6">
+        <a class="link-arrow text-[0.6875rem] uppercase tracking-[0.16em]" href="/prototype/ogg-direction/">The direction</a>
+        <a class="link-arrow hidden text-[0.6875rem] uppercase tracking-[0.16em] sm:inline" href="/prototype/ogg-direction/italic/">Italics</a>
+        <a class="link-arrow text-[0.6875rem] uppercase tracking-[0.16em]" href="/prototype/ogg-direction/warm/">Warm options</a>
+        <a class="link-arrow hidden text-[0.6875rem] uppercase tracking-[0.16em] sm:inline" href="/">Back to site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <!-- 1. Hero -->
+    <section class="bold-hero">
+      <div class="container-page pt-14 pb-12 md:pt-20 md:pb-16">
+        <p class="study-kicker">Display · the loud option</p>
+        <h1 class="hero-line">
+          Loud, but<br>still <em>considered.</em>
+        </h1>
+        <div class="mt-9 grid gap-6 md:grid-cols-2 md:gap-12">
+          <p class="lede">
+            Attention is not the same as volume. A display face earns the front of a page by doing
+            one thing the reader has not seen before — and then getting out of the way for
+            everything else.
+          </p>
+          <div>
+            <p class="text-[0.9375rem] leading-relaxed study-muted">
+              These five are louder than the didones on the other sheets: Melodrama and Boska from
+              Fontshare, Zodiak and Panchang alongside them, Gloock from Google. Four of them break
+              a convention on purpose; one of them is simply expensive-looking.
+            </p>
+            <p class="mt-3 text-[0.9375rem] leading-relaxed study-muted">
+              Each is set at the same size on the same sentence, so the difference is the letterform
+              and nothing else.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-page pb-14 md:pb-20">
+        <div class="mechs">
+          <div class="mech">
+            <span class="mech-num">01</span>
+            <p class="mech-title">Scale does the work</p>
+            <p class="mech-body">The fastest way to attention is size. A face only has to survive 6rem with its hairlines intact — everything below that is a different decision.</p>
+          </div>
+          <div class="mech">
+            <span class="mech-num">02</span>
+            <p class="mech-title">Contrast reads as cost</p>
+            <p class="mech-body">Thick stem to hairline is the oldest trick in display type. It makes a page look lit from one side, and it signals that someone chose it.</p>
+          </div>
+          <div class="mech">
+            <span class="mech-num">03</span>
+            <p class="mech-title">One wrong detail</p>
+            <p class="mech-body">Every memorable face has a feature that should not work: a flagged t, a flat-topped a, a lowercase that is not quite the width you expect.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. The five -->
+    <section class="container-page pb-6">
+
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">01 — lead candidate</p>
+          <h2 class="face-name melo" style="font-weight: 700;">Melodrama</h2>
+          <p class="face-mech">The wrong detail</p>
+          <p class="face-desc">A high-contrast serif that has been drawn slightly by hand. The t carries a flag, the apertures pinch, and the joins look cut rather than constructed. At 400 it whispers; at 700 it is a poster.</p>
+          <dl class="face-specs">
+            <div class="spec-line"><dt>Weights</dt><dd>400 / 500 / 700</dd></div>
+            <div class="spec-line"><dt>Italic</dt><dd>none</dd></div>
+            <div class="spec-line"><dt>Licence</dt><dd>Fontshare · free</dd></div>
+            <div class="spec-line"><dt>Files</dt><dd>70kb, three cuts</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p class="poster melo" style="font-weight: 700;">Calm, considered, quietly distinctive.</p>
+          <p class="poster-sub">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="poster-foot"><span><b>Strength</b> — it looks drawn, not licensed.</span><span><b>Risk</b> — fashion-adjacent, and no italic to lean on.</span></p>
+        </div>
+      </article>
+
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">02 — the safe loud one</p>
+          <h2 class="face-name" style="font-family: Boska, Georgia, serif; font-weight: 500;">Boska</h2>
+          <p class="face-mech">Contrast + a real italic</p>
+          <p class="face-desc">The grown-up version of the same idea. High contrast, sharper terminals, and — rare in this group — a proper italic that can carry the emphasis word without a second face.</p>
+          <dl class="face-specs">
+            <div class="spec-line"><dt>Weights</dt><dd>200–700 + italic</dd></div>
+            <div class="spec-line"><dt>Italic</dt><dd>yes</dd></div>
+            <div class="spec-line"><dt>Licence</dt><dd>Fontshare · free</dd></div>
+            <div class="spec-line"><dt>Files</dt><dd>113kb</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p class="poster" style="font-family: Boska, Georgia, serif; font-weight: 500;">Calm, considered, <em style="font-style: italic; font-weight: 400; color: var(--accent-ink);">quietly</em> distinctive.</p>
+          <p class="poster-sub" style="font-family: Boska, Georgia, serif; font-weight: 400;">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="poster-foot"><span><b>Strength</b> — the italic is the whole argument.</span><span><b>Risk</b> — a little less strange than Melodrama.</span></p>
+        </div>
+      </article>
+
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">03</p>
+          <h2 class="face-name" style="font-family: Zodiak, Georgia, serif; font-weight: 700;">Zodiak</h2>
+          <p class="face-mech">Mass</p>
+          <p class="face-desc">Attention through weight rather than detail. A fat didone that turns a headline into an object. Wonderful for one line, exhausting for a page.</p>
+          <dl class="face-specs">
+            <div class="spec-line"><dt>Weights</dt><dd>bold cut</dd></div>
+            <div class="spec-line"><dt>Italic</dt><dd>none</dd></div>
+            <div class="spec-line"><dt>Licence</dt><dd>Fontshare · free</dd></div>
+            <div class="spec-line"><dt>Files</dt><dd>21kb</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p class="poster" style="font-family: Zodiak, Georgia, serif; font-weight: 700;">Calm, considered, quietly distinctive.</p>
+          <p class="poster-sub">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="poster-foot"><span><b>Strength</b> — a single line lands like a poster.</span><span><b>Risk</b> — no second gear; everything is at maximum.</span></p>
+        </div>
+      </article>
+
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">04</p>
+          <h2 class="face-name" style="font-family: Gloock, Georgia, serif;">Gloock</h2>
+          <p class="face-mech">Glamour</p>
+          <p class="face-desc">Hairline serifs, tight counters, magazine polish. The least experimental of the five, and the one most likely to look expensive without asking the reader to notice it.</p>
+          <dl class="face-specs">
+            <div class="spec-line"><dt>Weights</dt><dd>400 only</dd></div>
+            <div class="spec-line"><dt>Italic</dt><dd>none</dd></div>
+            <div class="spec-line"><dt>Licence</dt><dd>OFL</dd></div>
+            <div class="spec-line"><dt>Files</dt><dd>26kb</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p class="poster" style="font-family: Gloock, Georgia, serif;">Calm, considered, quietly distinctive.</p>
+          <p class="poster-sub">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="poster-foot"><span><b>Strength</b> — immediately credible.</span><span><b>Risk</b> — no range, so every headline sits at the same temperature.</span></p>
+        </div>
+      </article>
+
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">05 — wildcard</p>
+          <h2 class="face-name" style="font-family: Panchang, system-ui, sans-serif; font-weight: 600;">Panchang</h2>
+          <p class="face-mech">Width</p>
+          <p class="face-desc">The odd one out, and the one that would actually stop a scroll. A wide, squared display sans that turns a short headline into architecture. It changes the site's whole register — which is either the point or a step too far.</p>
+          <dl class="face-specs">
+            <div class="spec-line"><dt>Weights</dt><dd>200–800</dd></div>
+            <div class="spec-line"><dt>Italic</dt><dd>none</dd></div>
+            <div class="spec-line"><dt>Licence</dt><dd>Fontshare · free</dd></div>
+            <div class="spec-line"><dt>Files</dt><dd>20kb per weight</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p class="poster" style="font-family: Panchang, system-ui, sans-serif; font-weight: 600; letter-spacing: -0.035em;">Calm, considered, quietly distinctive.</p>
+          <p class="poster-sub">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="poster-foot"><span><b>Strength</b> — unmistakably a choice.</span><span><b>Risk</b> — it fights the serif text face; only works if the whole page commits.</span></p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- 3. Dark interlude -->
+    <section class="interlude">
+      <div class="container-page interlude-inner">
+        <p class="study-kicker">The same face at dusk</p>
+        <p class="interlude-line mt-4">I design experiences<br>that <em>feel alive.</em></p>
+        <p class="interlude-note mt-6 max-w-md text-[0.875rem] leading-relaxed">
+          Melodrama over the site's dusk section, with Boska italic carrying the accent. The pair
+          holds at footer scale — which is where a display face usually gives itself away.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4. Treatments -->
+    <section class="container-page py-16 md:py-24">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="study-kicker">Where attention actually comes from</p>
+          <h2 class="display-3 mt-2 max-w-xl">The face is half of it</h2>
+        </div>
+        <p class="max-w-sm text-[0.8125rem] leading-relaxed study-muted">
+          Three moves that make ordinary type feel deliberate. All three are CSS — no photographs,
+          no effects, nothing that breaks without JavaScript.
+        </p>
+      </div>
+
+      <div class="treat-grid mt-8">
+        <article class="treat surface-card">
+          <div class="treat-stage">
+            <span class="crop-word melo">Distinct</span>
+          </div>
+          <div class="treat-body">
+            <p class="treat-title">Overscale and crop</p>
+            <p class="treat-copy">Set the word larger than its container and let the box cut it. The reader completes it. Cheapest drama available, and it still looks intentional.</p>
+          </div>
+        </article>
+
+        <article class="treat surface-card">
+          <div class="treat-stage">
+            <div class="weights" style="font-weight: 400;">
+              <span style="font-weight: 400">calm</span>
+              <span style="font-weight: 500">considered</span>
+              <span style="font-weight: 700">distinctive</span>
+            </div>
+          </div>
+          <div class="treat-body">
+            <p class="treat-title">One family, three pressures</p>
+            <p class="treat-copy">Melodrama ships as static cuts, not a variable font — 400, 500 and 700 at about 22kb each. Three small files still buy you a headline, a subhead and a shout.</p>
+          </div>
+        </article>
+
+        <article class="treat surface-card">
+          <div class="treat-stage">
+            <p class="colour-demo">Calm, <em>quietly</em> distinctive.</p>
+          </div>
+          <div class="treat-body">
+            <p class="treat-title">Emphasis without italic</p>
+            <p class="treat-copy">Melodrama has no italic. Swap the emphasis to colour, or to a second face, and the sentence still bends — often more sharply than a slant would manage.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. Verdict -->
+    <section class="container-page pb-20 md:pb-28">
+      <p class="study-kicker">The call</p>
+      <h2 class="display-3 mt-2 max-w-2xl">Melodrama for the front, Boska if you want the italic</h2>
+      <p class="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed study-muted">
+        If the page should stop someone scrolling, Melodrama is the answer and the missing italic is
+        a feature: emphasis moves to colour, which suits a site that already has an accent colour to spend.
+        If you would rather keep the italic-in-the-headline pattern, Boska does the same job with
+        more restraint and a full weight range.
+      </p>
+
+      <table class="notes mt-8">
+        <thead>
+          <tr><th>Want</th><th>Face</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Maximum character</td>
+            <td>Melodrama</td>
+            <td>The flagged t and pinched joins are the thing people remember. Three cuts, about 70kb in total.</td>
+          </tr>
+          <tr>
+            <td>Character + italic</td>
+            <td>Boska</td>
+            <td>Sharpest option that still supports the italic-emphasis pattern already in the h1.</td>
+          </tr>
+          <tr>
+            <td>Glamour, no risk</td>
+            <td>Gloock</td>
+            <td>OFL, one weight, looks expensive. The conservative choice if the bolder ones feel like costume.</td>
+          </tr>
+          <tr>
+            <td>A different register</td>
+            <td>Panchang</td>
+            <td>Only if the whole page commits to the wide sans — as a display face alone it fights the serif.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="surface-card p-6">
+          <p class="study-kicker">Licensing, honestly</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Melodrama, Boska, Zodiak and Panchang come from Fontshare, which is free for personal
+            and commercial use and allows self-hosting — but under the ITF Free Font Licence, not
+            the SIL Open Font Licence the rest of this site uses. That is a different kind of
+            permission, so read it before shipping rather than taking my word for it.
+          </p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Gloock is plain OFL and drops into the existing pipeline with no new terms at all.
+          </p>
+        </div>
+        <div class="surface-card p-6">
+          <p class="study-kicker">If you adopt Melodrama</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            One token changes: <code class="text-foreground">--font-display</code>. Keep Newsreader
+            and Figtree where they are, set the display face at 2rem and up, and put the emphasis
+            on <code class="text-foreground">--accent-ink</code> instead of an italic. That single
+            substitution is what carries the whole look.
+          </p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Then the existing rules still apply: display never sets body copy, one loud word per
+            screen, and the mark follows whatever the display face becomes.
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-10 text-[0.8125rem] leading-relaxed study-muted">
+        Throwaway prototype — <code class="text-foreground">site/prototype/ogg-direction/bold/</code>.
+        Fonts self-hosted under <code class="text-foreground">fonts/bold/</code>. Nothing here touches
+        <code class="text-foreground">site/assets/css/source.css</code> or the shipped pages.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>

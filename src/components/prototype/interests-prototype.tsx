@@ -16,7 +16,7 @@
 import { useEffect, useState } from "react";
 import { interests } from "@/content/interests";
 import { cn } from "@/lib/utils";
-import { StickyInterests } from "@/components/sticky-interests";
+import { InterestsSection } from "@/components/interests-section";
 import { PrototypeSwitcher } from "./prototype-switcher";
 
 type Book = { title: string; author: string; cover: string };
@@ -426,7 +426,7 @@ export function InterestsPrototype({ variant: raw }: { variant?: string }) {
   const variant = key && VARIANTS.some((v) => v.key === key) ? key : null;
 
   if (process.env.NODE_ENV === "production" || !variant) {
-    return <StickyInterests />;
+    return <InterestsSection />;
   }
 
   return (

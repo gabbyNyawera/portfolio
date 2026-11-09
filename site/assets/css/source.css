@@ -1,0 +1,1023 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+/* The static site scans its own HTML, never the retired Next source. */
+@source "../../**/*.html";
+
+/* Font family names come from the lifted @font-face declarations. */
+:root {
+  --font-inter: "Inter", system-ui, sans-serif;
+  --font-space: "Space Grotesk", system-ui, sans-serif;
+  --font-boska: "Boska", Georgia, serif;
+  --font-instrument-sans: "Instrument Sans", system-ui, sans-serif;
+}
+
+/* The dusk surface is an ancestor, not a media preference. */
+@custom-variant dusk (&:where(.dark-section, .dark-section *));
+
+:root {
+  /* Colour — paper */
+  --background: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-strong: #F7F2E2;
+  --foreground: #101010;
+  --muted: #F2EFE6;
+  --muted-foreground: #6B6A63;
+  --border: #E4E0D6;
+  /* The pop: grove green. Fills and text — 5.02:1 on paper. */
+  --accent: #F9C74F;
+  --accent-foreground: #101010;
+  --accent-soft: #FBE9C0;
+  /* The pop as text. Shares the value here, kept as its own role. */
+  --accent-ink: #2A3FC8;
+
+  /* Compatibility aliases for shadcn primitives */
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  --secondary: var(--surface-strong);
+  --secondary-foreground: var(--foreground);
+  --ring: var(--accent-ink);
+  --input: var(--border);
+
+  /* Layout */
+  --header-height: 76px;
+  --page-max: 76rem;
+  --reading-max: 42rem;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --section-y: clamp(4.5rem, 9vw, 8rem);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 180ms;
+  --duration-reveal: 600ms;
+  --duration-slow: 800ms;
+  --reveal-rise: 12px;
+
+  /* Depth */
+  --z-rail: 40;
+  --z-header: 50;
+  --z-grain: 9999;
+  --z-cursor: 9999;
+
+  /* Dusk palette — deep forest, the same material after dark */
+  --dusk-background: #101010;
+  --dusk-surface: color-mix(in srgb, #101010 90%, #FFFFFF);
+  --dusk-surface-strong: color-mix(in srgb, #101010 80%, #FFFFFF);
+  --dusk-foreground: #FFFFFF;
+  --dusk-muted: color-mix(in srgb, #101010 90%, #FFFFFF);
+  --dusk-muted-foreground: color-mix(in srgb, #FFFFFF 64%, #101010);
+  --dusk-border: color-mix(in srgb, #FFFFFF 22%, #101010);
+  --dusk-accent: #F9C74F;
+  --dusk-accent-foreground: #101010;
+  --dusk-accent-soft: color-mix(in srgb, #F9C74F 24%, #101010);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+
+  --radius-media: 0.5rem;
+  --radius-card: 1.25rem;
+  --radius-panel: 1.5rem;
+  --radius-pill: 999px;
+
+  --text-micro: 0.6875rem;
+  --text-small: 0.8125rem;
+  --text-body: 1rem;
+  --text-title: 1.625rem;
+
+  /* Type system — Human Energy v1.0 */
+  --text-display-xl: clamp(3.25rem, 7vw, 7rem);
+  --text-display-lg: clamp(2.75rem, 5vw, 5rem);
+  --text-display-md: clamp(2.25rem, 4vw, 3.75rem);
+  --text-display-sm: clamp(2rem, 3vw, 2.75rem);
+  --text-h1: clamp(2.5rem, 4.5vw, 4rem);
+  --text-h2: clamp(2rem, 3.2vw, 3rem);
+  --text-h3: clamp(1.625rem, 2.2vw, 2rem);
+  --text-h4: clamp(1.25rem, 1.5vw, 1.5rem);
+  --text-h5: 1.25rem;
+  --text-body-lg: clamp(1.125rem, 1.4vw, 1.25rem);
+  --text-body-sm: 0.875rem;
+  --text-caption: 0.75rem;
+
+  --leading-display: 0.98;
+  --leading-heading: 1.15;
+  --leading-subheading: 1.3;
+  --leading-body: 1.65;
+  --leading-compact: 1.4;
+  --leading-label: 1.2;
+
+  --tracking-display: -0.04em;
+  --tracking-heading: -0.025em;
+  --tracking-subheading: -0.015em;
+  --tracking-body: 0;
+  --tracking-label: 0.08em;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-boska), Georgia, serif;
+  --font-display: var(--font-boska), Georgia, serif;
+  --font-heading: var(--font-instrument-sans), system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* One global paper grain. Texture lives on the material, not on components. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: 0.11;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 3px;
+}
+
+section[id],
+div[id] {
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+
+/* ------------------------------ Type scale ------------------------------ */
+
+@layer components {
+.display-1,
+.display-2,
+.display-3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+  text-wrap: balance;
+}
+
+.display-1 {
+  font-size: var(--text-display-xl);
+  font-weight: 500;
+}
+
+.display-2 {
+  font-size: var(--text-display-lg);
+  font-weight: 400;
+}
+
+.display-3 {
+  font-size: var(--text-display-md);
+  font-weight: 300;
+}
+
+/* Headings are structural: Space Grotesk, compact, confident. */
+.heading-1,
+.heading-2,
+.heading-3,
+.heading-4,
+.heading-5 {
+  font-family: var(--font-heading);
+  text-wrap: balance;
+}
+
+.heading-1 {
+  font-size: var(--text-h1);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.heading-2 {
+  font-size: var(--text-h2);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+}
+
+.heading-3 {
+  font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: var(--leading-subheading);
+  letter-spacing: var(--tracking-subheading);
+}
+
+.heading-4 {
+  font-size: var(--text-h4);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: var(--tracking-subheading);
+}
+
+.heading-5 {
+  font-size: var(--text-h5);
+  font-weight: 500;
+  line-height: var(--leading-subheading);
+  letter-spacing: var(--tracking-subheading);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-h4);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+}
+
+.lede {
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body);
+  color: var(--muted-foreground);
+  text-wrap: pretty;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--text-caption);
+  font-weight: 500;
+  line-height: var(--leading-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.prose-editorial p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+  text-wrap: pretty;
+}
+
+.prose-editorial p + p {
+  margin-top: 1.25rem;
+}
+
+/* --------------------------- Layout primitives --------------------------- */
+
+.container-page {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section-y {
+  padding-block: var(--section-y);
+}
+
+.measure {
+  max-width: var(--reading-max);
+}
+
+.split-editorial {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .split-editorial {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 5rem;
+  }
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+/* ------------------------------ Surfaces -------------------------------- */
+
+.surface-card {
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+  border-radius: var(--radius-card);
+  /* Letterpress: one highlight, one shade, no cast shadow. */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06),
+    0 1px 2px rgba(15, 31, 23, 0.04);
+}
+
+.dark-section .surface-card {
+  box-shadow:
+    inset 0 1px 0 rgba(252, 253, 248, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  padding: 0.4rem 0.85rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  transition: color var(--duration-fast) var(--ease-out-expo),
+    border-color var(--duration-fast) var(--ease-out-expo);
+}
+
+.tag:hover {
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+  color: var(--foreground);
+}
+
+.rule {
+  height: 1px;
+  width: 100%;
+  background: color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--text-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  transition: color var(--duration-fast) var(--ease-out-expo);
+}
+
+.link-arrow:hover {
+  color: var(--foreground);
+}
+
+.asset-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-media);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  background: var(--surface-strong);
+}
+
+.asset-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--foreground) 6%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--foreground) 6%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+
+/* Halftone screen. Two dot grids, two angles, one print plate.
+   Placeholder artwork only — real photography keeps its own detail. */
+.halftone {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.halftone::before,
+.halftone::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+}
+
+.halftone::before {
+  background-image: radial-gradient(
+    circle,
+    rgba(252, 253, 248, 0.9) 1.2px,
+    transparent 1.6px
+  );
+  background-size: 9px 9px;
+  transform: rotate(15deg);
+  mix-blend-mode: soft-light;
+  opacity: 0.85;
+}
+
+.halftone::after {
+  background-image: radial-gradient(
+    circle,
+    rgba(15, 31, 23, 0.85) 1px,
+    transparent 1.4px
+  );
+  background-size: 13px 13px;
+  transform: rotate(45deg);
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+}
+
+/* Ledger. Ruled paper for lists: the rules are the row separators, so rows
+   must be exactly --ledger-step tall. The accent rule sits in the left gutter. */
+.ledger {
+  --ledger-step: 7rem;
+  position: relative;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 calc(var(--ledger-step) - 1px),
+    color-mix(in srgb, var(--border) 70%, transparent) calc(var(--ledger-step) - 1px)
+      var(--ledger-step)
+  );
+}
+
+.ledger::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 4.25rem;
+  width: 1px;
+  background: color-mix(in srgb, var(--accent-ink) 30%, transparent);
+  pointer-events: none;
+}
+
+.ledger > * {
+  height: var(--ledger-step);
+}
+
+.ledger-row {
+  height: 100%;
+}
+
+.arch {
+  border-radius: var(--radius-pill) var(--radius-pill) var(--radius-panel) var(--radius-panel);
+}
+
+/* ------------------------ Background treatments ------------------------- */
+
+.hero-wash {
+  background:
+    radial-gradient(
+      58rem 34rem at 84% 4%,
+      color-mix(in srgb, var(--accent) 9%, transparent),
+      transparent 66%
+    ),
+    radial-gradient(
+      40rem 28rem at 6% 94%,
+      color-mix(in srgb, var(--accent) 6%, transparent),
+      transparent 70%
+    ),
+    var(--background);
+}
+
+/* A single veiled gradient under every page. The layer is fixed, so the wash
+   holds still while content scrolls over it. */
+.page-wash {
+  /* The tinted ground costs muted text a little contrast; nudge it back. */
+  --muted-foreground: #605f58;
+}
+
+.page-wash::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--background) 84%, transparent),
+      color-mix(in srgb, var(--background) 84%, transparent)
+    ),
+    url("/images/hero/hero-gradient.webp") center / cover no-repeat,
+    var(--background);
+  pointer-events: none;
+}
+
+/* The page wash is the ground; heroes sit on it without their own fill. */
+.page-wash .hero-wash {
+  background: none;
+}
+
+/* Dark bands carry the same gradient, dimmed to ink so white type holds. */
+/* Dark bands reuse the exact page gradient, dimmed with a filter so the white
+   type keeps its contrast without changing the colours. */
+.page-wash .dark-wash {
+  position: relative;
+  background: none;
+}
+
+.page-wash .dark-wash::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/images/hero/hero-gradient.webp") center / cover no-repeat;
+  filter: brightness(0.6);
+  pointer-events: none;
+}
+
+.page-wash .dark-wash > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* The footer's contact band sits deeper so small copy keeps its contrast. */
+.page-wash footer.dark-section .dark-wash {
+  --muted-foreground: #b5b5b5;
+}
+
+.page-wash footer.dark-section .dark-wash::before {
+  filter: brightness(0.45);
+}
+
+/* The footer matches the header: flat ink, no dusk glows. */
+.page-wash footer.dark-section .dusk-wash,
+.page-wash footer.dark-section .dusk-horizon,
+.page-wash footer.dark-section .dusk-engraving {
+  background: none;
+}
+
+/* Cream bands step aside too; the wash reads through instead. */
+.page-wash .sand-wash {
+  background: none;
+}
+
+.sand-wash {
+  background: linear-gradient(
+    180deg,
+    var(--background) 0,
+    color-mix(in srgb, var(--surface-strong) 70%, var(--background)) 6rem,
+    color-mix(in srgb, var(--surface-strong) 70%, var(--background))
+      calc(100% - 6rem),
+    var(--background) 100%
+  );
+}
+
+.dusk-wash {
+  background:
+    radial-gradient(
+      55rem 36rem at 82% 0%,
+      color-mix(in srgb, var(--accent) 18%, transparent),
+      transparent 66%
+    ),
+    radial-gradient(
+      38rem 28rem at 8% 100%,
+      color-mix(in srgb, var(--accent) 20%, transparent),
+      transparent 72%
+    ),
+    var(--background);
+}
+
+/* Footer as nightfall: a horizon glow rising from the base and one engraved
+   corner of concentric rules. */
+.dusk-horizon {
+  background: radial-gradient(
+    70rem 26rem at 50% 118%,
+    color-mix(in srgb, var(--accent) 36%, transparent),
+    transparent 72%
+  );
+}
+
+.dusk-engraving {
+  background-image: repeating-radial-gradient(
+    circle at 100% 0%,
+    color-mix(in srgb, var(--accent) 30%, transparent) 0 1px,
+    transparent 1px 44px
+  );
+  mask-image: radial-gradient(circle at 100% 0%, #000 0%, transparent 68%);
+  opacity: 0.55;
+}
+
+/* Dark section: the same material, after dark. */
+.dark-section {
+  --background: var(--dusk-background);
+  --surface: var(--dusk-surface);
+  --surface-strong: var(--dusk-surface-strong);
+  --foreground: var(--dusk-foreground);
+  --muted: var(--dusk-muted);
+  --muted-foreground: var(--dusk-muted-foreground);
+  --border: var(--dusk-border);
+  --accent: var(--dusk-accent);
+  --accent-foreground: var(--dusk-accent-foreground);
+  --accent-soft: var(--dusk-accent-soft);
+  /* Accent-as-text flips to lime here: 12.7:1 on forest. */
+  --accent-ink: var(--dusk-accent);
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  --secondary: var(--surface-strong);
+  --secondary-foreground: var(--foreground);
+  --ring: var(--accent);
+  --input: var(--border);
+  color: var(--foreground);
+}
+
+/* ------------------------------- Motion --------------------------------- */
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-rise));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-rise));
+  filter: blur(5px);
+  transition:
+    opacity var(--duration-reveal) var(--ease-out-expo),
+    transform var(--duration-reveal) var(--ease-out-expo),
+    filter var(--duration-reveal) var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+@keyframes swipe-hint {
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(6px);
+    opacity: 1;
+  }
+}
+
+.swipe-hint-arrow {
+  animation: swipe-hint 1.8s ease-in-out infinite;
+}
+
+/* Interests panel scrollbar */
+.interests-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.interests-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.interests-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.interests-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+}
+
+/* Glass pill buttons. Soft backdrop-blur, sub-surface glow, light border. */
+.glass-pill {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--foreground) 16%, transparent);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-pill:hover {
+  border-color: color-mix(in srgb, var(--foreground) 28%, transparent);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.dark-section .glass-pill {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark-section .glass-pill:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.alive-pointer {
+  z-index: 9997;
+}
+
+.alive-pointer-light {
+  opacity: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(249, 199, 79, 0.3) 0%,
+    rgba(247, 148, 30, 0.14) 38%,
+    transparent 70%
+  );
+  filter: blur(28px);
+  will-change: transform, opacity;
+}
+
+/* A slow pool of light behind the hero portrait, breathing on its own. */
+.alive-aura {
+  position: absolute;
+  top: -9rem;
+  right: -8%;
+  width: 55rem;
+  height: 50rem;
+  max-width: 92vw;
+  background:
+    radial-gradient(
+      40rem 30rem at 62% 28%,
+      color-mix(in srgb, var(--accent) 12%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      28rem 22rem at 32% 72%,
+      color-mix(in srgb, var(--accent-soft) 42%, transparent),
+      transparent 72%
+    );
+  filter: blur(18px);
+  pointer-events: none;
+  animation: aura-drift 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes aura-drift {
+  from {
+    transform: translate3d(-1.5%, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2.5%, 3.5%, 0) scale(1.08);
+  }
+}
+
+@keyframes status-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.status-dot {
+  position: relative;
+}
+
+.status-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: inherit;
+  animation: status-ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes enter-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+.enter-rise {
+  animation: enter-rise 900ms var(--ease-out-expo) both;
+}
+
+@keyframes marquee-x {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee-x var(--marquee-duration, 44s) linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes horizon-breathe {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.dusk-horizon {
+  animation: horizon-breathe 14s ease-in-out infinite;
+  transform-origin: 50% 120%;
+  will-change: transform, opacity;
+}
+
+/* ------------------------ Prototype — button E ---------------------------- */
+/* Throwaway: the shimmer band for the button character comparison. */
+
+@keyframes sk-sheen {
+  0% {
+    transform: translate3d(-160%, 0, 0);
+  }
+  55%,
+  100% {
+    transform: translate3d(420%, 0, 0);
+  }
+}
+
+.sk-sheen {
+  animation: sk-sheen 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .sk-sheen {
+    animation: none;
+    opacity: 0;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .enter-rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .alive-aura,
+  .dusk-horizon,
+  .marquee-track {
+    animation: none;
+  }
+
+  .status-dot::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Progressive enhancement: without JS, reveal wrappers must stay visible. */
+html:not(.js) .reveal {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+
+
+/* ---------------------------- Dark chrome ------------------------------- */
+/* The header sits on ink. The utilities inside it were written for the paper
+   ground, so they are overridden here. Unlayered on purpose: these rules must
+   beat Tailwind utilities without !important. */
+.site-header-dark {
+  background: #101010;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.site-header-dark a > span[aria-hidden="true"] {
+  background: #f9c74f;
+}
+
+.site-header-dark a > span[aria-hidden="true"] > span:first-child {
+  color: #101010;
+}
+
+.site-header-dark a > span[aria-hidden="true"] > span:last-child {
+  background: #101010;
+}
+
+.site-header-dark nav a {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.site-header-dark nav a:hover {
+  color: #ffffff;
+}
+
+.site-header-dark nav a::after {
+  background: #ffffff;
+}
+
+.site-header-dark .glass-pill {
+  background: #f9c74f;
+  border-color: transparent;
+  color: #101010;
+}
+
+.site-header-dark .glass-pill:hover {
+  background: #fbe9c0;
+  color: #101010;
+  border-color: transparent;
+}
+
+/* The primary action is the page's one ink object: black on paper, glass on ink. */
+.glass-pill {
+  background: #101010;
+  border-color: #101010;
+  color: #ffffff;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 28px rgba(16, 16, 16, 0.18);
+}
+
+.glass-pill:hover {
+  background: #000000;
+  border-color: #000000;
+  color: #ffffff;
+}
+
+.dark-section .glass-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+.dark-section .glass-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #ffffff;
+}
+
+/* A paper band that carries the accent. Body copy darkens so it survives on
+   yellow, which no neutral greyscale can do. */
+.band-yellow {
+  background: #f9c74f;
+  color: #101010;
+  border-color: rgba(16, 16, 16, 0.12);
+}
+
+.band-yellow .lede,
+.band-yellow .eyebrow,
+.band-yellow .text-muted-foreground {
+  color: #3f3a25;
+}
+
+.band-yellow .link-arrow {
+  color: #101010;
+}
+
+.band-yellow .link-arrow:hover {
+  color: #000000;
+}
+
+/* Project cards sit in a grid; a nowrap caption must not widen the column. */
+[data-cursor="View"] {
+  min-width: 0;
+}

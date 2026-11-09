@@ -10,39 +10,26 @@ export function CaseStudyNav({
   next: Project | null;
 }) {
   return (
-    <nav className="px-5 py-8 sm:px-8 sm:py-10 lg:px-16">
-      <div className="mx-auto flex max-w-4xl items-center justify-between">
-        <Link
-          href="/work"
-          className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="size-3" />
-          Back to Work
+    <nav className="mt-8 border-t border-border/70">
+      <div className="container-page flex flex-wrap items-center justify-between gap-6 py-10">
+        <Link href="/work" className="link-arrow text-muted-foreground hover:text-foreground">
+          <ArrowLeft className="size-3.5" />
+          All projects
         </Link>
 
         <div className="flex items-center gap-6">
           {prev ? (
-            <Link
-              href={`/work/${prev.slug}`}
-              className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <ArrowLeft className="size-3" />
+            <Link href={`/work/${prev.slug}`} className="link-arrow">
+              <ArrowLeft className="size-3.5" />
               {prev.title}
             </Link>
-          ) : (
-            <span />
-          )}
+          ) : null}
           {next ? (
-            <Link
-              href={`/work/${next.slug}`}
-              className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
-            >
+            <Link href={`/work/${next.slug}`} className="link-arrow">
               {next.title}
-              <ArrowRight className="size-3" />
+              <ArrowRight className="size-3.5" />
             </Link>
-          ) : (
-            <span />
-          )}
+          ) : null}
         </div>
       </div>
     </nav>

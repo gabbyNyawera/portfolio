@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth antialiased">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Type pairing — three faces</title>
+  <meta name="description" content="A type study for the portfolio: a display didone, a script signature, and Inter carrying the body.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    @font-face { font-family: "Bodoni Moda"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/prototype/type-pairing/fonts/bodoni-moda-normal-01.woff2) format("woff2"); }
+    @font-face { font-family: "Bodoni Moda"; font-style: italic; font-weight: 400 700; font-display: swap; src: url(/prototype/type-pairing/fonts/bodoni-moda-italic-00.woff2) format("woff2"); }
+    @font-face { font-family: "Italiana"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/type-pairing/fonts/italiana-normal-00.woff2) format("woff2"); }
+    @font-face { font-family: "Prata"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/type-pairing/fonts/prata-normal-00.woff2) format("woff2"); }
+    @font-face { font-family: "Sacramento"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/type-pairing/fonts/sacramento-normal-00.woff2) format("woff2"); }
+    @font-face { font-family: "Dancing Script"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/prototype/type-pairing/fonts/dancing-script-normal-00.woff2) format("woff2"); }
+    @font-face { font-family: "Pinyon Script"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/type-pairing/fonts/pinyon-script-normal-00.woff2) format("woff2"); }
+
+    /* ---- specimen scaffolding, not part of the site ---- */
+    .study { --didone: "Bodoni Moda", Georgia, serif; }
+    .study h1, .study h2, .study h3 { text-wrap: balance; }
+    .study-shell { max-width: 76rem; margin-inline: auto; padding-inline: var(--gutter); }
+    .study-bar {
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+      background: color-mix(in srgb, var(--background) 92%, transparent);
+      backdrop-filter: blur(8px);
+    }
+    .study-kicker { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-ink); }
+    .study-muted { color: var(--muted-foreground); }
+    .study-rule { border-top: 1px solid color-mix(in srgb, var(--border) 80%, transparent); }
+
+    .didone { font-family: var(--didone); font-weight: 400; font-variation-settings: "opsz" 96; letter-spacing: -0.02em; }
+    .didone-i { font-family: var(--didone); font-style: italic; font-weight: 400; font-variation-settings: "opsz" 96; }
+
+    .script { font-family: "Sacramento", cursive; font-weight: 400; line-height: 0.9; }
+    .script-dancing { font-family: "Dancing Script", cursive; font-weight: 500; line-height: 1.05; }
+    .script-pinyon { font-family: "Pinyon Script", cursive; font-weight: 400; line-height: 1.15; }
+
+    /* The applied sample */
+    .sample { position: relative; overflow: hidden; background: var(--background); }
+    .sample::before {
+      content: ""; position: absolute; z-index: 0; inset: -20% -10% auto auto; width: 34rem; height: 34rem;
+      background: radial-gradient(circle at center, color-mix(in srgb, var(--accent-soft) 70%, transparent), transparent 68%);
+      pointer-events: none;
+    }
+    .sample > * { position: relative; z-index: 1; }
+    .sample-nav { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1.25rem; border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent); }
+    .sample-nav a { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); }
+    .sample-nav a[aria-current] { color: var(--foreground); }
+    .sample-nav a.pill { color: var(--accent-foreground); }
+    .wordmark { font-family: var(--didone); font-style: italic; font-size: 1.5rem; letter-spacing: -0.01em; }
+    .wordmark span { color: var(--accent-ink); }
+
+    .sample-hero { position: relative; padding-block: clamp(3rem, 6vw, 5rem); display: grid; gap: 2.5rem; }
+    @media (min-width: 900px) { .sample-hero { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: end; gap: 4rem; } }
+    .sample-h1 { font-family: var(--didone); font-variation-settings: "opsz" 96; font-weight: 400; font-size: clamp(2.75rem, 6.2vw, 5.25rem); line-height: 0.95; letter-spacing: -0.03em; }
+    .sample-h1 em { font-style: italic; }
+    .sample-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; margin-top: 2.25rem; }
+
+    .pill { display: inline-flex; min-height: 48px; align-items: center; padding-inline: 1.5rem; border-radius: 999px; background: var(--accent); color: var(--accent-foreground); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.02em; }
+    .rule-link { display: inline-flex; min-height: 44px; align-items: center; gap: 0.5rem; border-bottom: 2px solid var(--foreground); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
+
+    .sig-block { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.4rem 1rem; margin-top: 2.75rem; }
+    .sig-block::before { content: ""; flex: none; width: 4rem; height: 1px; margin-bottom: 0.9rem; background: color-mix(in srgb, var(--foreground) 35%, transparent); }
+    .sig-name { font-family: "Sacramento", cursive; font-size: clamp(2.25rem, 3.5vw, 2.75rem); line-height: 0.9; color: var(--accent-ink); }
+    .sig-meta { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-foreground); padding-bottom: 0.35rem; }
+    @media (max-width: 520px) {
+      .sig-block::before { display: none; }
+      .sig-meta { flex-basis: 100%; padding-bottom: 0; }
+    }
+
+    /* Portrait mat: shows the mark in the new display italic */
+    .mat { position: relative; aspect-ratio: 4 / 5; border: 1px solid color-mix(in srgb, var(--border) 80%, transparent); border-radius: 0.5rem; background: var(--surface-strong); display: grid; place-items: center; overflow: hidden; }
+    .mat::after { content: ""; position: absolute; inset: 0.6rem; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 0.35rem; }
+    .mat-g { font-family: var(--didone); font-style: italic; font-size: clamp(7rem, 14vw, 12rem); line-height: 0.8; color: var(--foreground); opacity: 0.9; }
+    .mat-cap { position: absolute; inset: auto 0.9rem 0.9rem; display: flex; justify-content: space-between; gap: 1rem; font-size: 0.625rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); }
+
+    .sample-quote { border-top: 1px solid color-mix(in srgb, var(--border) 80%, transparent); padding-block: clamp(2.5rem, 5vw, 4rem); display: grid; gap: 1.5rem; }
+    @media (min-width: 768px) { .sample-quote { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 4rem; } }
+    .pull { font-family: var(--didone); font-style: italic; font-variation-settings: "opsz" 96; font-size: clamp(1.75rem, 3.4vw, 2.75rem); line-height: 1.12; letter-spacing: -0.02em; }
+    .byline { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.75rem; margin-top: 1.25rem; }
+    .byline-name { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.02em; }
+    .byline .sig-meta { padding-bottom: 0; }
+
+    .work-row { display: grid; gap: 1.25rem; padding-block: 1.75rem; border-top: 1px solid color-mix(in srgb, var(--border) 80%, transparent); }
+    @media (min-width: 768px) { .work-row { grid-template-columns: 4rem minmax(0, 1.2fr) minmax(0, 1fr) auto; align-items: baseline; gap: 2rem; } }
+    .work-index { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; color: var(--accent-ink); }
+    .work-title { font-family: var(--didone); font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.05; letter-spacing: 0.005em; }
+    .work-meta, .work-copy { font-size: 0.8125rem; line-height: 1.7; color: var(--muted-foreground); }
+    .work-link { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 0.2rem; }
+
+    /* Dark sample */
+    .night { background: var(--dusk-background); color: var(--dusk-foreground); position: relative; overflow: hidden; }
+    .night::before { content: ""; position: absolute; inset: auto -10% -40% 30%; height: 26rem; background: radial-gradient(ellipse at center, color-mix(in srgb, var(--dusk-accent) 22%, transparent), transparent 70%); pointer-events: none; }
+    .night-inner { position: relative; padding: clamp(2.75rem, 6vw, 4.5rem); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 2rem; }
+    .night .sig-name { color: var(--dusk-accent); }
+    .night-line { font-family: var(--didone); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; letter-spacing: -0.025em; }
+
+    /* Options grid */
+    .opts { display: grid; gap: 1px; background: color-mix(in srgb, var(--border) 80%, transparent); border: 1px solid color-mix(in srgb, var(--border) 80%, transparent); border-radius: var(--radius-card); overflow: hidden; }
+    @media (min-width: 820px) { .opts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .opt { background: var(--surface); padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; min-height: 15rem; }
+    .opt-face { font-size: clamp(2rem, 3.6vw, 2.9rem); line-height: 1.05; }
+    .opt-foot { margin-top: auto; font-size: 0.75rem; line-height: 1.6; color: var(--muted-foreground); }
+    .opt-name { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--foreground); }
+
+    .roles { display: grid; gap: 1.25rem; }
+    @media (min-width: 900px) { .roles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .role-card { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .role-num { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em; color: var(--accent-ink); }
+    .role-face { font-size: 1.5rem; line-height: 1.15; }
+    .role-body { font-size: 0.8125rem; line-height: 1.7; color: var(--muted-foreground); }
+
+    .notes { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+    .notes th, .notes td { text-align: left; padding: 0.85rem 1rem 0.85rem 0; border-bottom: 1px solid color-mix(in srgb, var(--border) 80%, transparent); vertical-align: top; }
+    .notes th { font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--muted-foreground); }
+    .notes td:first-child { font-weight: 500; white-space: nowrap; padding-right: 1.5rem; }
+
+    @media (max-width: 640px) {
+      .sample-nav .nav-links { display: none; }
+      .notes td:first-child { white-space: normal; }
+    }
+  </style>
+</head>
+<body class="study flex min-h-full flex-col bg-background text-foreground">
+
+  <header class="study-bar sticky top-0 z-50">
+    <div class="study-shell flex min-h-[68px] flex-wrap items-center justify-between gap-4 py-3">
+      <div class="flex items-baseline gap-4">
+        <span class="study-kicker">Type study</span>
+        <span class="hidden text-[0.8125rem] study-muted sm:inline">Blank Space Serif energy, a script signature, Inter underneath</span>
+      </div>
+      <a class="link-arrow text-[0.6875rem] uppercase tracking-[0.16em]" href="/">Back to site</a>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <!-- 1. The argument -->
+    <section class="study-shell pt-14 pb-10 md:pt-20 md:pb-14">
+      <p class="study-kicker">Recommendation</p>
+      <h1 class="didone mt-5 max-w-4xl text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.98]">
+        Two faces carry the page.<br>A third one <em>signs</em> it.
+      </h1>
+      <p class="lede mt-7 max-w-2xl">
+        Blank Space Serif gives you the high-contrast, fashion-editorial headline. The script is
+        not a second display face — it is a signature, used sparingly where a human hand
+        belongs. Inter keeps doing the quiet work: body copy, navigation, labels.
+      </p>
+      <p class="mt-4 max-w-2xl text-[0.8125rem] leading-relaxed study-muted">
+        The originals are commercial: Blank Space Serif is by TanType, and Rue de Miette and
+        Sage Hill are licensed scripts. This page is set in the closest open-licence stand-ins so
+        the pairing can be judged live. If you own the licences, the real files drop into the same
+        three slots.
+      </p>
+    </section>
+
+    <!-- 2. The three roles -->
+    <section class="study-shell pb-14 md:pb-20">
+      <div class="roles">
+        <article class="surface-card role-card">
+          <span class="role-num">01 — Display</span>
+          <p class="role-face didone">Bodoni Moda</p>
+          <p class="role-body">The voice. Headlines, project titles, pull quotes, and the italic G in the mark. High contrast only works large — it never sets body copy. Its italic becomes the one emphasis allowed inside a heading.</p>
+          <p class="eyebrow mt-auto">Stand-in for Blank Space Serif</p>
+        </article>
+        <article class="surface-card role-card">
+          <span class="role-num">02 — Signature</span>
+          <p class="role-face script text-[2.4rem] text-accent-ink">Sacramento</p>
+          <p class="role-body">The hand. At most twice on a page: the hero signature and the footer sign-off. Never a heading, a label, a quote attribution, or a paragraph.</p>
+          <p class="eyebrow mt-auto">Stand-in for Rue de Miette</p>
+        </article>
+        <article class="surface-card role-card">
+          <span class="role-num">03 — Text</span>
+          <p class="role-face" style="font-family: var(--font-sans); font-size: 1.5rem;">Inter</p>
+          <p class="role-body">The workhorse, unchanged. Body, UI, navigation, metadata — everything that has to be read rather than admired.</p>
+          <p class="eyebrow mt-auto">Already shipping</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. Applied -->
+    <section class="study-shell pb-16 md:pb-24">
+      <div class="flex flex-wrap items-end justify-between gap-4 pb-4">
+        <div>
+          <p class="study-kicker">In place</p>
+          <h2 class="didone mt-2 text-[clamp(1.75rem,3vw,2.5rem)] leading-none">Home, top to sign-off</h2>
+        </div>
+        <p class="max-w-sm text-[0.8125rem] leading-relaxed study-muted">
+          Real copy at real sizes. The script appears twice in the whole page — once under the
+          hero, once at the end.
+        </p>
+      </div>
+
+      <div class="surface-card sample">
+        <!-- nav -->
+        <div class="px-6 md:px-10">
+          <nav class="sample-nav" aria-label="Sample navigation">
+            <span class="wordmark">Gabe<span>.</span></span>
+            <span class="nav-links flex items-center gap-6">
+              <a href="#" aria-current="page">Home</a>
+              <a href="#">Projects</a>
+              <a href="#">Philosophy</a>
+              <a href="#">Résumé</a>
+            </span>
+            <a href="#" class="pill">Contact</a>
+          </nav>
+        </div>
+
+        <!-- hero -->
+        <div class="px-6 md:px-10">
+          <div class="sample-hero">
+            <div>
+              <p class="eyebrow">Product designer · Harare, Zimbabwe</p>
+              <h3 class="sample-h1 mt-5">
+                Calm, considered,<br>
+                <em>quietly</em> distinctive.
+              </h3>
+              <p class="lede mt-6 max-w-lg">
+                I design digital products with a focus on clarity, usability, and the details
+                that make complex things feel obvious.
+              </p>
+              <div class="sample-actions">
+                <a class="pill" href="#">View selected work</a>
+                <a class="rule-link" href="#">Read résumé <span aria-hidden="true">↗</span></a>
+              </div>
+              <div class="sig-block">
+                <span class="sig-name">Gabrielle</span>
+                <span class="sig-meta">Designer, not a template</span>
+              </div>
+            </div>
+            <div class="mat" aria-hidden="true">
+              <span class="mat-g">G</span>
+              <span class="mat-cap"><span>Monogram</span><span>Bodoni italic</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- quote -->
+        <div class="px-6 md:px-10">
+          <figure class="sample-quote">
+            <div>
+              <p class="eyebrow">A working note</p>
+              <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">The quote uses the display italic, not the script. Emphasis does not have to cost a signature.</p>
+            </div>
+            <div>
+              <blockquote class="pull">“Curiosity is a design tool.”</blockquote>
+              <div class="byline">
+                <span class="byline-name">Gabrielle Nyawera</span>
+                <span class="sig-meta">On why the questions come first</span>
+              </div>
+            </div>
+          </figure>
+        </div>
+
+        <!-- work -->
+        <div class="px-6 md:px-10 pb-2">
+          <div class="work-row">
+            <span class="work-index">01</span>
+            <p class="work-title">KAVARA KAVARA</p>
+            <p class="work-meta">2024 — Brand / Digital Experience</p>
+            <a class="work-link" href="#">Read case study</a>
+          </div>
+          <div class="work-row" style="border-bottom: 1px solid color-mix(in srgb, var(--border) 80%, transparent);">
+            <span class="work-index">02</span>
+            <p class="work-title">Study App</p>
+            <p class="work-meta">2024–2026 — Education / PWA</p>
+            <a class="work-link" href="#">Read case study</a>
+          </div>
+        </div>
+
+        <!-- footer sample -->
+        <div class="night mt-8">
+          <div class="night-inner">
+            <div>
+              <p class="text-[0.6875rem] uppercase tracking-[0.18em]" style="color: var(--dusk-muted-foreground);">The sign-off</p>
+              <p class="night-line mt-3">Let’s make something.</p>
+            </div>
+            <span class="sig-name text-[clamp(3rem,7vw,4.5rem)]">Gabe</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Script options -->
+    <section class="study-shell pb-16 md:pb-24">
+      <p class="study-kicker">The one real decision</p>
+      <h2 class="didone mt-2 max-w-2xl text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.05]">Which hand signs the page?</h2>
+      <p class="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed study-muted">
+        All three are open licence and set the same name at the same size. Only one can live in
+        the system.
+      </p>
+
+      <div class="opts mt-8">
+        <article class="opt">
+          <p class="opt-name">Sacramento</p>
+          <p class="opt-face script text-[3.4rem] text-accent-ink">Gabrielle</p>
+          <p class="opt-foot"><strong class="font-medium text-foreground">Monoline, retro-signage.</strong> Closest to Sage Hill’s single-stroke elegance, with a little more warmth. Reads at 2rem and up. The safest everyday signature.</p>
+        </article>
+        <article class="opt">
+          <p class="opt-name">Dancing Script</p>
+          <p class="opt-face script-dancing text-[2.6rem] text-accent-ink">Gabrielle</p>
+          <p class="opt-foot"><strong class="font-medium text-foreground">Bouncy, informal.</strong> The Rue de Miette energy — friendly, a bit kitchen-table. Lovely on a bistro brand; risks feeling casual for a product designer.</p>
+        </article>
+        <article class="opt">
+          <p class="opt-name">Pinyon Script</p>
+          <p class="opt-face script-pinyon text-[3.6rem] text-accent-ink">Gabrielle</p>
+          <p class="opt-foot"><strong class="font-medium text-foreground">Copperplate, engraved.</strong> Sage Hill’s formal cousin. Beautiful as a signature, but it reads wedding invitation unless the rest of the page is equally formal.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. Display options -->
+    <section class="study-shell pb-16 md:pb-24">
+      <p class="study-kicker">The other decision</p>
+      <h2 class="didone mt-2 max-w-2xl text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.05]">How sharp should the serif be?</h2>
+      <p class="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed study-muted">
+        Three didones, same word, same size. Blank Space Serif sits between the first two:
+        wide and high-contrast, with hairline serifs that stay crisp at display sizes.
+      </p>
+
+      <div class="opts mt-8">
+        <article class="opt">
+          <p class="opt-name">Bodoni Moda</p>
+          <p class="opt-face didone text-[2.5rem]">Quietly distinctive</p>
+          <p class="opt-foot"><strong class="font-medium text-foreground">Variable, with italic.</strong> The most complete stand-in: optical sizes, a real italic for quotes, and a G that holds the monogram. Recommended.</p>
+        </article>
+        <article class="opt">
+          <p class="opt-name">Italiana</p>
+          <p class="opt-face text-[2.5rem]" style="font-family: 'Italiana', serif; letter-spacing: 0.01em;">Quietly distinctive</p>
+          <p class="opt-foot"><strong class="font-medium text-foreground">Wide, thin, one weight.</strong> The closest to Blank Space Serif’s airy caps. No italic and a single weight, so quotes and emphasis have nowhere to go.</p>
+        </article>
+        <article class="opt">
+          <p class="opt-name">Prata</p>
+          <p class="opt-face text-[2.5rem]" style="font-family: 'Prata', serif; letter-spacing: -0.01em;">Quietly distinctive</p>
+          <p class="opt-foot"><strong class="font-medium text-foreground">Warmer, sturdier.</strong> Lower contrast, more ink. Sits closer to editorial prose than to fashion, and holds up at smaller titles.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 6. Rules -->
+    <section class="study-shell pb-20 md:pb-28">
+      <p class="study-kicker">If we adopt it</p>
+      <h2 class="didone mt-2 text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.05]">Four rules keep it from turning costume</h2>
+
+      <table class="notes mt-8">
+        <thead>
+          <tr><th>Rule</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Two script moments, never three</td>
+            <td>The hero signature and the footer sign-off. A third — or a scripted byline under a quote — turns the page into a greeting card.</td>
+          </tr>
+          <tr>
+            <td>Script never sets content</td>
+            <td>No headings, labels, navigation, dates or body. If it must be read, it is Inter or Bodoni.</td>
+          </tr>
+          <tr>
+            <td>Display ≥ 2rem, script ≥ 2rem</td>
+            <td>Hairlines and connected strokes both fall apart below that. Body copy stays Inter at 1rem.</td>
+          </tr>
+          <tr>
+            <td>The mark follows the display face</td>
+            <td>The G plate uses the new italic G. One face, one mark — no fourth font hiding in the logo.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <div class="surface-card p-6">
+          <p class="opt-name">Weight</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">Bodoni Moda normal + italic (97kb), Sacramento (23kb). Inter is already loaded, so the third face costs nothing extra.</p>
+        </div>
+        <div class="surface-card p-6">
+          <p class="opt-name">Fallbacks</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">Display → Georgia, serif. Script → cursive, with the signature hidden if the face fails rather than shown in a fallback.</p>
+        </div>
+        <div class="surface-card p-6">
+          <p class="opt-name">Licensing</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">The stand-ins are all SIL Open Font Licence. Blank Space Serif, Rue de Miette and Sage Hill need a web licence before they ship.</p>
+        </div>
+      </div>
+
+      <p class="mt-10 text-[0.8125rem] leading-relaxed study-muted">
+        Throwaway prototype — <code class="text-foreground">site/prototype/type-pairing/</code>. Nothing here touches
+        <code class="text-foreground">site/assets/css/source.css</code> or the shipped pages.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

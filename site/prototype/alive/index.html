@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full antialiased">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alive — a three-font pairing</title>
+  <meta name="description" content="A directed type pairing for the portfolio: a bold script that signs, a luxe serif that speaks, a geometric sans that gets out of the way.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    @font-face { font-family: "Lobster Two"; font-style: normal; font-weight: 700; font-display: swap; src: url(/prototype/alive/fonts/lobster-two-700.woff2) format("woff2"); }
+    @font-face { font-family: "Bodoni Moda"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/prototype/alive/fonts/bodoni-moda-normal.woff2) format("woff2"); }
+    @font-face { font-family: "Bodoni Moda"; font-style: italic; font-weight: 400 700; font-display: swap; src: url(/prototype/alive/fonts/bodoni-moda-italic.woff2) format("woff2"); }
+    @font-face { font-family: "Jost"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/prototype/alive/fonts/jost-normal.woff2) format("woff2"); }
+
+    /* ---- Cast ---- */
+    .hand { font-family: "Lobster Two", Georgia, serif; font-weight: 700; }
+    .voice { font-family: "Bodoni Moda", Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
+    .voice-i { font-family: "Bodoni Moda", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.015em; }
+    .machine { font-family: Jost, system-ui, sans-serif; }
+
+    .caps { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; }
+
+    /* ---- Scaffolding ---- */
+    .shell { max-width: 76rem; margin-inline: auto; padding-inline: var(--gutter); }
+    .cream { background: var(--surface-strong); }
+    .hairline { border-top: 1px solid color-mix(in srgb, var(--foreground) 14%, transparent); }
+    .study-bar {
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+      background: color-mix(in srgb, var(--background) 92%, transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    /* ---- Hero ---- */
+    .hero { position: relative; overflow: hidden; }
+    .hero-lead {
+      font-size: clamp(1.35rem, 3.2vw, 2.6rem);
+      line-height: 1.15;
+      max-width: 22ch;
+    }
+    .hero-word {
+      font-size: clamp(4rem, 15.5vw, 13rem);
+      line-height: 0.78;
+      letter-spacing: -0.01em;
+      margin-top: 0.06em;
+      margin-left: -0.05em;
+      white-space: nowrap;
+    }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; align-items: baseline; justify-content: space-between; }
+
+    /* ---- Roles ---- */
+    .roles { display: grid; gap: 0; }
+    @media (min-width: 860px) { .roles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .role { padding: 2rem 0; display: flex; flex-direction: column; gap: 0.75rem; }
+    @media (min-width: 860px) {
+      .role { padding: 2.25rem 2rem; border-left: 1px solid color-mix(in srgb, var(--foreground) 14%, transparent); }
+      .role:first-child { padding-left: 0; border-left: 0; }
+      .role:last-child { padding-right: 0; }
+    }
+    .role-num { color: var(--accent-ink); }
+    .role-face { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.15; }
+    .role-body { font-size: 0.875rem; line-height: 1.7; color: var(--muted-foreground); }
+
+    /* ---- Applied: hero block ---- */
+    .stage { background: var(--background); border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); }
+    .stage-nav { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.1rem clamp(1.25rem, 4vw, 2.5rem); border-bottom: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent); }
+    .stage-mark { font-size: 1.5rem; line-height: 1; }
+    .stage-links { display: none; gap: 1.75rem; }
+    @media (min-width: 720px) { .stage-links { display: flex; } }
+    .stage-links a, .stage-cta { color: var(--muted-foreground); }
+    .stage-links a[aria-current] { color: var(--foreground); }
+    .stage-cta { display: inline-flex; min-height: 40px; align-items: center; padding-inline: 1.1rem; background: var(--accent); color: var(--foreground); border-radius: 999px; }
+
+    .stage-hero { padding: clamp(1.75rem, 4vw, 3rem) clamp(1.25rem, 4vw, 2.5rem); display: grid; gap: 2rem; }
+    @media (min-width: 900px) { .stage-hero { grid-template-columns: minmax(0, 1fr) 13rem; gap: 3rem; align-items: start; } }
+    .stage-note { border-top: 1px solid color-mix(in srgb, var(--foreground) 18%, transparent); padding-top: 0.75rem; font-size: 0.6875rem; line-height: 1.7; color: var(--muted-foreground); }
+    .stage-h1 { font-size: clamp(2.75rem, 8.5vw, 6.5rem); line-height: 0.92; letter-spacing: -0.01em; }
+    .stage-lede { font-size: 0.9375rem; line-height: 1.75; max-width: 40ch; color: var(--muted-foreground); }
+    .btn-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; }
+    .btn { display: inline-flex; min-height: 46px; align-items: center; padding-inline: 1.5rem; background: var(--foreground); color: var(--background); border-radius: 999px; font-size: 0.8125rem; }
+    .btn-quiet { display: inline-flex; min-height: 44px; align-items: center; border-bottom: 2px solid var(--foreground); padding-bottom: 0.15rem; color: var(--foreground); }
+
+    .sig { font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1; color: var(--accent-ink); }
+
+    /* ---- Work rows ---- */
+    .row-work { display: grid; gap: 0.4rem 2rem; align-items: baseline; padding-block: 1.4rem; border-top: 1px solid color-mix(in srgb, var(--foreground) 14%, transparent); }
+    @media (min-width: 780px) { .row-work { grid-template-columns: 3rem minmax(0, 1.4fr) minmax(0, 1fr) auto; } }
+    .row-idx { font-size: 0.625rem; letter-spacing: 0.16em; color: var(--accent-ink); }
+    .row-title { font-size: clamp(1.5rem, 2.8vw, 2.25rem); line-height: 1.05; }
+    .row-meta { font-size: 0.8125rem; color: var(--muted-foreground); }
+    .row-link { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 0.2rem; }
+
+    /* ---- Dark ---- */
+    .dusk { background: var(--dusk-background); color: var(--dusk-foreground); position: relative; overflow: hidden; }
+    .dusk::before { content: ""; position: absolute; inset: auto -10% -45% 30%; height: 28rem; background: radial-gradient(ellipse at center, color-mix(in srgb, var(--dusk-accent) 24%, transparent), transparent 70%); pointer-events: none; }
+    .dusk-inner { position: relative; padding-block: clamp(3rem, 6vw, 5rem); }
+    .dusk .caps { color: var(--dusk-accent); }
+    .dusk-word { font-size: clamp(3rem, 10vw, 8rem); line-height: 0.85; color: var(--dusk-accent); }
+    .dusk-note { color: var(--dusk-muted-foreground); font-size: 0.875rem; line-height: 1.7; }
+
+    /* ---- Notes ---- */
+    .notes { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+    .notes th, .notes td { text-align: left; padding: 0.85rem 1rem 0.85rem 0; border-bottom: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); vertical-align: top; }
+    .notes th { font-size: 0.5625rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--muted-foreground); }
+    .notes td:first-child { font-weight: 500; white-space: nowrap; padding-right: 1.5rem; }
+
+    @media (max-width: 640px) {
+      .notes td:first-child { white-space: normal; }
+    }
+  </style>
+</head>
+<body class="flex min-h-full flex-col bg-background text-foreground">
+
+  <header class="study-bar sticky top-0 z-50">
+    <div class="shell flex min-h-[64px] flex-wrap items-center justify-between gap-3 py-3">
+      <div class="flex items-baseline gap-4">
+        <span class="caps text-accent-ink">Alive</span>
+        <span class="hidden text-[0.8125rem] text-muted-foreground sm:inline">A three-font pairing</span>
+      </div>
+      <div class="flex items-baseline gap-6">
+        <a class="link-arrow caps" href="/prototype/ogg-direction/">Earlier studies</a>
+        <a class="link-arrow caps" href="/">Back to site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <!-- 1. Hero -->
+    <section class="cream">
+      <div class="shell pt-16 pb-12 md:pt-24 md:pb-16">
+        <p class="caps text-accent-ink">Type direction 04</p>
+        <p class="hero-lead voice-i mt-7">I design experiences that</p>
+        <h1 class="hero-word hand">feel alive.</h1>
+      </div>
+      <div class="shell pb-10">
+        <div class="hero-meta pt-6 hairline">
+          <p class="machine text-[0.9375rem] leading-relaxed max-w-md">
+            One hand, one voice, one quiet machine. The script signs, the serif speaks, the sans
+            does the admin — three jobs, no overlap.
+          </p>
+          <p class="caps text-muted-foreground">Lobster Two · Bodoni Moda · Jost</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Roles -->
+    <section class="shell py-14 md:py-20">
+      <div class="roles hairline">
+        <article class="role">
+          <span class="caps role-num">01 — The hand</span>
+          <h2 class="role-face hand">Lobster Two</h2>
+          <p class="role-body">The hero, the wordmark, the sign-off, the one word you want remembered. Bold, wavy, unmistakably drawn. It never sets body copy and never appears twice in the same view.</p>
+        </article>
+        <article class="role">
+          <span class="caps role-num">02 — The voice</span>
+          <h2 class="role-face voice">Bodoni Moda</h2>
+          <p class="role-body">Project titles, pull quotes, subheads, the lede. A luxe didone with real hairline contrast and an italic worth using. This is what keeps the page looking edited rather than decorated.</p>
+        </article>
+        <article class="role">
+          <span class="caps role-num">03 — The machine</span>
+          <h2 class="role-face machine" style="letter-spacing: 0.01em;">Jost</h2>
+          <p class="role-body">Navigation, labels, body copy, buttons, metadata. Geometric and quiet, so the other two can be loud. It is the only one of the three that has to work at 12px.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. Applied: home -->
+    <section class="shell pb-16 md:pb-24">
+      <div class="flex flex-wrap items-end justify-between gap-4 pb-5">
+        <h2 class="voice text-[clamp(1.5rem,3vw,2.25rem)]">In place — the top of the home page</h2>
+        <p class="caps text-muted-foreground">Real copy, real sizes</p>
+      </div>
+
+      <div class="stage">
+        <nav class="stage-nav machine" aria-label="Sample navigation">
+          <span class="stage-mark hand">Gabe<span style="color: var(--accent-ink);">.</span></span>
+          <span class="stage-links caps">
+            <a href="#" aria-current="page">Home</a>
+            <a href="#">Projects</a>
+            <a href="#">Philosophy</a>
+            <a href="#">Résumé</a>
+          </span>
+          <a href="#" class="stage-cta caps">Contact</a>
+        </nav>
+
+        <div class="stage-hero">
+          <div>
+            <p class="caps text-muted-foreground">Product designer · Harare</p>
+            <h3 class="stage-h1 hand mt-4">Calm, considered,<br>quietly<br>distinctive.</h3>
+            <p class="stage-lede machine mt-6">
+              I design calm, considered digital products — with a focus on clarity, usability, and the
+              details that make complex things feel obvious.
+            </p>
+            <div class="btn-row mt-8">
+              <a class="btn machine" href="#">Let’s make something</a>
+              <a class="btn-quiet caps" href="#">View selected work</a>
+            </div>
+            <p class="sig hand mt-10">Gabrielle</p>
+          </div>
+          <aside class="stage-note machine">
+            <p class="caps" style="color: var(--foreground);">Hero</p>
+            <p class="mt-2">Script at 6.5rem, sans at 15px, signature at 2.75rem. One swash, one blue, and nothing else competing for the eye.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Applied: work + quote -->
+    <section class="cream">
+      <div class="shell py-14 md:py-20">
+        <p class="caps text-accent-ink">The voice at work</p>
+
+        <div class="mt-8 grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-16">
+          <div>
+            <blockquote class="voice-i text-[clamp(1.5rem,3.4vw,2.5rem)] leading-[1.15]">
+              “Curiosity is a design tool.”
+            </blockquote>
+            <p class="machine mt-4 text-[0.75rem] text-muted-foreground">Gabrielle Nyawera — on why the questions come first</p>
+          </div>
+          <div>
+            <div class="row-work">
+              <span class="row-idx machine">01</span>
+              <p class="row-title voice">KAVARA KAVARA</p>
+              <p class="row-meta machine">2024 — Brand / Digital</p>
+              <a class="row-link machine" href="#">Case study</a>
+            </div>
+            <div class="row-work">
+              <span class="row-idx machine">02</span>
+              <p class="row-title voice-i">Study App</p>
+              <p class="row-meta machine">2024–2026 — Education / PWA</p>
+              <a class="row-link machine" href="#">Case study</a>
+            </div>
+            <div class="row-work">
+              <span class="row-idx machine">03</span>
+              <p class="row-title voice">Portfolio</p>
+              <p class="row-meta machine">2026 — Personal / Web</p>
+              <a class="row-link machine" href="#">Case study</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Dark -->
+    <section class="dusk">
+      <div class="shell dusk-inner">
+        <p class="caps">The sign-off</p>
+        <p class="voice-i mt-4 text-[clamp(1.25rem,2.4vw,1.75rem)]" style="color: var(--dusk-muted-foreground);">And when the page ends, the hand comes back:</p>
+        <p class="dusk-word hand mt-3">let’s make something.</p>
+        <p class="dusk-note machine mt-8 max-w-sm">
+          Twice per page, no more: once at the top as the voice, once here as the signature. The
+          restraint is what keeps a script from turning into costume jewellery.
+        </p>
+      </div>
+    </section>
+
+    <!-- 6. Verdict -->
+    <section class="shell py-16 md:py-24">
+      <p class="caps text-accent-ink">The pairing</p>
+      <h2 class="voice mt-3 text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.1] max-w-2xl">
+        A hand, a voice, and a machine that knows its place.
+      </h2>
+
+      <table class="notes mt-9">
+        <thead>
+          <tr><th>Slot</th><th>Face</th><th>Why it earns the job</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hand</td>
+            <td>Lobster Two 700</td>
+            <td>Bold and wavy like the references, and it survives being set at 8rem. One weight, so it can only ever be the loud thing.</td>
+          </tr>
+          <tr>
+            <td>Voice</td>
+            <td>Bodoni Moda</td>
+            <td>High-contrast didone with an optical-size axis and a real italic — the editor in the room.</td>
+          </tr>
+          <tr>
+            <td>Machine</td>
+            <td>Jost</td>
+            <td>Geometric sans that stays out of the way at 12px and never competes with a swash.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="mt-10 grid gap-8 md:grid-cols-3">
+        <div>
+          <p class="caps text-accent-ink">Rules</p>
+          <ul class="machine mt-3 grid gap-2 text-[0.8125rem] leading-relaxed text-muted-foreground">
+            <li>Script twice per page. Hero and sign-off.</li>
+            <li>Serif never below 1.25rem.</li>
+            <li>Sans never sets a headline.</li>
+            <li>One swash per screen, no exceptions.</li>
+          </ul>
+        </div>
+        <div>
+          <p class="caps text-accent-ink">Weight</p>
+          <p class="machine mt-3 text-[0.8125rem] leading-relaxed text-muted-foreground">
+            Lobster Two 47kb, Bodoni Moda 100kb, Jost 26kb. About 173kb for the whole cast — heavier
+            than Instrument Serif alone, and the price of having three distinct voices.
+          </p>
+        </div>
+        <div>
+          <p class="caps text-accent-ink">Licence</p>
+          <p class="machine mt-3 text-[0.8125rem] leading-relaxed text-muted-foreground">
+            All three are OFL and already self-hosted here. If you later buy a retail script, it
+            drops into the hand slot and the other two do not move.
+          </p>
+        </div>
+      </div>
+
+      <p class="machine mt-10 text-[0.8125rem] leading-relaxed text-muted-foreground">
+        Throwaway prototype — <code>site/prototype/alive/</code>. Nothing here touches
+        <code>site/assets/css/source.css</code> or the shipped pages.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>

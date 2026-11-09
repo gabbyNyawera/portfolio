@@ -45,3 +45,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# static site scratch
+/site/_raw/
+/shots-*/
+/audit/
+

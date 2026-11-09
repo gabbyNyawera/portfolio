@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Homepage studies — live viewer</title>
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <style>
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      background: #14161c;
+      color: #f4f4f0;
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    input[name="view"] { position: absolute; opacity: 0; pointer-events: none; }
+
+    .bar {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #2b2f3a;
+      flex-wrap: wrap;
+    }
+
+    .bar .title {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8d93a3;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+
+    .tabs label {
+      cursor: pointer;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: #9aa0af;
+      border: 1px solid #2b2f3a;
+      transition: all 0.18s ease;
+      user-select: none;
+    }
+
+    .tabs label:hover { color: #fff; border-color: #4a5164; }
+
+    #t1:checked ~ .bar label[for="t1"],
+    #t2:checked ~ .bar label[for="t2"],
+    #t3:checked ~ .bar label[for="t3"],
+    #t4:checked ~ .bar label[for="t4"] {
+      background: #f4f4f0;
+      color: #14161c;
+      border-color: #f4f4f0;
+    }
+
+    .bar .open {
+      margin-left: auto;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #9aa0af;
+      text-decoration: none;
+      border-bottom: 1px solid #3a4050;
+      padding-bottom: 2px;
+    }
+    .bar .open:hover { color: #fff; border-color: #fff; }
+
+    main { flex: 1; min-height: 0; background: #0d0f14; }
+
+    main iframe {
+      display: none;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
+    #t1:checked ~ main iframe:nth-of-type(1),
+    #t2:checked ~ main iframe:nth-of-type(2),
+    #t3:checked ~ main iframe:nth-of-type(3),
+    #t4:checked ~ main iframe:nth-of-type(4) { display: block; }
+
+    .hint {
+      padding: 0.5rem 1rem;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6f7585;
+      border-top: 1px solid #2b2f3a;
+    }
+  </style>
+</head>
+<body>
+  <input type="radio" name="view" id="t1" checked />
+  <input type="radio" name="view" id="t2" />
+  <input type="radio" name="view" id="t3" />
+  <input type="radio" name="view" id="t4" />
+
+  <div class="bar tabs">
+    <span class="title">Homepage studies · live</span>
+    <label for="t1">01 — Bands</label>
+    <label for="t2">02 — Poster</label>
+    <label for="t3">03 — Editorial</label>
+    <label for="t4">04 — Grid</label>
+    <a class="open" id="open-full" href="01-bands/" target="_blank" rel="noopener">Open full page ↗</a>
+  </div>
+
+  <main>
+    <iframe src="01-bands/" title="01 — Bands"></iframe>
+    <iframe src="02-poster/" title="02 — Poster"></iframe>
+    <iframe src="03-editorial/" title="03 — Editorial"></iframe>
+    <iframe src="04-grid/" title="04 — Grid"></iframe>
+  </main>
+
+  <p class="hint">Scroll inside the frame · each study is the real page at this width</p>
+
+  <script>
+    // Progressive enhancement only: the radio tabs work without this.
+    var links = {
+      t1: "01-bands/",
+      t2: "02-poster/",
+      t3: "03-editorial/",
+      t4: "04-grid/",
+    };
+    var target = document.getElementById("open-full");
+    document.querySelectorAll('input[name="view"]').forEach(function (input) {
+      input.addEventListener("change", function () {
+        if (input.checked && target) target.setAttribute("href", links[input.id]);
+      });
+    });
+  </script>
+</body>
+</html>

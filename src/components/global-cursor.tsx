@@ -1,89 +1,105 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
+const HOVER_SELECTOR = "a, button, [role='button'], input[type='submit'], label";
+
+/**
+ * Simple site cursor. A quick accent dot marks the spot and a slower ring
+ * trails behind; the ring grows over interactive elements. The native cursor
+ * is never hidden. Fine pointers only.
+ */
 export function GlobalCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const mousePos = useRef({ x: 0, y: 0 });
-  const cursorPos = useRef({ x: 0, y: 0 });
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mousePos.current = { x: e.clientX, y: e.clientY };
-      if (!isVisible) setIsVisible(true);
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const pointer = { x: 0, y: 0 };
+    const dot = { x: 0, y: 0 };
+    const ring = { x: 0, y: 0 };
+    let raf = 0;
+
+    const onMove = (event: MouseEvent) => {
+      pointer.x = event.clientX;
+      pointer.y = event.clientY;
+      setIsVisible(true);
     };
 
-    const handleMouseEnter = () => setIsVisible(true);
-    const handleMouseLeave = () => setIsVisible(false);
+    const onLeave = () => setIsVisible(false);
 
-    const animate = () => {
-      cursorPos.current.x += (mousePos.current.x - cursorPos.current.x) * 0.15;
-      cursorPos.current.y += (mousePos.current.y - cursorPos.current.y) * 0.15;
+    const onOver = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (!target) return;
+      setIsHovering(Boolean(target.closest(HOVER_SELECTOR)));
+    };
 
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate(${cursorPos.current.x - 20}px, ${cursorPos.current.y - 20}px)`;
+    const loop = () => {
+      dot.x += (pointer.x - dot.x) * 0.4;
+      dot.y += (pointer.y - dot.y) * 0.4;
+      ring.x += (pointer.x - ring.x) * 0.13;
+      ring.y += (pointer.y - ring.y) * 0.13;
+
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${dot.x}px, ${dot.y}px, 0)`;
+      }
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${ring.x}px, ${ring.y}px, 0)`;
       }
 
-      requestAnimationFrame(animate);
+      raf = requestAnimationFrame(loop);
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseenter", handleMouseEnter);
-    document.addEventListener("mouseleave", handleMouseLeave);
-
-    // Detect hoverable elements
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.closest("a") ||
-        target.closest("button") ||
-        target.closest("[role='button']") ||
-        target.closest("input[type='submit']") ||
-        target.tagName === "BUTTON"
-      ) {
-        setIsHovering(true);
-      }
-    };
-
-    const handleMouseOut = () => {
-      setIsHovering(false);
-    };
-
-    document.addEventListener("mouseover", handleMouseOver);
-    document.addEventListener("mouseout", handleMouseOut);
-
-    const frame = requestAnimationFrame(animate);
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseleave", onLeave);
+    document.addEventListener("mouseover", onOver);
+    raf = requestAnimationFrame(loop);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseenter", handleMouseEnter);
-      document.removeEventListener("mouseleave", handleMouseLeave);
-      document.removeEventListener("mouseover", handleMouseOver);
-      document.removeEventListener("mouseout", handleMouseOut);
-      cancelAnimationFrame(frame);
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("mouseover", onOver);
+      cancelAnimationFrame(raf);
     };
-  }, [isVisible]);
+  }, []);
 
   return (
-    <div
-      ref={cursorRef}
-      className="pointer-events-none fixed top-0 left-0 z-[9999] hidden transition-opacity duration-300 sm:block"
-      style={{
-        willChange: "transform",
-        opacity: isVisible ? 1 : 0,
-      }}
-    >
+    <>
       <div
-        className={`flex size-10 items-center justify-center rounded-full text-xs font-medium transition-all duration-300 ${
-          isHovering
-            ? "scale-150 bg-foreground text-background"
-            : "bg-accent text-background"
-        }`}
+        ref={dotRef}
+        aria-hidden="true"
+        className={cn(
+          "pointer-events-none fixed left-0 top-0 z-[9999] hidden [@media(pointer:fine)]:block",
+          isVisible ? "opacity-100" : "opacity-0",
+          "transition-opacity duration-200"
+        )}
+        style={{ willChange: "transform" }}
       >
-        {isHovering ? "↗" : ""}
+        <span className="absolute size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent" />
       </div>
-    </div>
+
+      <div
+        ref={ringRef}
+        aria-hidden="true"
+        className={cn(
+          "pointer-events-none fixed left-0 top-0 z-[9999] hidden [@media(pointer:fine)]:block",
+          isVisible ? "opacity-100" : "opacity-0",
+          "transition-opacity duration-200"
+        )}
+        style={{ willChange: "transform" }}
+      >
+        <div
+          className={cn(
+            "absolute flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border bg-transparent transition-[width,height] duration-300 ease-[var(--ease-out-expo)]",
+            isHovering ? "size-9 border-accent/50" : "size-6 border-accent/30"
+          )}
+        />
+      </div>
+    </>
   );
 }

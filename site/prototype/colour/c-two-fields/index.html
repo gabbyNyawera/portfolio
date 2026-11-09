@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth antialiased">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prototype C — Two fields</title>
+  <link rel="stylesheet" href="/assets/css/site.css" />
+</head>
+<body class="flex min-h-full flex-col bg-background text-foreground">
+  <header class="border-b border-border">
+    <div class="container-page flex h-[76px] items-center justify-between gap-6">
+      <a href="#" class="flex items-center gap-2.5">
+        <span class="relative flex size-9 items-center justify-center rounded-[9px] bg-foreground">
+          <span class="font-display text-[26px] italic leading-none text-background">G</span>
+          <span class="absolute bottom-[7px] right-[7px] size-[3px] rounded-full bg-accent"></span>
+        </span>
+        <span class="font-display text-2xl tracking-tight">Gabe<span class="text-accent-ink">.</span></span>
+      </a>
+      <nav class="flex items-center gap-5 text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground sm:gap-7">
+        <a href="#work" class="hover:text-foreground">Work</a>
+        <a href="#" class="hidden hover:text-foreground sm:inline">Philosophy</a>
+        <a href="#" class="hidden hover:text-foreground sm:inline">Résumé</a>
+        <a href="#contact" class="inline-flex h-10 items-center rounded-full bg-accent px-4 text-accent-foreground">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="border-b border-border">
+      <div class="container-page py-14 lg:py-20">
+        <p class="eyebrow">Harare · Product designer</p>
+        <h1 class="mt-4 font-display text-[clamp(3.5rem,8vw,7.5rem)] leading-[0.88] tracking-[-0.035em]">Gabe</h1>
+        <div class="mt-6 flex flex-wrap items-end justify-between gap-8">
+          <p class="font-display text-[clamp(1.8rem,3vw,2.6rem)] leading-tight">Product Designer<span class="text-accent-ink">.</span></p>
+          <p class="measure text-base leading-relaxed text-muted-foreground">
+            Calm, considered digital products — clarity, usability, and the details
+            that make complex things feel obvious.
+          </p>
+        </div>
+        <div class="mt-8 flex flex-wrap items-center gap-6">
+          <a href="#contact" class="inline-flex h-12 items-center gap-3 rounded-full bg-accent px-6 text-sm font-medium text-accent-foreground">Let's make something →</a>
+          <a href="#work" class="border-b-2 border-foreground pb-1.5 text-[11px] font-medium uppercase tracking-[0.18em]">View selected work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Field 1: orange -->
+    <section class="bg-accent text-accent-foreground">
+      <div class="container-page grid gap-8 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:py-20">
+        <h2 class="font-display text-[clamp(2.75rem,5.5vw,5rem)] leading-[0.95] tracking-[-0.025em]">
+          Structure<br />before<br /><em>surface.</em>
+        </h2>
+        <div>
+          <p class="max-w-sm text-lg leading-relaxed opacity-90">
+            The brief, the constraints and the person on the other side of the screen
+            come first. The surface is the last thing I design.
+          </p>
+          <a href="#" class="mt-6 inline-flex items-center gap-2 border-b-2 border-current pb-1 text-[11px] font-medium uppercase tracking-[0.18em]">How I think →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="border-b border-border">
+      <div class="container-page py-16">
+        <div class="flex items-end justify-between gap-6">
+          <h2 class="display-2">Selected work</h2>
+          <a href="#" class="link-arrow">All projects</a>
+        </div>
+
+        <div class="mt-10 grid gap-8 md:grid-cols-2">
+          <a href="#" class="group">
+            <div class="overflow-hidden rounded-lg border border-border">
+              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&amp;auto=format&amp;fit=crop&amp;q=80" alt="KAVARA KAVARA" class="aspect-[16/11] w-full object-cover" loading="lazy" />
+            </div>
+            <div class="mt-4 flex items-baseline justify-between gap-4">
+              <h3 class="title">KAVARA KAVARA</h3>
+              <span class="eyebrow">2024</span>
+            </div>
+            <p class="mt-1 text-sm text-muted-foreground">Brand / Digital experience</p>
+          </a>
+          <a href="#" class="group">
+            <div class="overflow-hidden rounded-lg border border-border">
+              <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=900&amp;auto=format&amp;fit=crop&amp;q=80" alt="Study App" class="aspect-[16/11] w-full object-cover" loading="lazy" />
+            </div>
+            <div class="mt-4 flex items-baseline justify-between gap-4">
+              <h3 class="title">Study App</h3>
+              <span class="eyebrow">2026</span>
+            </div>
+            <p class="mt-1 text-sm text-muted-foreground">Education / PWA</p>
+          </a>
+        </div>
+
+        <div class="mt-8 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+          <div class="aspect-[16/9] rounded-lg border border-border" style="background: linear-gradient(135deg, #2A3FC8 0%, #F7941E 100%)"></div>
+          <div class="flex items-baseline justify-between gap-4 border-b border-border pb-4">
+            <div>
+              <h3 class="title">Portfolio</h3>
+              <p class="mt-1 text-sm text-muted-foreground">Personal / Web design</p>
+            </div>
+            <span class="text-[11px] uppercase tracking-[0.18em] text-accent-ink">2026 →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Field 2: blue -->
+    <section class="text-white" style="background: #2A3FC8">
+      <div class="container-page py-16 lg:py-20">
+        <p class="text-[11px] font-medium uppercase tracking-[0.2em] opacity-60">The short version</p>
+        <blockquote class="mt-6 max-w-3xl font-display text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.1] tracking-[-0.015em]">
+          “Calm, considered digital products — clarity, usability, and the details
+          that make complex things feel <em>obvious.</em>”
+        </blockquote>
+        <div class="mt-8 flex flex-wrap gap-2">
+          <span class="rounded-full border border-white/30 px-3 py-1 text-[11px]">Design systems</span>
+          <span class="rounded-full border border-white/30 px-3 py-1 text-[11px]">Product design</span>
+          <span class="rounded-full border border-white/30 px-3 py-1 text-[11px]">Prototyping</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-border text-foreground" style="background: #F9C74F">
+      <div class="container-page flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-5 text-[10px] font-medium uppercase tracking-[0.18em]">
+        <span>Structure before surface</span>
+        <span>Reading: Storytelling in Design</span>
+        <span>Open to work</span>
+        <span>Harare · 17:38</span>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="dark-section" style="background: #12173B; color: #FFFFFF">
+    <div class="container-page py-16">
+      <p class="font-display text-[clamp(2.25rem,4.8vw,4.25rem)] leading-[1.02] tracking-[-0.02em]">
+        I design experiences<br />that <span style="color: #F9C74F">feel alive.</span>
+      </p>
+      <div class="mt-10 flex flex-wrap items-end justify-between gap-6 border-t border-white/15 pt-6 text-[11px] uppercase tracking-[0.18em] text-white/60">
+        <a href="#" class="hover:text-white">nyaweragabby@gmail.com ↗</a>
+        <span>Harare · 17:38</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

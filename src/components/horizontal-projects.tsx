@@ -2,12 +2,12 @@
 
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Project } from "@/content/projects";
+import { ProjectArtwork } from "@/components/project-artwork";
 
 export function HorizontalProjects({ projects }: { projects: Project[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -15,7 +15,7 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
   const totalProjects = projects.length;
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -50,47 +50,48 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
 
   const translateX = scrollProgress * (totalProjects - 1) * -100;
 
-  // Mobile: simple vertical stack
+  const scrollToIndex = (index: number) => {
+    const el = containerRef.current;
+    if (!el) return;
+    const sectionTop = el.offsetTop;
+    const sectionHeight = el.offsetHeight - window.innerHeight;
+    const projectHeight = sectionHeight / Math.max(1, totalProjects - 1);
+    const clamped = Math.max(0, Math.min(totalProjects - 1, index));
+    window.scrollTo({ top: sectionTop + clamped * projectHeight, behavior: "smooth" });
+  };
+
   if (isMobile) {
     return (
-      <div className="px-5">
-        <div className="mb-8">
-          <h2 className="font-serif text-4xl font-light leading-[1.1] tracking-tight">
-            What I&apos;ve
-            <br />
-            built
-          </h2>
-          <p className="mt-6 text-sm text-muted-foreground">
-            Projects where design did the quiet work.
-          </p>
-        </div>
+      <div className="container-page">
+        <h2 className="display-2">
+          What I&apos;ve
+          <br />
+          <em className="italic text-accent-ink">built</em>
+        </h2>
+        <p className="lede mt-6 max-w-sm">
+          Projects where design did the quiet work — making complex things feel
+          obvious.
+        </p>
 
-        <div className="space-y-8">
-          {projects.map((project) => (
-            <Link
-              key={project.id}
-              href={`/work/${project.slug}`}
-              className="group block"
-            >
-              <div className="overflow-hidden rounded-xl bg-muted">
-                <div className="flex aspect-[4/3] w-full items-center justify-center bg-accent/10">
-                  <span className="text-sm text-muted-foreground">
-                    {project.title}
-                  </span>
-                </div>
-              </div>
-              <div className="mt-4">
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
+        <div className="mt-12 space-y-12">
+          {projects.map((project, index) => (
+            <Link key={project.id} href={`/work/${project.slug}`} className="group block">
+              <ProjectArtwork
+                project={project}
+                index={index}
+                className="aspect-[4/3] w-full"
+              />
+              <div className="mt-5">
+                <p className="eyebrow">
                   {project.year} — {project.category}
                 </p>
-                <h3 className="mt-2 text-xl font-medium tracking-tight font-serif">
-                  {project.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
+                <h3 className="display-3 mt-2">{project.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   {project.description}
                 </p>
-                <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-accent">
-                  View project <ArrowRight className="size-3" />
+                <span className="link-arrow mt-5">
+                  View project
+                  <ArrowRight className="size-3.5" />
                 </span>
               </div>
             </Link>
@@ -100,82 +101,78 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
     );
   }
 
-  // Desktop: horizontal scroll
   return (
-    <div ref={containerRef} className="relative h-[400vh]">
-      <div className="sticky top-0 flex h-screen pt-[52px]">
-        {/* Left panel - fixed */}
-        <div className="hidden w-[35%] flex-col justify-between py-16 pl-5 pr-8 sm:flex sm:pl-8 lg:pl-16 lg:pr-12">
+    <div ref={containerRef} className="relative h-[360vh]">
+      <div className="sticky top-0 flex h-screen overflow-hidden pt-[var(--header-height)]">
+        <div className="flex w-[32%] flex-col justify-between border-r border-border/70 py-14 pl-[var(--gutter)] pr-10">
           <div>
-            <h2 className="font-serif text-5xl font-light leading-[1.1] tracking-tight md:text-6xl">
+            <h2 className="display-2">
               What I&apos;ve
               <br />
-              built
+              <em className="italic text-accent-ink">built</em>
             </h2>
-            <p className="mt-8 max-w-xs text-muted-foreground">
+            <p className="lede mt-6 max-w-xs">
               {totalProjects === 1
                 ? "A project where design did the quiet work — making complex things feel obvious."
                 : "Projects where design did the quiet work — making complex things feel obvious."}
             </p>
           </div>
 
-          {/* Progress indicator */}
           <div className="flex items-center gap-4">
-            <div className="h-px flex-1 bg-border/40" />
+            <span className="font-sans font-medium text-[10px] tabular-nums tracking-[0.16em] text-muted-foreground">
+              {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(totalProjects).padStart(2, "0")}
+            </span>
+            <div className="h-px flex-1 bg-border/70">
+              <div
+                className="h-full bg-accent transition-[width] duration-150 ease-out"
+                style={{
+                  width: `${totalProjects > 1 ? (activeIndex / (totalProjects - 1)) * 100 : 100}%`,
+                }}
+              />
+            </div>
           </div>
         </div>
 
-        {/* Right panel - horizontal scroll */}
-        <div className="flex w-full flex-col overflow-hidden sm:w-[65%]">
+        <div className="flex w-[68%] flex-col overflow-hidden">
           <div
-            ref={scrollRef}
-            className="flex h-full flex-1 transition-none"
+            className="flex flex-1 transition-none"
             style={{ transform: `translateX(${translateX}%)` }}
           >
-            {projects.map((project) => (
+            {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="flex h-full w-full flex-shrink-0 items-center px-5 sm:px-8 lg:px-12"
+                className="flex h-full w-full flex-shrink-0 items-center px-10 py-14"
               >
-                <Link
-                  href={`/work/${project.slug}`}
-                  className="group block w-full"
-                >
-                  <div className="grid gap-8 md:grid-cols-[1.2fr_1fr]">
-                    {/* Visual */}
-                    <div className="overflow-hidden rounded-2xl bg-muted">
-                      <div className="flex aspect-[4/3] w-full items-center justify-center bg-accent/10 md:min-h-[450px]">
-                        <span className="text-sm text-muted-foreground">
-                          {project.title}
-                        </span>
-                      </div>
-                    </div>
+                <Link href={`/work/${project.slug}`} className="group block w-full">
+                  <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+                    <ProjectArtwork
+                      project={project}
+                      index={index}
+                      className="aspect-[4/3] w-full"
+                    />
 
-                    {/* Content */}
-                    <div className="flex flex-col justify-center">
-                      <h3 className="font-serif text-4xl font-light tracking-tight md:text-5xl">
-                        {project.title}
-                      </h3>
-
-                      <p className="mt-6 max-w-md text-muted-foreground">
+                    <div>
+                      <p className="eyebrow">
+                        0{index + 1} — {project.category}
+                      </p>
+                      <h3 className="display-3 mt-3">{project.title}</h3>
+                      <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
                         {project.description}
                       </p>
 
-                      {/* Tags */}
                       <div className="mt-6 flex flex-wrap gap-2">
                         {project.category.split(" / ").map((tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-full border border-border/60 px-3 py-1 text-[10px] uppercase tracking-wider text-muted-foreground"
-                          >
+                          <span key={tag} className="tag">
                             {tag}
                           </span>
                         ))}
                       </div>
 
-                      <div className="mt-8 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-accent transition-colors group-hover:text-foreground">
-                        View project <ArrowRight className="size-4" />
-                      </div>
+                      <span className="link-arrow mt-8 group-hover:text-foreground">
+                        View case study
+                        <ArrowUpRight className="size-3.5" />
+                      </span>
                     </div>
                   </div>
                 </Link>
@@ -183,36 +180,23 @@ export function HorizontalProjects({ projects }: { projects: Project[] }) {
             ))}
           </div>
 
-          {/* Navigation cues - only show when multiple projects */}
           {totalProjects > 1 && (
-            <div className="hidden items-center justify-center gap-6 py-6 sm:flex">
+            <div className="flex items-center justify-center gap-3 pb-8">
               <button
-                onClick={() => {
-                  const el = containerRef.current;
-                  if (!el) return;
-                  const sectionTop = el.offsetTop;
-                  const sectionHeight = el.offsetHeight - window.innerHeight;
-                  const projectHeight = sectionHeight / (totalProjects - 1);
-                  const target = Math.max(0, activeIndex - 1) * projectHeight;
-                  window.scrollTo({ top: sectionTop + target, behavior: "smooth" });
-                }}
+                type="button"
+                onClick={() => scrollToIndex(activeIndex - 1)}
                 disabled={activeIndex === 0}
-                className="flex size-10 items-center justify-center rounded-full border border-border/40 text-muted-foreground transition-colors hover:text-foreground disabled:opacity-30"
+                aria-label="Previous project"
+                className="flex size-10 items-center justify-center rounded-full border border-border/80 text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground disabled:opacity-30"
               >
                 <ArrowLeft className="size-4" />
               </button>
               <button
-                onClick={() => {
-                  const el = containerRef.current;
-                  if (!el) return;
-                  const sectionTop = el.offsetTop;
-                  const sectionHeight = el.offsetHeight - window.innerHeight;
-                  const projectHeight = sectionHeight / (totalProjects - 1);
-                  const target = Math.min(totalProjects - 1, activeIndex + 1) * projectHeight;
-                  window.scrollTo({ top: sectionTop + target, behavior: "smooth" });
-                }}
+                type="button"
+                onClick={() => scrollToIndex(activeIndex + 1)}
                 disabled={activeIndex === totalProjects - 1}
-                className="flex size-10 items-center justify-center rounded-full border border-border/40 text-muted-foreground transition-colors hover:text-foreground disabled:opacity-30"
+                aria-label="Next project"
+                className="flex size-10 items-center justify-center rounded-full border border-border/80 text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground disabled:opacity-30"
               >
                 <ArrowRight className="size-4" />
               </button>

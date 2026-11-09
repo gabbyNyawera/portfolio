@@ -7,10 +7,10 @@ A personal website showcasing product design work, built to get interviews at to
 A deep-dive into a single project, structured as Context → Role → Process → Outcome → Lessons. Must include process documentation (wireframes, flows), visual showcase (mockups, before/after), and metrics/outcomes (engagement, churn, etc.).
 
 ## Scroll-triggered Reveal
-Elements that fade/slide in as the user scrolls, using Framer Motion's `useInView`. Highest-signal, lowest-gimmick interaction. Must feel progressive, not decorative.
+Elements that fade/slide in as the user scrolls, using IntersectionObserver in vanilla JS. Highest-signal, lowest-gimmick interaction. Must feel progressive, not decorative.
 
 ## Visual Polish
-Tight spacing, consistent typography scale, intentional color usage. The warm cream + terracotta palette is distinctive — the issue isn't the colors, it's how they're applied.
+Tight spacing, consistent typography scale, intentional color usage. The white paper, black ink and yellow signal palette is distinctive — the issue isn't the colors, it's how they're applied.
 
 ## Process Documentation
 Wireframes, user flows, research findings shown within case studies. Must feel integrated, not bolted on. Proves thinking, not just output.

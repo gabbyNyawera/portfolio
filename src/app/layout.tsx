@@ -1,27 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Newsreader, Geist_Mono, Fraunces } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { GlobalCursor } from "@/components/global-cursor";
+import { AlivePointer } from "@/components/alive/alive-pointer";
+import { ScrollProgress } from "@/components/alive/scroll-progress";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
   subsets: ["latin"],
+  weight: "400",
   style: ["normal", "italic"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -49,9 +42,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${newsreader.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable} h-full scroll-smooth antialiased`}>
+      <body className="flex min-h-full flex-col bg-background text-foreground">
         <GlobalCursor />
+        <AlivePointer />
+        <ScrollProgress />
         {children}
       </body>
     </html>

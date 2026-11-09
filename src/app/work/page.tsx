@@ -1,9 +1,8 @@
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { projects } from "@/content/projects";
+import type { Metadata } from "next";
+import { getArchiveProjects } from "@/content/projects";
+import { ProjectCard } from "@/components/project-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Projects — Gabrielle Nyawera",
@@ -11,63 +10,64 @@ export const metadata: Metadata = {
 };
 
 export default function WorkPage() {
+  const [lead, ...rest] = getArchiveProjects();
+  const selected = rest.filter((project) => project.featured);
+  const others = rest.filter((project) => !project.featured);
+
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen">
       <SiteHeader />
 
-      {/* Header */}
-      <section className="px-8 pb-16 pt-20 sm:pt-24 lg:px-16">
-        <div className="mx-auto max-w-6xl">
-          <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground">
-            Projects
-          </p>
-          <h1 className="font-serif text-5xl font-extralight leading-[1.05] tracking-tight md:text-7xl">
-            Projects
-          </h1>
-          <p className="mt-6 max-w-lg text-lg text-muted-foreground">
-            Design and development projects — each with its own story.
-          </p>
-        </div>
-      </section>
+      <main>
+        <section className="hero-wash pb-16 pt-[calc(var(--header-height)+4rem)] sm:pb-20 sm:pt-[calc(var(--header-height)+5.5rem)]">
+          <div className="container-page">
+            <h1 className="display-1">Projects</h1>
+            <p className="lede mt-7 max-w-lg">
+              Selected design and development work, plus a few other things
+              I&apos;ve built along the way.
+            </p>
+          </div>
+        </section>
 
-      {/* Projects — large cards */}
-      <section className="px-8 pb-28 lg:px-16">
-        <div className="mx-auto max-w-6xl space-y-16 sm:space-y-24">
-          {projects.map((project) => (
-            <Link
-              key={project.slug}
-              href={`/work/${project.slug}`}
-              className="group block overflow-hidden rounded-2xl bg-muted"
-            >
-              <div className="grid gap-8 md:grid-cols-[1.2fr_1fr]">
-                <div className="overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105 md:aspect-auto md:min-h-[500px]"
+        <section className="section-y border-t border-border/70">
+          <div className="container-page">
+            <ProjectCard project={lead} index={0} layout="lead" />
+
+            {selected.length > 0 ? (
+              <div className="mt-14 grid gap-10 border-t border-border/70 pt-12 sm:mt-20 sm:grid-cols-2 sm:gap-8">
+                {selected.map((project, index) => (
+                  <ProjectCard
+                    key={project.slug}
+                    project={project}
+                    index={index + 1}
                   />
-                </div>
-                <div className="flex flex-col justify-center px-4 py-8 md:px-8">
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                    {project.year} — {project.category}
-                  </p>
-                  <h2 className="mt-3 font-serif text-3xl font-extralight tracking-tight md:text-4xl">
-                    {project.title}
-                  </h2>
-                  <p className="mt-4 max-w-md text-muted-foreground">
-                    {project.description}
-                  </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-accent transition-colors group-hover:text-foreground">
-                    Read case study <ArrowUpRight className="size-3" />
-                  </span>
+                ))}
+              </div>
+            ) : null}
+
+            {others.length > 0 ? (
+              <div className="mt-16 sm:mt-24">
+                <h2 className="display-2">Other projects</h2>
+                <p className="lede mt-5 max-w-md">
+                  Smaller builds and experiments that are still worth a look.
+                </p>
+
+                <div className="mt-10 border-t border-border/70">
+                  {others.map((project, index) => (
+                    <ProjectCard
+                      key={project.slug}
+                      project={project}
+                      index={index + 1 + selected.length}
+                      layout="horizontal"
+                    />
+                  ))}
                 </div>
               </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+            ) : null}
+          </div>
+        </section>
+      </main>
 
-      {/* Footer */}
       <SiteFooter />
     </div>
   );

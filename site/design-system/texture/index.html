@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="en" class=" h-full scroll-smooth antialiased"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Gabrielle Nyawera — Product Designer</title><meta name="description" content="Personal site of Gabrielle Nyawera, a product designer crafting calm, considered digital experiences."/><meta property="og:title" content="Gabrielle Nyawera — Product Designer"/><meta property="og:description" content="Calm, considered digital experiences with a focus on clarity, usability, and the details that make complex things feel obvious."/><meta property="og:site_name" content="Gabrielle Nyawera"/><meta property="og:image" content="http://localhost:3000/images/hero/gabe-illustration.png"/><meta property="og:image:alt" content="Gabrielle Nyawera — Product Designer"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Gabrielle Nyawera — Product Designer"/><meta name="twitter:description" content="Calm, considered digital experiences with a focus on clarity, usability, and the details that make complex things feel obvious."/><meta name="twitter:image" content="http://localhost:3000/images/hero/gabe-illustration.png"/><link rel="icon" href="/favicon.ico" type="image/x-icon"/><link rel="icon" href="/icon.png" type="image/png"/><link rel="apple-touch-icon" href="/apple-icon.png" type="image/png"/>  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head><body class="flex min-h-full flex-col bg-background text-foreground"><div aria-hidden="true" class="pointer-events-none fixed left-0 top-0 z-[9999] hidden [@media(pointer:fine)]:block opacity-0 transition-opacity duration-200" data-cursor-dot style="will-change:transform"><span class="absolute size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span></div><div aria-hidden="true" class="pointer-events-none fixed left-0 top-0 z-[9999] hidden [@media(pointer:fine)]:block opacity-0 transition-opacity duration-200" data-cursor-ring style="will-change:transform"><div class="absolute flex size-0 -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-full bg-foreground text-background opacity-0 transition-[width,height,opacity] duration-300 ease-[var(--ease-out-expo)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></div></div><div aria-hidden="true" data-alive-pointer class="alive-pointer pointer-events-none fixed inset-0 overflow-hidden mix-blend-soft-light"><div class="alive-pointer-light absolute left-0 top-0 size-[60rem] rounded-full"></div></div><div aria-hidden="true" class="fixed inset-x-0 top-0 z-[60] h-[2px] origin-left scale-x-0 bg-[linear-gradient(90deg,var(--accent),#B8F04A)]" data-scroll-progress></div><main class="bg-background pb-24 text-foreground"><style>
+        .tx-tile {
+          position: relative;
+          overflow: hidden;
+          border-radius: 0.75rem;
+          border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+          background: var(--background);
+          isolation: isolate;
+        }
+
+        /* 01 — halftone screen: two dot grids, two angles, one duotone plate */
+        .tx-screen {
+          background:
+            radial-gradient(120% 110% at 18% 0%, rgba(240, 169, 59, 0.55), transparent 58%),
+            linear-gradient(135deg, #4e0f17 0%, #8e2f16 48%, #d08a2e 100%);
+        }
+        .tx-screen::before {
+          content: "";
+          position: absolute;
+          inset: -25%;
+          background-image: radial-gradient(
+            circle,
+            rgba(255, 252, 245, 0.95) 1.45px,
+            transparent 1.85px
+          );
+          background-size: 9px 9px;
+          transform: rotate(15deg);
+          mix-blend-mode: soft-light;
+          opacity: 0.9;
+        }
+        .tx-screen::after {
+          content: "";
+          position: absolute;
+          inset: -25%;
+          background-image: radial-gradient(
+            circle,
+            rgba(78, 15, 23, 0.95) 1.2px,
+            transparent 1.6px
+          );
+          background-size: 13px 13px;
+          transform: rotate(45deg);
+          mix-blend-mode: multiply;
+          opacity: 0.35;
+        }
+
+        /* 02 — letterpress: raised and recessed, no drop shadow */
+        .tx-press-up {
+          background: linear-gradient(180deg, #fffdf8, #f6f0e3);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.9),
+            inset 0 -1px 0 rgba(10, 10, 10, 0.08),
+            0 2px 4px rgba(10, 10, 10, 0.05);
+        }
+        .tx-press-down {
+          background: linear-gradient(180deg, #f1eadc, #fbf6ec);
+          box-shadow:
+            inset 0 2px 6px rgba(10, 10, 10, 0.12),
+            inset 0 -1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        /* 03 — ink vignette: plate edge burn */
+        .tx-vignette {
+          background: radial-gradient(
+            120% 95% at 50% 40%,
+            #fffcf5 25%,
+            color-mix(in srgb, #0a0a0a 13%, #fffcf5) 100%
+          );
+        }
+        .tx-vignette::after {
+          content: "";
+          position: absolute;
+          inset: 14px;
+          border: 1px solid rgba(10, 10, 10, 0.12);
+        }
+
+        /* 04 — ledger rules: ruled paper + gold margin */
+        .tx-ledger {
+          background-color: #fffcf5;
+          background-image: repeating-linear-gradient(
+            to bottom,
+            transparent 0 calc(2rem - 1px),
+            rgba(10, 10, 10, 0.11) calc(2rem - 1px) 2rem
+          );
+          background-position: 0 1.25rem;
+        }
+        .tx-ledger::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 4.25rem;
+          width: 1px;
+          background: rgba(138, 90, 0, 0.28);
+        }
+
+        /* 05 — guilloche: engraved rings, faded out of the corner */
+        .tx-guilloche {
+          background: radial-gradient(120% 120% at 100% 0%, #7a2028 0%, #5c121b 48%, #480e16 100%);
+        }
+        .tx-guilloche::before,
+        .tx-guilloche-rings {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-image: repeating-radial-gradient(
+            circle at 100% 0%,
+            transparent 0 17px,
+            rgba(240, 169, 59, 0.55) 17px 18px
+          );
+          -webkit-mask-image: radial-gradient(140% 140% at 100% 0%, #000 6%, transparent 58%);
+          mask-image: radial-gradient(140% 140% at 100% 0%, #000 6%, transparent 58%);
+        }
+        .tx-guilloche-rings {
+          pointer-events: none;
+        }
+
+        /* 06 — crosshatch: woven fill for empty states */
+        .tx-hatch {
+          background-color: color-mix(in srgb, #0a0a0a 6%, #fffcf5);
+          background-image:
+            repeating-linear-gradient(
+              45deg,
+              rgba(10, 10, 10, 0.2) 0 1px,
+              transparent 1px 7px
+            ),
+            repeating-linear-gradient(
+              -45deg,
+              rgba(10, 10, 10, 0.1) 0 1px,
+              transparent 1px 7px
+            );
+        }
+
+        /* 07 — registration marks: crop corners on a media mat */
+        .tx-marks {
+          background-color: color-mix(in srgb, #0a0a0a 4%, #fffcf5);
+          background-image:
+            linear-gradient(rgba(10, 10, 10, 0.42), rgba(10, 10, 10, 0.42)),
+            linear-gradient(rgba(10, 10, 10, 0.42), rgba(10, 10, 10, 0.42)),
+            linear-gradient(rgba(10, 10, 10, 0.42), rgba(10, 10, 10, 0.42)),
+            linear-gradient(rgba(10, 10, 10, 0.42), rgba(10, 10, 10, 0.42)),
+            linear-gradient(rgba(10, 10, 10, 0.42), rgba(10, 10, 10, 0.42)),
+            linear-gradient(rgba(10, 10, 10, 0.42), rgba(10, 10, 10, 0.42)),
+            linear-gradient(rgba(10, 10, 10, 0.42), rgba(10, 10, 10, 0.42)),
+            linear-gradient(rgba(10, 10, 10, 0.42), rgba(10, 10, 10, 0.42));
+          background-size:
+            12px 1px, 1px 12px, 12px 1px, 1px 12px,
+            12px 1px, 1px 12px, 12px 1px, 1px 12px;
+          background-position:
+            left 14px top 14px, left 14px top 14px,
+            right 14px top 14px, right 14px top 14px,
+            left 14px bottom 14px, left 14px bottom 14px,
+            right 14px bottom 14px, right 14px bottom 14px;
+          background-repeat: no-repeat;
+        }
+
+        /* 08 — arch bloom: the hero's glow, layered */
+        .tx-bloom {
+          background:
+            radial-gradient(58% 52% at 50% 100%, rgba(240, 169, 59, 0.55), transparent 72%),
+            linear-gradient(180deg, #fffcf5, #f7f1e4);
+        }
+        .tx-bloom-glow {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 15rem;
+          height: 12rem;
+          transform: translateX(-50%);
+          background: radial-gradient(50% 60% at 50% 100%, rgba(240, 169, 59, 0.5), transparent 72%);
+          filter: blur(18px);
+          pointer-events: none;
+        }
+
+        /* 09 — dusk horizon */
+        .tx-horizon {
+          background: linear-gradient(
+            180deg,
+            #480e16 0%,
+            #5a1119 34%,
+            #7c222a 56%,
+            #5c121b 58%,
+            #3e0b12 100%
+          );
+        }
+        .tx-horizon::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 56%;
+          height: 1.5px;
+          background: linear-gradient(
+            90deg,
+            transparent 4%,
+            rgba(240, 169, 59, 0.95) 50%,
+            transparent 96%
+          );
+          box-shadow: 0 0 18px 2px rgba(240, 169, 59, 0.25);
+        }
+        .tx-horizon::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 56%;
+          width: 34rem;
+          height: 15rem;
+          transform: translate(-50%, -100%);
+          background: radial-gradient(50% 60% at 50% 100%, rgba(240, 169, 59, 0.35), transparent 70%);
+          pointer-events: none;
+        }
+
+        /* 10 — living light: one slow drift, screen-blended */
+        .tx-living {
+          background: #5c121b;
+        }
+        .tx-living::before {
+          content: "";
+          position: absolute;
+          inset: -20%;
+          background: radial-gradient(40% 50% at 50% 50%, rgba(240, 169, 59, 0.55), transparent 70%);
+          filter: blur(28px);
+          mix-blend-mode: screen;
+          animation: tx-drift 18s ease-in-out infinite;
+        }
+        .tx-living::after {
+          content: "";
+          position: absolute;
+          inset: -25%;
+          background-image: radial-gradient(
+            circle,
+            rgba(255, 252, 245, 0.5) 1px,
+            transparent 1.3px
+          );
+          background-size: 9px 9px;
+          opacity: 0.12;
+          mix-blend-mode: overlay;
+        }
+        @keyframes tx-drift {
+          0%,
+          100% {
+            transform: translate3d(-6%, 0, 0) scale(1);
+            opacity: 0.5;
+          }
+          50% {
+            transform: translate3d(6%, -4%, 0) scale(1.12);
+            opacity: 0.85;
+          }
+        }
+
+        /* 11 — riso misregistration */
+        .tx-riso {
+          background: #fffcf5;
+        }
+
+        /* 12 — seam: hard band edge vs 6rem blend */
+        .tx-seam-hard {
+          background: linear-gradient(180deg, #f1ebde 0 52%, #fffcf5 52% 100%);
+        }
+        .tx-seam-soft {
+          background: linear-gradient(180deg, #f1ebde 0%, #f1ebde 40%, #fffcf5 66%, #fffcf5 100%);
+        }
+
+        /* 13 — rail edge mask */
+        .tx-fade {
+          -webkit-mask-image: linear-gradient(
+            90deg,
+            transparent 0,
+            #000 14%,
+            #000 86%,
+            transparent 100%
+          );
+          mask-image: linear-gradient(
+            90deg,
+            transparent 0,
+            #000 14%,
+            #000 86%,
+            transparent 100%
+          );
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .tx-living::before {
+            animation: none;
+            opacity: 0.7;
+          }
+        }
+      </style><header class="container-page pt-16"><div class="flex flex-wrap items-center justify-between gap-3"><p class="eyebrow">Design system · Study 04</p><a class="link-arrow" href="/design-system">Back to the system<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right size-3.5"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a></div><h1 class="display-1 mt-6 max-w-4xl">Depth<br/><em class="italic text-accent-ink">and life.</em></h1><p class="lede mt-7 max-w-xl">One material, four layers of treatment. These studies test how far the existing cream, ink, oxblood and gold can go before the page stops being paper and starts being decoration.</p><nav class="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-y border-border/70 py-4"><a href="#layers" class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground">The four layers</a><a href="#patterns" class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground">Patterns</a><a href="#light" class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground">Light &amp; gradient</a><a href="#applied" class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground">In context</a><a href="#verdict" class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground">Verdict</a></nav></header><section id="layers" class="container-page mt-16 scroll-mt-24"><div class="grid gap-8 lg:grid-cols-[1fr_2fr]"><div><p class="eyebrow">The frame</p><h2 class="display-2 mt-4">Depth is light<br/>and structure.</h2><p class="lede mt-5">Pattern alone flattens. A surface reads as deep when something lights it, something rules it, and one thing is allowed to be loud.</p></div><ol class="border-t border-border/70"><li class="grid grid-cols-[auto_1fr] gap-5 border-b border-border/70 py-6 sm:grid-cols-[auto_10rem_1fr_auto] sm:items-baseline sm:gap-8"><span class="eyebrow pt-1 text-accent-ink">01</span><h3 class="title">Material</h3><p class="col-span-2 text-sm leading-relaxed text-muted-foreground sm:col-span-1">Paper grain on body, one overlay, very low opacity. This is the floor — everything else sits on it.</p><span class="eyebrow col-start-2 sm:col-start-auto">In use</span></li><li class="grid grid-cols-[auto_1fr] gap-5 border-b border-border/70 py-6 sm:grid-cols-[auto_10rem_1fr_auto] sm:items-baseline sm:gap-8"><span class="eyebrow pt-1 text-accent-ink">02</span><h3 class="title">Light</h3><p class="col-span-2 text-sm leading-relaxed text-muted-foreground sm:col-span-1">The hero wash and dusk wash are the only light sources. Directional light is what makes a flat field read as a room.</p><span class="eyebrow col-start-2 sm:col-start-auto">Underused</span></li><li class="grid grid-cols-[auto_1fr] gap-5 border-b border-border/70 py-6 sm:grid-cols-[auto_10rem_1fr_auto] sm:items-baseline sm:gap-8"><span class="eyebrow pt-1 text-accent-ink">03</span><h3 class="title">Structure</h3><p class="col-span-2 text-sm leading-relaxed text-muted-foreground sm:col-span-1">Rules, the asset grid, the 12-column frame. Print gets depth from ruled, measured surfaces, not from decoration.</p><span class="eyebrow col-start-2 sm:col-start-auto">Underused</span></li><li class="grid grid-cols-[auto_1fr] gap-5 border-b border-border/70 py-6 sm:grid-cols-[auto_10rem_1fr_auto] sm:items-baseline sm:gap-8"><span class="eyebrow pt-1 text-accent-ink">04</span><h3 class="title">Accent</h3><p class="col-span-2 text-sm leading-relaxed text-muted-foreground sm:col-span-1">Halftone, riso offsets, guilloche. Loud by nature, so each one appears once and never competes with type.</p><span class="eyebrow col-start-2 sm:col-start-auto">Reserved</span></li></ol></div><ul class="mt-12 flex flex-wrap gap-x-6 gap-y-3"><li class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground"><span class="size-1 rounded-full bg-accent" aria-hidden="true"></span>One treatment per section</li><li class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground"><span class="size-1 rounded-full bg-accent" aria-hidden="true"></span>Never behind body copy without a scrim</li><li class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground"><span class="size-1 rounded-full bg-accent" aria-hidden="true"></span>Must read at 100% zoom, not just as a thumbnail</li><li class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground"><span class="size-1 rounded-full bg-accent" aria-hidden="true"></span>Must survive reduced motion and 200% text zoom</li><li class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground"><span class="size-1 rounded-full bg-accent" aria-hidden="true"></span>If it looks like a different site, it is out</li></ul></section><section id="patterns" class="container-page mt-20 scroll-mt-24"><div class="flex flex-wrap items-end justify-between gap-4 border-t border-border/70 pt-10"><div><p class="eyebrow">Patterns</p><h2 class="display-2 mt-4">Structure you can see</h2></div><p class="max-w-sm text-sm leading-relaxed text-muted-foreground">Print textures that carry meaning: a screen for artwork, rules for lists, marks for media. All CSS, no images.</p></div><div class="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 tx-screen"><span class="absolute inset-x-0 top-0 flex items-center justify-between p-4 font-mono text-[9px] uppercase tracking-[0.18em] text-[#FFFCF5]/80"><span>01 — Case study</span><span>2025</span></span><span class="absolute bottom-4 left-4 font-display text-4xl leading-none text-[#FFFCF5]">K</span></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">01</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Artwork</p></div><h3 class="title mt-2">Halftone screen</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">Two dot grids at 15° and 45° over a gold-to-oxblood plate. Instant print identity for every placeholder.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 tx-press-up p-5"><div class="flex h-full flex-col justify-between"><p class="eyebrow">Raised</p><div class="tx-press-down rounded-lg p-4"><p class="font-display text-2xl leading-tight">Recessed</p><p class="mt-1 text-xs text-muted-foreground">Same paper, negative light</p></div></div></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">02</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Cards</p></div><h3 class="title mt-2">Letterpress</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">A top highlight and a bottom shade, both inset. The surface catches light without a drop shadow.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 tx-ledger pl-24 pr-5 pt-4"><div class="space-y-4"><div class="flex items-baseline justify-between gap-2"><span class="text-xs font-medium">Google UX</span><span class="font-mono text-[9px] text-muted-foreground">2024</span></div><div class="flex items-baseline justify-between gap-2"><span class="text-xs font-medium">Interaction Design</span><span class="font-mono text-[9px] text-muted-foreground">2025</span></div><div class="flex items-baseline justify-between gap-2"><span class="text-xs font-medium">Design Systems</span><span class="font-mono text-[9px] text-muted-foreground">2026</span></div></div></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">03</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Education</p></div><h3 class="title mt-2">Ledger rules</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">Baseline rules at 2rem with a gold margin. Rows stop floating and start sitting on a page.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 tx-guilloche"><span class="absolute bottom-5 left-5 font-mono text-[9px] uppercase tracking-[0.18em] text-[#FFFCF5]/60">Security print</span></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">04</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Dusk corners</p></div><h3 class="title mt-2">Guilloche</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">Engraved rings, masked out of one corner. Banknote craft, in gold on oxblood, at 8% of the surface.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 bg-[#F3EDDF]"><span aria-hidden="true" class="pointer-events-none absolute -right-6 -top-20 select-none font-display text-[18rem] leading-none text-[#0A0A0A]/10">G</span><div class="relative flex h-full flex-col justify-end p-5"><p class="eyebrow">04 — What I&#x27;m into</p><p class="title mt-2">Off-screen inputs</p></div></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">05</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Section intros</p></div><h3 class="title mt-2">Oversized glyph</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">One letter at 16rem and 5% ink, cropped by the frame. Type as texture, not as ornament.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 tx-marks"><div class="flex h-full items-center justify-center"><p class="font-display text-3xl text-[#0A0A0A]/25">Artwork</p></div></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">06</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Media frames</p></div><h3 class="title mt-2">Registration marks</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">Four crop corners and a light mat. Signals that a placeholder is a plate, not a missing image.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 tx-hatch"><div class="flex h-full items-center justify-center"><span class="tag bg-background/70">Coming soon</span></div></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">07</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Empty states</p></div><h3 class="title mt-2">Crosshatch</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">Two diagonal line sets in ink. A woven fill for anything that would otherwise be a grey box.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 tx-vignette"><div class="flex h-full items-center justify-center"><p class="font-display text-2xl text-[#0A0A0A]/70">Plate edge</p></div></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">08</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Artwork edges</p></div><h3 class="title mt-2">Ink vignette</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">A slow burn from the plate edge. Makes a flat fill feel printed rather than filled.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 "><div class="tx-fade flex h-full items-center gap-3 px-6"><div class="h-24 w-28 shrink-0 rounded-md border border-border/70 bg-surface-strong"></div><div class="h-24 w-28 shrink-0 rounded-md border border-border/70 bg-surface-strong"></div><div class="h-24 w-28 shrink-0 rounded-md border border-border/70 bg-surface-strong"></div><div class="h-24 w-28 shrink-0 rounded-md border border-border/70 bg-surface-strong"></div></div></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">09</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Project rail</p></div><h3 class="title mt-2">Rail edge fade</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">A mask at both edges so cards dissolve instead of being sliced by the viewport.</p></figcaption></figure></div></section><section id="light" class="container-page mt-20 scroll-mt-24"><div class="flex flex-wrap items-end justify-between gap-4 border-t border-border/70 pt-10"><div><p class="eyebrow">Light &amp; gradient</p><h2 class="display-2 mt-4">A room, not a field</h2></div><p class="max-w-sm text-sm leading-relaxed text-muted-foreground">Gradients are only allowed to do one of three jobs: light a surface, join two surfaces, or fade a plate.</p></div><div class="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 tx-bloom"><div class="tx-bloom-glow" aria-hidden="true"></div><div aria-hidden="true" class="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full border border-[#B4531F] w-28 h-32" style="opacity:0.6"></div><div aria-hidden="true" class="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full border border-[#B4531F] w-36 h-40" style="opacity:0.44999999999999996"></div><div aria-hidden="true" class="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full border border-[#B4531F] w-44 h-48" style="opacity:0.3"></div><div class="absolute bottom-0 left-1/2 size-16 -translate-x-1/2 rounded-t-full bg-[#B4531F]/15"></div></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">10</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Hero</p></div><h3 class="title mt-2">Arch bloom</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">The existing glow, organised into arches. Each ring is 1px at a lower opacity than the last.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 tx-horizon"><div class="absolute inset-x-0 bottom-6 flex justify-center"><p class="font-display text-2xl text-[#FFFCF5]/90">Feel <em class="italic text-[#F0A93B]">alive.</em></p></div></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">11</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Footer</p></div><h3 class="title mt-2">Dusk horizon</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">Oxblood graded to a gold horizon line at 56%, with the glow rising from below. The page ends at nightfall.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 tx-living"><span class="absolute bottom-5 left-5 font-mono text-[9px] uppercase tracking-[0.18em] text-[#FFFCF5]/60">18s · screen blend</span></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">12</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">One per page</p></div><h3 class="title mt-2">Living light</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">A blurred gold bloom drifting over 18 seconds. Life without movement the eye has to track.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 "><div class="grid h-full grid-cols-2"><div class="tx-seam-hard relative"><span class="absolute bottom-3 left-3 font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground">Hard</span></div><div class="tx-seam-soft relative border-l border-border/70"><span class="absolute bottom-3 left-3 font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground">Seam</span></div></div></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">13</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Section joins</p></div><h3 class="title mt-2">Seam</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">Left is today&#x27;s hard band edge. Right is a 6rem blend. Same two colours, one reads as a fold.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 tx-riso"><div aria-hidden="true" class="absolute inset-0"><div class="absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 rounded-t-full bg-[#F0A93B] mix-blend-multiply"></div><div class="absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 translate-x-2 translate-y-2 rounded-t-full border-2 border-[#0A0A0A]/80 mix-blend-multiply"></div></div><span class="absolute bottom-4 left-4 font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground">2 passes</span></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">14</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Accent marks</p></div><h3 class="title mt-2">Riso offset</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">The arch, printed twice: gold offset up-left, ink down-right, multiply where they overlap.</p></figcaption></figure><figure class="flex min-w-0 flex-col"><div class="tx-tile h-44 bg-[#FFFCF5]"><div class="flex h-full"><div class="flex w-12 flex-col items-center justify-between border-r border-[#8A5A00]/25 py-4"><span class="size-1.5 rounded-full bg-[#F0A93B]"></span><span class="font-mono text-[9px] tracking-[0.2em] text-[#8A5A00] [writing-mode:vertical-rl]">12 — 14</span></div><div class="flex flex-1 flex-col justify-center gap-2 px-5"><div class="h-1.5 w-3/4 rounded-full bg-[#0A0A0A]/12"></div><div class="h-1.5 w-full rounded-full bg-[#0A0A0A]/8"></div><div class="h-1.5 w-5/6 rounded-full bg-[#0A0A0A]/8"></div><div class="h-1.5 w-2/3 rounded-full bg-[#0A0A0A]/8"></div></div></div></div><figcaption class="mt-4"><div class="flex items-baseline justify-between gap-3"><p class="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-ink">15</p><p class="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Case study</p></div><h3 class="title mt-2">Marginal print</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">A gold rule and mono folio running in the margin. Quiet structure for long reads.</p></figcaption></figure></div></section><section id="applied" class="container-page mt-20 scroll-mt-24"><div class="border-t border-border/70 pt-10"><p class="eyebrow">In context</p><h2 class="display-2 mt-4">Three places it earns its keep</h2></div><div class="mt-10 grid gap-8 lg:grid-cols-3"><div class="surface-card overflow-hidden"><div class="tx-bloom relative h-56 overflow-hidden"><div class="tx-bloom-glow" aria-hidden="true"></div><span aria-hidden="true" class="pointer-events-none absolute -right-4 -top-10 select-none font-display text-[11rem] leading-none text-[#0A0A0A]/10">G</span><div class="absolute bottom-0 left-1/2 flex w-40 -translate-x-1/2 justify-center rounded-t-full border border-[#B4531F]/45 pt-6"><div class="flex h-28 w-32 items-end justify-center rounded-t-full border border-[#B4531F]/25 bg-[#F0A93B]/15 pb-6 font-display text-5xl text-[#0A0A0A]/70">G</div></div><span class="absolute left-4 top-4 font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground">Hero</span></div><div class="p-5"><h3 class="title">The portrait, lit</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">Bloom, arches and one glyph field. Replaces the single blur with a printed plate that has a light source.</p></div></div><div class="surface-card overflow-hidden"><div class="p-2"><div class="tx-screen relative aspect-[4/3] overflow-hidden rounded-md"><div class="absolute inset-0 bg-gradient-to-t from-[#1B1612]/80 via-[#1B1612]/10 to-transparent"></div><div class="absolute inset-x-0 top-0 flex items-center justify-between p-4 font-mono text-[9px] uppercase tracking-[0.18em] text-[#FFFCF5]/80"><span>01 — Case study</span><span>2025</span></div><div class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4"><div><p class="font-display text-4xl leading-none text-[#FFFCF5]">K</p><p class="mt-1 text-xs text-[#FFFCF5]/85">Kavara Kavara</p></div><span class="rounded-full border border-[#FFFCF5]/25 px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.16em] text-[#FFFCF5]/70">Brand</span></div></div></div><div class="px-5 pb-5"><h3 class="title">Artwork that reads as a plate</h3><p class="mt-2 text-sm leading-relaxed text-muted-foreground">The same card, with the placeholder replaced by a screen and a mat. No new component, no stock photo.</p></div></div><div class="overflow-hidden rounded-[1.25rem] border border-border/70"><div class="tx-horizon relative h-56 overflow-hidden"><div class="tx-guilloche-rings opacity-70" aria-hidden="true"></div><div class="absolute inset-x-0 bottom-6 px-5"><p class="font-mono text-[9px] uppercase tracking-[0.18em] text-[#FFFCF5]/55">Have something in mind?</p><p class="mt-2 font-display text-2xl leading-tight text-[#FFFCF5]">Let&#x27;s make something <em class="italic text-[#F0A93B]">alive.</em></p></div></div><div class="bg-[#5C121B] p-5"><h3 class="title text-[#FFFCF5]">The footer as nightfall</h3><p class="mt-2 text-sm leading-relaxed text-[#FFFCF5]/60">Horizon, glow and one engraved corner. Still the same oxblood — just lit from below.</p></div></div></div></section><section id="verdict" class="container-page mt-20 scroll-mt-24"><div class="border-t border-border/70 pt-10"><p class="eyebrow">Verdict</p><h2 class="display-2 mt-4">What I would ship</h2><p class="lede measure mt-5">Four treatments are ready to go into the system today. Four need a page to prove themselves on. Four break the rules as written.</p></div><div class="mt-10 grid gap-10 md:grid-cols-3"><div><div class="flex items-center gap-2 border-b border-border/70 pb-3"><span class="size-1.5 rounded-full bg-accent" aria-hidden="true"></span><p class="eyebrow text-foreground">Adopt</p></div><ul class="mt-2"><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Halftone screen</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">Gives every placeholder artwork a print identity. Replaces the flat gradient box.</p></li><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Letterpress cards</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">One inset highlight and one inset shadow. Depth for free, no new colour.</p></li><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Ledger rules</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">Puts Education and Interests on ruled paper. Structure, not ornament.</p></li><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Section seam</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">A 6rem blend instead of a hard band edge. Removes the last hard line on the page.</p></li></ul></div><div><div class="flex items-center gap-2 border-b border-border/70 pb-3"><span class="size-1.5 rounded-full bg-[#0A0A0A]/40" aria-hidden="true"></span><p class="eyebrow text-foreground">Test next</p></div><ul class="mt-2"><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Dusk horizon</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">Makes the footer read as a place rather than a dark block.</p></li><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Arch bloom</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">Deepens the hero&#x27;s existing glow into layered arches.</p></li><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Rail edge fade</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">Cards dissolve at the viewport edge instead of being sliced.</p></li><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Registration marks</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">Crop marks on media frames. Small signal that the placeholder is deliberate.</p></li></ul></div><div><div class="flex items-center gap-2 border-b border-border/70 pb-3"><span class="size-1.5 rounded-full border border-border bg-transparent" aria-hidden="true"></span><p class="eyebrow text-foreground">No</p></div><ul class="mt-2"><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Animated gradient mesh</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">Loops are banned for everything but the scroll cue.</p></li><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Gold gradient type</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">Contrast collapses below 3:1 mid-gradient. Fails the type rules.</p></li><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Full-page vignette</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">Deadens the cream and makes the paper look dirty.</p></li><li class="border-b border-border/50 py-4"><p class="text-sm font-medium">Marbled endpaper</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">Fights the grain overlay. Two textures, one surface.</p></li></ul></div></div><div class="mt-12 rounded-[1.25rem] border border-border/70 bg-surface-strong/60 p-6 sm:p-8"><p class="eyebrow">Next step</p><p class="mt-3 max-w-2xl font-display text-2xl leading-snug">Pick two from the adopt list, and I&#x27;ll wire them into the real components — tokens and utilities first, then the hero, artwork and band seams.</p><p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">Each one becomes a named utility in <code>globals.css</code>, so the system stays inspectable and nothing gets hand-painted into a page.</p></div></section></main>  <script src="/assets/js/site.js" defer></script>
+</body></html>

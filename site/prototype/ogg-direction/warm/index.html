@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth antialiased">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Two kinds of warmth — light serifs and brush scripts</title>
+  <meta name="description" content="A specimen sheet for the delicate high-contrast serifs and the brush scripts, translated into open-licence faces.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    @font-face { font-family: "Cormorant"; font-style: normal; font-weight: 300; font-display: swap; src: url(/prototype/ogg-direction/fonts/warm/cormorant-light.woff2) format("woff2"); }
+    @font-face { font-family: "Cormorant"; font-style: italic; font-weight: 300; font-display: swap; src: url(/prototype/ogg-direction/fonts/warm/cormorant-light-italic.woff2) format("woff2"); }
+    @font-face { font-family: "Boska"; font-style: normal; font-weight: 200; font-display: swap; src: url(/prototype/ogg-direction/fonts/warm/boska-normal-200.woff2) format("woff2"); }
+    @font-face { font-family: "Boska"; font-style: italic; font-weight: 200; font-display: swap; src: url(/prototype/ogg-direction/fonts/warm/boska-italic-200.woff2) format("woff2"); }
+    @font-face { font-family: "Italiana"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/warm/italiana.woff2) format("woff2"); }
+    @font-face { font-family: "Kaushan Script"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/warm/kaushan-script.woff2) format("woff2"); }
+    @font-face { font-family: "Norican"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/warm/norican.woff2) format("woff2"); }
+    @font-face { font-family: "Yellowtail"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/warm/yellowtail.woff2) format("woff2"); }
+
+    /* ---- Scaffolding ---- */
+    .study h1, .study h2, .study h3 { text-wrap: balance; }
+    .study-kicker { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-ink); }
+    .study-muted { color: var(--muted-foreground); }
+    .study code { white-space: nowrap; }
+    .study-bar {
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+      background: color-mix(in srgb, var(--background) 92%, transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    /* ---- Hero ---- */
+    .hero { position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; z-index: 0; inset: -34% -18% auto auto; width: 42rem; height: 42rem;
+      background: radial-gradient(circle at center, color-mix(in srgb, var(--accent-soft) 85%, transparent), transparent 64%);
+      pointer-events: none;
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-line {
+      font-family: Cormorant, Georgia, serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(3rem, 9.2vw, 7.75rem);
+      line-height: 0.98;
+      letter-spacing: -0.025em;
+      margin-top: 1.25rem;
+    }
+    .hero-line .roman { font-style: normal; color: var(--accent-ink); }
+
+    /* ---- Split ---- */
+    .split { display: grid; gap: 1px; background: color-mix(in srgb, var(--border) 80%, transparent); border-block: 1px solid color-mix(in srgb, var(--border) 80%, transparent); }
+    @media (min-width: 820px) { .split { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    .split-cell { background: var(--background); padding: 1.75rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .split-label { font-size: 0.5625rem; letter-spacing: 0.2em; color: var(--accent-ink); }
+    .split-title { font-size: 1.0625rem; font-weight: 500; letter-spacing: -0.01em; }
+    .split-body { font-size: 0.8125rem; line-height: 1.7; color: var(--muted-foreground); }
+
+    /* ---- Face rows ---- */
+    .face { display: grid; gap: 1.75rem; padding-block: clamp(2.5rem, 4.5vw, 3.75rem); border-top: 1px solid color-mix(in srgb, var(--border) 85%, transparent); }
+    @media (min-width: 980px) { .face { grid-template-columns: 17rem minmax(0, 1fr); gap: 3.5rem; } }
+    .face-meta { display: flex; flex-direction: column; gap: 0.5rem; }
+    .face-rank { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.2em; color: var(--accent-ink); }
+    .face-name { font-size: 1.4rem; line-height: 1.05; letter-spacing: -0.01em; }
+    .face-mech { font-size: 0.5625rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); }
+    .face-desc { font-size: 0.8125rem; line-height: 1.7; color: var(--muted-foreground); margin-top: 0.35rem; }
+    .face-specs { margin-top: 0.5rem; display: grid; gap: 0.35rem; font-size: 0.6875rem; }
+    .spec-line { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dashed color-mix(in srgb, var(--border) 90%, transparent); padding-bottom: 0.3rem; }
+    .spec-line dt { font-size: 0.5625rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-foreground); }
+    .spec-line dd { color: var(--foreground); text-align: right; }
+
+    .poster { font-size: clamp(3.25rem, 8vw, 6.5rem); line-height: 0.95; letter-spacing: -0.02em; }
+    .poster-script { font-size: clamp(2.75rem, 6.5vw, 5rem); line-height: 1.1; }
+    .poster-sub { margin-top: 1rem; font-size: 0.9375rem; line-height: 1.7; color: var(--muted-foreground); max-width: 46ch; }
+    .poster-foot { margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px solid color-mix(in srgb, var(--border) 70%, transparent); font-size: 0.6875rem; color: var(--muted-foreground); display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; }
+
+    /* ---- Combined sample ---- */
+    .sample { position: relative; overflow: hidden; background: var(--background); }
+    .sample::before {
+      content: ""; position: absolute; z-index: 0; inset: -18% -8% auto auto; width: 30rem; height: 30rem;
+      background: radial-gradient(circle at center, color-mix(in srgb, var(--accent-soft) 75%, transparent), transparent 66%);
+      pointer-events: none;
+    }
+    .sample > * { position: relative; z-index: 1; }
+    .sample-nav { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1.25rem; border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent); }
+    .sample-nav a { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); }
+    .sample-nav a[aria-current] { color: var(--foreground); }
+    .wordmark { font-family: Cormorant, Georgia, serif; font-style: italic; font-weight: 300; font-size: 1.6rem; letter-spacing: -0.01em; }
+    .wordmark span { color: var(--accent-ink); }
+    .sample-hero { padding-block: clamp(2.25rem, 5vw, 3.5rem); }
+    .sample-h1 {
+      font-family: Cormorant, Georgia, serif; font-weight: 300; font-style: italic;
+      font-size: clamp(2.75rem, 6.4vw, 5.25rem); line-height: 1; letter-spacing: -0.03em;
+    }
+    .sample-lede { margin-top: 1.25rem; font-size: 1.0625rem; line-height: 1.75; color: var(--muted-foreground); max-width: 42ch; }
+    .sig-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1rem; margin-top: 2rem; }
+    .sig-name { font-family: Norican, cursive; font-size: clamp(2.25rem, 4vw, 3rem); line-height: 1.1; color: var(--accent-ink); }
+    .sig-meta { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-foreground); }
+    .pill { display: inline-flex; min-height: 44px; align-items: center; padding-inline: 1.35rem; border-radius: 999px; background: var(--accent); color: var(--accent-foreground); font-size: 0.8125rem; font-weight: 500; }
+
+    /* ---- Size ladder ---- */
+    .ladder { display: grid; gap: 1px; background: color-mix(in srgb, var(--border) 80%, transparent); border: 1px solid color-mix(in srgb, var(--border) 80%, transparent); border-radius: var(--radius-card); overflow: hidden; }
+    .rung { background: var(--surface); padding: 1.25rem 1.5rem; display: grid; gap: 0.35rem 1.5rem; align-items: baseline; }
+    @media (min-width: 720px) { .rung { grid-template-columns: 5.5rem minmax(0, 1fr) 11rem; } }
+    .rung-size { font-size: 0.5625rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-ink); }
+    .rung-note { font-size: 0.6875rem; color: var(--muted-foreground); }
+    .rung-text { font-family: Cormorant, Georgia, serif; font-weight: 300; font-style: italic; line-height: 1.05; letter-spacing: -0.02em; }
+    .rung-text.dies { color: color-mix(in srgb, var(--foreground) 45%, transparent); }
+
+    /* ---- Notes ---- */
+    .notes { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+    .notes th, .notes td { text-align: left; padding: 0.85rem 1rem 0.85rem 0; border-bottom: 1px solid color-mix(in srgb, var(--border) 80%, transparent); vertical-align: top; }
+    .notes th { font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--muted-foreground); }
+    .notes td:first-child { font-weight: 500; white-space: nowrap; padding-right: 1.5rem; }
+
+    @media (max-width: 640px) {
+      .notes td:first-child { white-space: normal; }
+      .sample-nav .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body class="study flex min-h-full flex-col bg-background text-foreground">
+
+  <header class="study-bar sticky top-0 z-50">
+    <div class="container-page flex min-h-[68px] flex-wrap items-center justify-between gap-4 py-3">
+      <div class="flex items-baseline gap-4">
+        <span class="study-kicker">Two kinds of warmth</span>
+        <span class="hidden text-[0.8125rem] study-muted sm:inline">Light serifs, brush scripts</span>
+      </div>
+      <div class="flex items-baseline gap-6">
+        <a class="link-arrow text-[0.6875rem] uppercase tracking-[0.16em]" href="/prototype/ogg-direction/">The direction</a>
+        <a class="link-arrow hidden text-[0.6875rem] uppercase tracking-[0.16em] sm:inline" href="/prototype/ogg-direction/bold/">Louder options</a>
+        <a class="link-arrow text-[0.6875rem] uppercase tracking-[0.16em]" href="/">Back to site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <!-- 1. Hero -->
+    <section class="hero">
+      <div class="container-page pt-14 pb-12 md:pt-20 md:pb-16">
+        <p class="study-kicker">Display · the warm option</p>
+        <h1 class="hero-line">
+          Thin, and <span class="roman">impossible</span><br>to ignore.
+        </h1>
+        <div class="mt-9 grid gap-6 md:grid-cols-2 md:gap-12">
+          <p class="lede">
+            The six you picked are not one direction. Four are hairline serifs and two are brush
+            scripts — and they do different jobs on a page. That split is the useful thing here.
+          </p>
+          <div>
+            <p class="text-[0.9375rem] leading-relaxed study-muted">
+              The thin serifs are a <strong class="font-medium text-foreground">display face</strong>:
+              headlines, project titles, the monogram. The scripts are a
+              <strong class="font-medium text-foreground">signature</strong>: your name, a sign-off,
+              a wordmark — never a paragraph.
+            </p>
+            <p class="mt-3 text-[0.9375rem] leading-relaxed study-muted">
+              Both racks translate to free faces far more faithfully than Ogg did. Delicate type is
+              a tradition, not a trick, so there are good open revivals.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-page pb-14 md:pb-20">
+        <div class="split">
+          <div class="split-cell">
+            <span class="split-label">Rack A — display</span>
+            <p class="split-title">The hairline serif</p>
+            <p class="split-body">After Five, Classico, Shefian, Editorial. High contrast, very thin stems, often an italic that reads as handwriting. Belongs at 2rem and up, never in body copy.</p>
+          </div>
+          <div class="split-cell">
+            <span class="split-label">Rack B — signature</span>
+            <p class="split-title">The brush script</p>
+            <p class="split-body">Vintage Goods, Maisonette, Breathing, Made by Nature. Warm, fast, hand-made. At most twice a page, and never anywhere a reader has to work.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Rack A -->
+    <section class="container-page pb-6">
+      <div class="pb-6">
+        <p class="study-kicker">Rack A — display</p>
+        <h2 class="display-3 mt-2 max-w-2xl">Three hairline serifs</h2>
+        <p class="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed study-muted">
+          Set at the same size on the same word, so only the drawing changes.
+        </p>
+      </div>
+
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">01 — lead candidate</p>
+          <h2 class="face-name" style="font-family: Cormorant, Georgia, serif; font-weight: 300;">Cormorant</h2>
+          <p class="face-mech">The pen line</p>
+          <p class="face-desc">A Garalde italic drawn so thin the serifs read as pen pressure. The closest free thing to Shefian and Editorial: it has both the delicacy and a genuine hand.</p>
+          <dl class="face-specs">
+            <div class="spec-line"><dt>Weights</dt><dd>300–700 + italic</dd></div>
+            <div class="spec-line"><dt>Licence</dt><dd>OFL</dd></div>
+            <div class="spec-line"><dt>Files</dt><dd>43kb, two cuts</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p class="poster" style="font-family: Cormorant, Georgia, serif; font-weight: 300; font-style: italic;">shefian</p>
+          <p class="poster-sub" style="font-family: Cormorant, Georgia, serif; font-weight: 300; font-style: italic;">Calm, considered, quietly distinctive — I design digital products with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="poster-foot"><span><b>Strength</b> — the hand survives at 6rem.</span><span><b>Risk</b> — hairlines vanish below 1.75rem.</span></p>
+        </div>
+      </article>
+
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">02</p>
+          <h2 class="face-name" style="font-family: Boska, Georgia, serif; font-weight: 200;">Boska</h2>
+          <p class="face-mech">The colder line</p>
+          <p class="face-desc">Finer than Cormorant and more constructed — the hairlines are almost mechanical. It sits closer to the fashion end of the reference board, where Cormorant sits closer to the editorial end.</p>
+          <dl class="face-specs">
+            <div class="spec-line"><dt>Weights</dt><dd>200–700 + italic</dd></div>
+            <div class="spec-line"><dt>Licence</dt><dd>Fontshare · free</dd></div>
+            <div class="spec-line"><dt>Files</dt><dd>53kb, two cuts</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p class="poster" style="font-family: Boska, Georgia, serif; font-weight: 200; font-style: italic;">shefian</p>
+          <p class="poster-sub" style="font-family: Boska, Georgia, serif; font-weight: 200; font-style: italic;">Calm, considered, quietly distinctive — I design digital products with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="poster-foot"><span><b>Strength</b> — the finest line of the three.</span><span><b>Risk</b> — almost too cold for a warm page.</span></p>
+        </div>
+      </article>
+
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">03 — caps only</p>
+          <h2 class="face-name" style="font-family: Italiana, Georgia, serif;">Italiana</h2>
+          <p class="face-mech">The wide capital</p>
+          <p class="face-desc">The Classico answer. Flat, wide, hairline capitals with a slight flare — beautiful as a wordmark or a spread title, poor as a working headline. One weight, no italic.</p>
+          <dl class="face-specs">
+            <div class="spec-line"><dt>Weights</dt><dd>400 only</dd></div>
+            <div class="spec-line"><dt>Licence</dt><dd>OFL</dd></div>
+            <div class="spec-line"><dt>Files</dt><dd>10kb</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p class="poster" style="font-family: Italiana, Georgia, serif; letter-spacing: 0.06em;">CLASSICO</p>
+          <p class="poster-sub" style="font-family: Italiana, Georgia, serif; font-size: 1.0625rem;">Calm, considered, quietly distinctive — I design digital products with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+          <p class="poster-foot"><span><b>Strength</b> — the cheapest glamour on the page, at 10kb.</span><span><b>Risk</b> — no lowercase drama and no italic.</span></p>
+        </div>
+      </article>
+    </section>
+
+    <!-- 3. Rack B -->
+    <section class="container-page pb-6">
+      <div class="pb-6">
+        <p class="study-kicker">Rack B — signature</p>
+        <h2 class="display-3 mt-2 max-w-2xl">Three brush scripts</h2>
+        <p class="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed study-muted">
+          Judged on the only job they have: a name, at a size where the joins still read.
+        </p>
+      </div>
+
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">01</p>
+          <h2 class="face-name" style="font-family: 'Kaushan Script', cursive; font-size: 1.7rem;">Kaushan Script</h2>
+          <p class="face-mech">The brush</p>
+          <p class="face-desc">Bold, wavy, pressed — the Maisonette and Breathing energy. Carries weight at small sizes better than the finer scripts, so it survives a header lockup.</p>
+          <dl class="face-specs">
+            <div class="spec-line"><dt>Weights</dt><dd>400 only</dd></div>
+            <div class="spec-line"><dt>Licence</dt><dd>OFL</dd></div>
+            <div class="spec-line"><dt>Files</dt><dd>34kb</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p class="poster-script" style="font-family: 'Kaushan Script', cursive;">Gabrielle Nyawera</p>
+          <p class="poster-sub">Made by hand, in the sense that someone drew the strokes once. Use it where a human hand belongs and nowhere else.</p>
+          <p class="poster-foot"><span><b>Strength</b> — reads at 32px.</span><span><b>Risk</b> — one weight, and it leans casual.</span></p>
+        </div>
+      </article>
+
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">02</p>
+          <h2 class="face-name" style="font-family: Norican, cursive; font-size: 1.7rem;">Norican</h2>
+          <p class="face-mech">The flow</p>
+          <p class="face-desc">The Made by Nature answer: connected, fast, elegant, with real swashes on the capitals. The most grown-up of the three, and the best fit for a designer's signature.</p>
+          <dl class="face-specs">
+            <div class="spec-line"><dt>Weights</dt><dd>400 only</dd></div>
+            <div class="spec-line"><dt>Licence</dt><dd>OFL</dd></div>
+            <div class="spec-line"><dt>Files</dt><dd>31kb</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p class="poster-script" style="font-family: Norican, cursive;">Gabrielle Nyawera</p>
+          <p class="poster-sub">Fast, connected, with a swash on the G that does the work a logo would otherwise have to do.</p>
+          <p class="poster-foot"><span><b>Strength</b> — the closest to your reference.</span><span><b>Risk</b> — needs 2rem to keep its joins.</span></p>
+        </div>
+      </article>
+
+      <article class="face">
+        <div class="face-meta">
+          <p class="face-rank">03</p>
+          <h2 class="face-name" style="font-family: Yellowtail, cursive; font-size: 1.7rem;">Yellowtail</h2>
+          <p class="face-mech">The vintage</p>
+          <p class="face-desc">Flat entry strokes and a sign-painter's rhythm — the Vintage Goods flavour. Warmer and more retro than Norican, which also means it dates faster.</p>
+          <dl class="face-specs">
+            <div class="spec-line"><dt>Weights</dt><dd>400 only</dd></div>
+            <div class="spec-line"><dt>Licence</dt><dd>OFL</dd></div>
+            <div class="spec-line"><dt>Files</dt><dd>18kb</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p class="poster-script" style="font-family: Yellowtail, cursive;">Gabrielle Nyawera</p>
+          <p class="poster-sub">Sign-painter warmth with a little more nostalgia in it. Lovely on a shopfront, riskier on a product portfolio.</p>
+          <p class="poster-foot"><span><b>Strength</b> — most personality of the three.</span><span><b>Risk</b> — the easiest to over-apply.</span></p>
+        </div>
+      </article>
+    </section>
+
+    <!-- 4. Together -->
+    <section class="container-page pb-16 md:pb-24">
+      <div class="flex flex-wrap items-end justify-between gap-4 pb-4">
+        <div>
+          <p class="study-kicker">The two together</p>
+          <h2 class="display-3 mt-2">Cormorant for the voice, Norican for the hand</h2>
+        </div>
+        <p class="max-w-sm text-[0.8125rem] leading-relaxed study-muted">
+          Each rack alone is a costume. Together they are a hierarchy: the serif speaks, the script
+          signs.
+        </p>
+      </div>
+
+      <div class="surface-card sample">
+        <div class="px-6 md:px-10">
+          <nav class="sample-nav" aria-label="Sample navigation">
+            <span class="wordmark">Gabe<span>.</span></span>
+            <span class="nav-links flex items-center gap-6">
+              <a href="#" aria-current="page">Home</a>
+              <a href="#">Projects</a>
+              <a href="#">Philosophy</a>
+              <a href="#">Résumé</a>
+            </span>
+            <a href="#" class="pill">Contact</a>
+          </nav>
+
+          <div class="sample-hero">
+            <p class="eyebrow">Product designer · Harare, Zimbabwe</p>
+            <h3 class="sample-h1 mt-4">Calm, considered,<br>quietly distinctive.</h3>
+            <p class="sample-lede">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+            <div class="sig-row">
+              <span class="sig-name">Gabrielle</span>
+              <span class="sig-meta">Designer, not a template</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Size ladder -->
+    <section class="container-page pb-16 md:pb-24">
+      <p class="study-kicker">Where it breaks</p>
+      <h2 class="display-3 mt-2 max-w-2xl">The hairline has a floor</h2>
+      <p class="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed study-muted">
+        Same face, same weight, four sizes. This is the argument for a separate text serif — the
+        display face does not degrade gracefully.
+      </p>
+
+      <div class="ladder mt-8">
+        <div class="rung">
+          <span class="rung-size">5rem</span>
+          <span class="rung-text" style="font-size: 5rem;">Quietly distinctive</span>
+          <span class="rung-note">As intended. Editorial, unhurried.</span>
+        </div>
+        <div class="rung">
+          <span class="rung-size">2.5rem</span>
+          <span class="rung-text" style="font-size: 2.5rem;">Quietly distinctive</span>
+          <span class="rung-note">Still holding. Good for project titles.</span>
+        </div>
+        <div class="rung">
+          <span class="rung-size">1.5rem</span>
+          <span class="rung-text dies" style="font-size: 1.5rem;">Quietly distinctive</span>
+          <span class="rung-note">Hairlines start to shimmer on Windows.</span>
+        </div>
+        <div class="rung">
+          <span class="rung-size">1rem</span>
+          <span class="rung-text dies" style="font-size: 1rem;">Quietly distinctive</span>
+          <span class="rung-note">Stop. This is a reading size, not a display size.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Verdict -->
+    <section class="container-page pb-20 md:pb-28">
+      <p class="study-kicker">The call</p>
+      <h2 class="display-3 mt-2 max-w-2xl">Cormorant Light italic, Italiana for caps, Norican for the signature</h2>
+      <p class="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed study-muted">
+        That combination covers four of your six references with two OFL families and one 10kb
+        caps face — and it keeps the site's licence stack clean, which the Fontshare route does not.
+      </p>
+
+      <table class="notes mt-8">
+        <thead>
+          <tr><th>Reference</th><th>Free equivalent</th><th>How close</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Shefian</td><td>Cormorant Light italic</td><td>Very close. Same Garalde italic structure, same hairline.</td></tr>
+          <tr><td>Editorial</td><td>Boska 200 italic</td><td>Closer still, but colder and a different licence.</td></tr>
+          <tr><td>After Five</td><td>Cormorant or Playfair</td><td>After Five is a full family with nine weights; the free option is a narrower range.</td></tr>
+          <tr><td>Classico</td><td>Italiana</td><td>The closest of all six — wide flat caps, hairline, 10kb.</td></tr>
+          <tr><td>Maisonette / Breathing</td><td>Kaushan Script</td><td>The brush weight is right; the wave is milder.</td></tr>
+          <tr><td>Made by Nature</td><td>Norican</td><td>Very close in rhythm and swash.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="surface-card p-6">
+          <p class="study-kicker">The honest economics</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Unlike Ogg, these are cheap. Classico is $18 and Shefian $19 on the marketplaces you
+            screenshotted. At that price a free approximation is a false economy if you love the
+            exact drawing — buy it.
+          </p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Check one thing first: retail display licences often cover desktop use and not
+            <code class="text-foreground">@font-face</code> embedding. You may need an extended or
+            web licence, which is a different price. Ask before you build on it.
+          </p>
+        </div>
+        <div class="surface-card p-6">
+          <p class="study-kicker">If you stay open-licence</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            <code class="text-foreground">--font-display</code> becomes Cormorant at 300 italic;
+            keep Newsreader for anything below 1.75rem, and add Norican as a one-off signature —
+            hero once, footer once, nowhere else.
+          </p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Italiana is worth having regardless: 10kb for a wordmark and spread titles is the
+            cheapest upgrade on this entire page.
+          </p>
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-10 text-[0.8125rem] leading-relaxed study-muted">
+        Throwaway prototype — <code class="text-foreground">site/prototype/ogg-direction/warm/</code>.
+        Fonts self-hosted under <code class="text-foreground">fonts/warm/</code>. Nothing here touches
+        <code class="text-foreground">site/assets/css/source.css</code> or the shipped pages.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>

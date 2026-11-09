@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth antialiased">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Type direction — the Ogg / Baskerville / Avenir idea</title>
+  <meta name="description" content="A type study for the portfolio: translating a high-contrast display serif, a transitional text serif and a geometric sans into open-licence faces.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    /* ---- Candidates new to the site, latin subsets only ---- */
+    @font-face { font-family: "Bodoni Moda"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/prototype/ogg-direction/fonts/bodoni-moda-normal.woff2) format("woff2"); }
+    @font-face { font-family: "Bodoni Moda"; font-style: italic; font-weight: 400 700; font-display: swap; src: url(/prototype/ogg-direction/fonts/bodoni-moda-italic.woff2) format("woff2"); }
+    @font-face { font-family: "Playfair Display"; font-style: normal; font-weight: 400 900; font-display: swap; src: url(/prototype/ogg-direction/fonts/playfair-display-normal.woff2) format("woff2"); }
+    @font-face { font-family: "Playfair Display"; font-style: italic; font-weight: 400 900; font-display: swap; src: url(/prototype/ogg-direction/fonts/playfair-display-italic.woff2) format("woff2"); }
+    @font-face { font-family: "Baskervville"; font-style: normal; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/baskervville-normal.woff2) format("woff2"); }
+    @font-face { font-family: "Baskervville"; font-style: italic; font-weight: 400; font-display: swap; src: url(/prototype/ogg-direction/fonts/baskervville-italic.woff2) format("woff2"); }
+    @font-face { font-family: "Jost"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/prototype/ogg-direction/fonts/jost-normal.woff2) format("woff2"); }
+    @font-face { font-family: "Figtree"; font-style: normal; font-weight: 300 700; font-display: swap; src: url(/prototype/ogg-direction/fonts/figtree-normal.woff2) format("woff2"); }
+    @font-face { font-family: "Hanken Grotesk"; font-style: normal; font-weight: 300 700; font-display: swap; src: url(/prototype/ogg-direction/fonts/hanken-grotesk-normal.woff2) format("woff2"); }
+
+    /* ---- Specimen scaffolding, not part of the site ---- */
+    .study h1, .study h2, .study h3 { text-wrap: balance; }
+    .study-kicker { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-ink); }
+    .study-muted { color: var(--muted-foreground); }
+    .study code { white-space: nowrap; }
+    .study-bar {
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+      background: color-mix(in srgb, var(--background) 92%, transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Every block declares its own cast: display, text, sans. */
+    [data-trio] { --d: "Inter", sans-serif; --t: "Inter", sans-serif; --m: "Inter", sans-serif; }
+    .f-display { font-family: var(--d); font-weight: var(--dw, 400); letter-spacing: var(--dt, -0.02em); }
+    .f-text { font-family: var(--t); }
+    .f-sans { font-family: var(--m); }
+    .f-display em, .spec-word em { font-style: italic; }
+    .opsz-display { font-variation-settings: "opsz" 96; }
+    .opsz-fraunces { font-variation-settings: "opsz" 144; }
+
+    /* Section 1 */
+    .thesis { font-size: clamp(2.25rem, 5.2vw, 4.25rem); line-height: 1.0; }
+
+    /* Role cards */
+    .roles { display: grid; gap: 1.25rem; }
+    @media (min-width: 900px) { .roles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .role-card { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .role-num { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em; color: var(--accent-ink); }
+    .role-face { font-size: 1.75rem; line-height: 1.15; }
+    .role-body { font-size: 0.8125rem; line-height: 1.7; color: var(--muted-foreground); }
+
+    /* Candidate grids */
+    .opts { display: grid; gap: 1px; background: color-mix(in srgb, var(--border) 80%, transparent); border: 1px solid color-mix(in srgb, var(--border) 80%, transparent); border-radius: var(--radius-card); overflow: hidden; }
+    @media (min-width: 640px) { .opts-2, .opts-3, .opts-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1050px) { .opts-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (min-width: 1150px) { .opts-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .opt { background: var(--surface); padding: 1.6rem; display: flex; flex-direction: column; gap: 1.1rem; min-height: 16rem; }
+    .opt-name { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--foreground); }
+    .opt-lic { display: block; margin-top: 0.3rem; font-size: 0.5625rem; letter-spacing: 0.12em; color: var(--muted-foreground); }
+    .opt-foot { margin-top: auto; font-size: 0.75rem; line-height: 1.65; color: var(--muted-foreground); }
+    .opt-foot strong { font-weight: 500; color: var(--foreground); }
+    .spec-word { font-size: clamp(2.75rem, 5.2vw, 3.75rem); line-height: 0.92; }
+    .spec-italic { font-size: clamp(1.4rem, 2.2vw, 1.7rem); line-height: 1.15; margin-top: 0.55rem; font-style: italic; white-space: nowrap; }
+    .spec-body { font-size: 1.0625rem; line-height: 1.75; }
+    .spec-ui { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+    .chip { display: inline-flex; align-items: center; min-height: 2rem; padding-inline: 0.7rem; border: 1px solid color-mix(in srgb, var(--border) 90%, transparent); border-radius: 999px; font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    /* Trios */
+    .trio { overflow: hidden; }
+    .trio-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1rem; padding: 1.5rem 1.75rem; border-bottom: 1px solid color-mix(in srgb, var(--border) 80%, transparent); background: color-mix(in srgb, var(--surface-strong) 40%, var(--surface)); }
+    .trio-name { font-size: 1.05rem; font-weight: 500; letter-spacing: -0.01em; }
+    .trio-cast { font-size: 0.75rem; color: var(--muted-foreground); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem; }
+    .trio-cast span { font-size: 0.9375rem; color: var(--foreground); }
+    .trio-flag { margin-left: auto; font-size: 0.5625rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-ink); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius: 999px; padding: 0.25rem 0.6rem; }
+    .trio-stage { padding: 1.75rem; display: grid; gap: 1.25rem; background: var(--surface); }
+    .mini-nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent); font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); }
+    .mini-mark { font-size: 1.15rem; letter-spacing: -0.01em; text-transform: none; color: var(--foreground); }
+    .mini-h { font-size: clamp(1.75rem, 3.4vw, 2.5rem); line-height: 1.0; max-width: 20ch; }
+    .mini-lede { font-size: 0.9375rem; line-height: 1.7; color: var(--muted-foreground); max-width: 46ch; }
+    .mini-row { display: grid; gap: 0.35rem 1.25rem; align-items: baseline; padding-top: 1rem; border-top: 1px solid color-mix(in srgb, var(--border) 70%, transparent); }
+    @media (min-width: 720px) { .mini-row { grid-template-columns: 2rem minmax(0, 1fr) minmax(0, 1fr); } }
+    .mini-idx { font-size: 0.625rem; letter-spacing: 0.14em; color: var(--accent-ink); }
+    .mini-title { font-size: 1.05rem; line-height: 1.2; }
+    .mini-meta { font-size: 0.75rem; color: var(--muted-foreground); }
+
+    /* Applied sample */
+    .sample { position: relative; overflow: hidden; background: var(--background); }
+    .sample::before {
+      content: ""; position: absolute; z-index: 0; inset: -20% -10% auto auto; width: 34rem; height: 34rem;
+      background: radial-gradient(circle at center, color-mix(in srgb, var(--accent-soft) 70%, transparent), transparent 68%);
+      pointer-events: none;
+    }
+    .sample > * { position: relative; z-index: 1; }
+    .sample-nav { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1.25rem; border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent); }
+    .sample-nav a { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); }
+    .sample-nav a[aria-current] { color: var(--foreground); }
+    .sample-nav .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .wordmark { font-size: 1.35rem; letter-spacing: -0.01em; }
+    .wordmark span { color: var(--accent-ink); }
+    .sample-hero { display: grid; gap: 2.5rem; padding-block: clamp(2.25rem, 5vw, 3.5rem); }
+    @media (min-width: 900px) { .sample-hero { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: end; gap: 3.5rem; } }
+    .sample-h1 { font-size: clamp(2.5rem, 5.6vw, 4.5rem); line-height: 0.98; }
+    .sample-lede { font-size: clamp(1rem, 1.15vw, 1.125rem); line-height: 1.75; max-width: 40ch; color: var(--muted-foreground); }
+    .sample-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; margin-top: 1.75rem; }
+    .pill { display: inline-flex; min-height: 44px; align-items: center; padding-inline: 1.35rem; border-radius: 999px; background: var(--accent); color: var(--accent-foreground); font-size: 0.8125rem; font-weight: 500; }
+    .rule-link { display: inline-flex; min-height: 44px; align-items: center; gap: 0.5rem; border-bottom: 2px solid var(--foreground); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
+    .mat { position: relative; aspect-ratio: 4 / 5; border: 1px solid color-mix(in srgb, var(--border) 80%, transparent); border-radius: 0.5rem; background: var(--surface-strong); display: grid; place-items: center; overflow: hidden; }
+    .mat::after { content: ""; position: absolute; inset: 0.6rem; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 0.35rem; }
+    .mat-g { font-size: clamp(7rem, 14vw, 11rem); line-height: 0.8; color: var(--foreground); opacity: 0.9; font-style: italic; }
+    .mat-cap { position: absolute; inset: auto 0.9rem 0.9rem; display: flex; justify-content: space-between; gap: 1rem; font-size: 0.5625rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); }
+    .sample-quote { border-top: 1px solid color-mix(in srgb, var(--border) 80%, transparent); padding-block: clamp(2rem, 4vw, 3rem); display: grid; gap: 1.5rem; }
+    @media (min-width: 768px) { .sample-quote { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 3.5rem; } }
+    .pull { font-size: clamp(1.6rem, 3.2vw, 2.5rem); line-height: 1.14; }
+    .byline { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.75rem; margin-top: 1rem; font-size: 0.75rem; color: var(--muted-foreground); }
+    .byline-name { font-weight: 500; color: var(--foreground); }
+    .work-row { display: grid; gap: 0.35rem 2rem; padding-block: 1.5rem; border-top: 1px solid color-mix(in srgb, var(--border) 80%, transparent); align-items: baseline; }
+    @media (min-width: 768px) { .work-row { grid-template-columns: 3rem minmax(0, 1.2fr) minmax(0, 1fr) auto; } }
+    .work-index { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; color: var(--accent-ink); }
+    .work-title { font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.1; }
+    .work-meta { font-size: 0.8125rem; line-height: 1.7; color: var(--muted-foreground); }
+    .work-link { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 0.2rem; }
+    .sample-foot { background: var(--dusk-background); color: var(--dusk-foreground); padding: clamp(2rem, 4vw, 3rem); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem; }
+    .sample-foot-line { font-size: clamp(1.75rem, 4vw, 3rem); line-height: 1.02; }
+    .foot-mark { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1; color: var(--dusk-accent); font-style: italic; }
+
+    /* Notes */
+    .notes { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+    .notes th, .notes td { text-align: left; padding: 0.85rem 1rem 0.85rem 0; border-bottom: 1px solid color-mix(in srgb, var(--border) 80%, transparent); vertical-align: top; }
+    .notes th { font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--muted-foreground); }
+    .notes td:first-child { font-weight: 500; white-space: nowrap; padding-right: 1.5rem; }
+
+    @media (max-width: 640px) {
+      .sample-nav .nav-links { display: none; }
+      .notes td:first-child { white-space: normal; }
+    }
+  </style>
+</head>
+<body class="study flex min-h-full flex-col bg-background text-foreground">
+
+  <header class="study-bar sticky top-0 z-50">
+    <div class="container-page flex min-h-[68px] flex-wrap items-center justify-between gap-4 py-3">
+      <div class="flex items-baseline gap-4">
+        <span class="study-kicker">Type direction</span>
+        <span class="hidden text-[0.8125rem] study-muted sm:inline">A calligraphic display serif, a book serif, a geometric sans</span>
+      </div>
+      <div class="flex items-baseline gap-6">
+        <a class="link-arrow text-[0.6875rem] uppercase tracking-[0.16em]" href="/prototype/ogg-direction/italic/">Display italics</a>
+        <a class="link-arrow hidden text-[0.6875rem] uppercase tracking-[0.16em] sm:inline" href="/prototype/type-pairing/">Previous study</a>
+        <a class="link-arrow text-[0.6875rem] uppercase tracking-[0.16em]" href="/">Back to site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <!-- 1. The argument -->
+    <section class="container-page pt-14 pb-10 md:pt-20 md:pb-14" data-trio="c" style="--d: Fraunces, Georgia, serif;">
+      <p class="study-kicker">The direction</p>
+      <h1 class="f-display opsz-fraunces thesis mt-5 max-w-4xl">
+        Three voices,<br>not three<br><em>decorations.</em>
+      </h1>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 md:gap-12">
+        <p class="lede">
+          The pairing you picked is a hierarchy: a theatrical display face, a book face that carries
+          real reading, and a neutral geometric sans for the machinery around it. Your current stack
+          collapses the first two into Instrument Serif, which is why the reference feels more
+          resolved than the site does.
+        </p>
+        <div>
+          <p class="text-[0.9375rem] leading-relaxed study-muted">
+            Two of the three originals are commercial — Ogg is Sharp Type, Avenir is Monotype — so
+            they cannot be self-hosted here. Everything on this page is SIL Open Font Licence, set at
+            the same sizes on the same copy, so the comparison is honest.
+          </p>
+          <p class="mt-3 text-[0.9375rem] leading-relaxed study-muted">
+            The display slot is the interesting decision. The other two slots have a clear winner
+            each, and they are already on the site.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. The three slots -->
+    <section class="container-page pb-14 md:pb-20">
+      <div class="roles">
+        <article class="surface-card role-card" data-trio="c" style="--d: Fraunces, Georgia, serif;">
+          <span class="role-num">01 — Display</span>
+          <p class="role-face f-display opsz-fraunces">Ogg</p>
+          <p class="role-body">The voice. Headlines, project titles, the italic word inside a heading, the monogram. Never body copy — the hairlines disappear below about 1.75rem.</p>
+          <p class="eyebrow mt-auto">Commercial · Sharp Type</p>
+        </article>
+        <article class="surface-card role-card" data-trio="a" style="--t: 'Baskervville', Georgia, serif;">
+          <span class="role-num">02 — Serif</span>
+          <p class="role-face f-text" style="font-size: 1.6rem;">Baskerville</p>
+          <p class="role-body">The book. Ledger text, case-study paragraphs, pull quotes, captions that need to be read rather than admired. This is the role your site currently has no face for.</p>
+          <p class="eyebrow mt-auto">Commercial revival · public-domain design</p>
+        </article>
+        <article class="surface-card role-card" data-trio="a" style="--m: 'Jost', system-ui, sans-serif;">
+          <span class="role-num">03 — Sans</span>
+          <p class="role-face f-sans" style="font-size: 1.6rem; letter-spacing: 0.01em;">Avenir</p>
+          <p class="role-body">The machinery. Navigation, eyebrows, buttons, metadata, form labels. Geometric skeleton, humanist proportions — friendly without being cute.</p>
+          <p class="eyebrow mt-auto">Commercial · Monotype</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. Display candidates -->
+    <section class="container-page pb-16 md:pb-24">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="study-kicker">Slot 01 — the real decision</p>
+          <h2 class="display-3 mt-2">Which face plays Ogg?</h2>
+        </div>
+        <p class="max-w-sm text-[0.8125rem] leading-relaxed study-muted">
+          Same word, same size, same italic line. Ogg is a didone with calligraphic terminals —
+          these four are the honest open-licence neighbours, ordered from literal to warm.
+        </p>
+      </div>
+
+      <div class="opts opts-4 mt-8">
+        <article class="opt" data-trio="a" style="--d: 'Bodoni Moda', Georgia, serif;">
+          <p class="opt-name">Bodoni Moda <span class="opt-lic">OFL · 100kb</span></p>
+          <div>
+            <p class="spec-word f-display opsz-display">Ogg</p>
+            <p class="spec-italic f-display">feel alive</p>
+          </div>
+          <p class="opt-foot"><strong>The literal swap.</strong> A true didone with an optical-size axis and a sharp nineteenth-century italic — closest to Ogg's genre. Costs: fragile under 2rem, and it reads fashion editorial before it reads product design.</p>
+        </article>
+
+        <article class="opt" data-trio="b" style="--d: 'Playfair Display', Georgia, serif;">
+          <p class="opt-name">Playfair Display <span class="opt-lic">OFL · 76kb</span></p>
+          <div>
+            <p class="spec-word f-display">Ogg</p>
+            <p class="spec-italic f-display">feel alive</p>
+          </div>
+          <p class="opt-foot"><strong>The safe one.</strong> Variable 400–900, a sturdy italic, and it holds a three-line headline at 2.5rem where Bodoni Moda thins out. Costs: it is the default editorial serif on the internet, and its contrast is gentler than Ogg's.</p>
+        </article>
+
+        <article class="opt" data-trio="c" style="--d: Fraunces, Georgia, serif;">
+          <p class="opt-name">Fraunces <span class="opt-lic">OFL · already hosted</span></p>
+          <div>
+            <p class="spec-word f-display opsz-fraunces">Ogg</p>
+            <p class="spec-italic f-display opsz-fraunces">feel alive</p>
+          </div>
+          <p class="opt-foot"><strong>The calligraphic one.</strong> At display optical sizes its terminals flare like pen strokes, and the italic genuinely swashes — the closest thing to Ogg's personality that is free. Costs: warmer and slightly quirkier than the reference.</p>
+        </article>
+
+        <article class="opt" data-trio="d" style="--d: 'Instrument Serif', Georgia, serif;">
+          <p class="opt-name">Instrument Serif <span class="opt-lic">OFL · shipping now</span></p>
+          <div>
+            <p class="spec-word f-display" style="font-weight: 400;">Ogg</p>
+            <p class="spec-italic f-display">feel alive</p>
+          </div>
+          <p class="opt-foot"><strong>The incumbent.</strong> One weight, one italic, high contrast, and it already makes the Ogg-ish gesture. Costs: no weight range, no optical sizing, so every headline has the same temperature.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. Serif candidates -->
+    <section class="container-page pb-16 md:pb-24">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="study-kicker">Slot 02 — the new role</p>
+          <h2 class="display-3 mt-2">Which face sets the paragraphs?</h2>
+        </div>
+        <p class="max-w-sm text-[0.8125rem] leading-relaxed study-muted">
+          Read these, don't look at them. The test is a forty-word paragraph at body size, in a
+          42rem measure.
+        </p>
+      </div>
+
+      <div class="opts opts-3 mt-8">
+        <article class="opt" data-trio="a" style="--t: 'Baskervville', Georgia, serif;">
+          <p class="opt-name">Baskervville <span class="opt-lic">OFL · 37kb</span></p>
+          <p class="spec-body f-text">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious. Warm and editorial: understand the problem first.</p>
+          <p class="opt-foot"><strong>The literal one.</strong> A faithful Baskerville revival, and you can feel it: wide set, generous x-height, beautiful at book sizes. Costs: 400 only, so emphasis has to come from the italic, never weight.</p>
+        </article>
+
+        <article class="opt" data-trio="b" style="--t: Newsreader, Georgia, serif;">
+          <p class="opt-name">Newsreader <span class="opt-lic">OFL · already hosted</span></p>
+          <p class="spec-body f-text">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious. Warm and editorial: understand the problem first.</p>
+          <p class="opt-foot"><strong>The reading one.</strong> Transitional like Baskerville but a touch narrower, so it takes a 42rem measure without feeling loose. Real italics and a variable weight range — every emphasis you would ever need.</p>
+        </article>
+
+        <article class="opt" data-trio="a" style="--t: 'Source Serif 4', Georgia, serif;">
+          <p class="opt-name">Source Serif 4 <span class="opt-lic">OFL · already hosted</span></p>
+          <p class="spec-body f-text">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious. Warm and editorial: understand the problem first.</p>
+          <p class="opt-foot"><strong>The sturdy one.</strong> Lower contrast, more ink, wider counters. It survives 14px UI copy better than the other two, at the cost of some of Baskerville's air. The pragmatic pick if the serif has to work in small places.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. Sans candidates -->
+    <section class="container-page pb-16 md:pb-24">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="study-kicker">Slot 03 — the machinery</p>
+          <h2 class="display-3 mt-2">Which sans keeps it friendly?</h2>
+        </div>
+        <p class="max-w-sm text-[0.8125rem] leading-relaxed study-muted">
+          Avenir's trick is geometry you can read: circular bowls, humanist proportions, open
+          apertures. Judge these at 11px uppercase, where they actually live.
+        </p>
+      </div>
+
+      <div class="opts opts-3 mt-8">
+        <article class="opt" data-trio="b" style="--m: Figtree, system-ui, sans-serif;">
+          <p class="opt-name">Figtree <span class="opt-lic">OFL · 20kb</span></p>
+          <div>
+            <p class="spec-ui f-sans" style="font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase;">Product designer · Harare</p>
+            <p class="spec-body f-sans mt-3" style="font-size: 0.9375rem;">Navigation, labels, buttons, metadata, form fields — everything that has to work rather than perform.</p>
+            <p class="spec-ui f-sans mt-3"><span class="chip">Design systems</span><span class="chip">Case studies</span></p>
+          </div>
+          <p class="opt-foot"><strong>The closest to Avenir.</strong> Geometric skeleton, humanist warmth, double-storey a, open apertures. Reads friendly at 11px without turning round.</p>
+        </article>
+
+        <article class="opt" data-trio="a" style="--m: Jost, system-ui, sans-serif;">
+          <p class="opt-name">Jost <span class="opt-lic">OFL · 26kb</span></p>
+          <div>
+            <p class="spec-ui f-sans" style="font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase;">Product designer · Harare</p>
+            <p class="spec-body f-sans mt-3" style="font-size: 0.9375rem;">Navigation, labels, buttons, metadata, form fields — everything that has to work rather than perform.</p>
+            <p class="spec-ui f-sans mt-3"><span class="chip">Design systems</span><span class="chip">Case studies</span></p>
+          </div>
+          <p class="opt-foot"><strong>The Futura one.</strong> Sharper geometry, tighter counters, more conviction in a label. Costs: colder as running text, and it pulls the page toward modernism rather than editorial.</p>
+        </article>
+
+        <article class="opt" data-trio="b" style="--m: 'Hanken Grotesk', system-ui, sans-serif;">
+          <p class="opt-name">Hanken Grotesk <span class="opt-lic">OFL · 34kb</span></p>
+          <div>
+            <p class="spec-ui f-sans" style="font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase;">Product designer · Harare</p>
+            <p class="spec-body f-sans mt-3" style="font-size: 0.9375rem;">Navigation, labels, buttons, metadata, form fields — everything that has to work rather than perform.</p>
+            <p class="spec-ui f-sans mt-3"><span class="chip">Design systems</span><span class="chip">Case studies</span></p>
+          </div>
+          <p class="opt-foot"><strong>The neutral one.</strong> Humanist grotesque, close to Avenir's proportions but with less geometry. The safest for dense UI, the least distinctive of the three.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 6. Trios -->
+    <section class="container-page pb-16 md:pb-24">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="study-kicker">Assembled</p>
+          <h2 class="display-3 mt-2">The same hero, four ways</h2>
+        </div>
+        <p class="max-w-sm text-[0.8125rem] leading-relaxed study-muted">
+          B, C and the baseline share their supporting cast on purpose — Newsreader and Figtree —
+          so only the display face changes.
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-6">
+
+        <article class="trio surface-card" data-trio="a" style="--d: 'Bodoni Moda', Georgia, serif; --t: 'Baskervville', Georgia, serif; --m: 'Jost', system-ui, sans-serif;">
+          <header class="trio-head">
+            <span class="study-kicker">A</span>
+            <h3 class="trio-name">The faithful translation</h3>
+            <p class="trio-cast"><span class="f-display opsz-display">Bodoni Moda</span> · <span class="f-text">Baskervville</span> · <span class="f-sans">Jost</span></p>
+          </header>
+          <div class="trio-stage">
+            <div class="mini-nav f-sans">
+              <span class="mini-mark f-display opsz-display">Gabe<span class="text-accent-ink">.</span></span>
+              <span>Projects · Philosophy · Résumé</span>
+              <span>Contact</span>
+            </div>
+            <p class="eyebrow">Product designer · Harare</p>
+            <p class="mini-h f-display opsz-display">Calm, considered, <em>quietly</em> distinctive.</p>
+            <p class="mini-lede f-text">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+            <div class="mini-row">
+              <span class="mini-idx f-sans">01</span>
+              <span class="mini-title f-display opsz-display">KAVARA KAVARA</span>
+              <span class="mini-meta f-text">2024 — Brand / Digital Experience</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="trio surface-card" data-trio="b" style="--d: 'Playfair Display', Georgia, serif; --t: Newsreader, Georgia, serif; --m: Figtree, system-ui, sans-serif;">
+          <header class="trio-head">
+            <span class="study-kicker">B</span>
+            <h3 class="trio-name">The editorial one</h3>
+            <p class="trio-cast"><span class="f-display">Playfair Display</span> · <span class="f-text">Newsreader</span> · <span class="f-sans">Figtree</span></p>
+          </header>
+          <div class="trio-stage">
+            <div class="mini-nav f-sans">
+              <span class="mini-mark f-display">Gabe<span class="text-accent-ink">.</span></span>
+              <span>Projects · Philosophy · Résumé</span>
+              <span>Contact</span>
+            </div>
+            <p class="eyebrow">Product designer · Harare</p>
+            <p class="mini-h f-display">Calm, considered, <em>quietly</em> distinctive.</p>
+            <p class="mini-lede f-text">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+            <div class="mini-row">
+              <span class="mini-idx f-sans">01</span>
+              <span class="mini-title f-display">KAVARA KAVARA</span>
+              <span class="mini-meta f-text">2024 — Brand / Digital Experience</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="trio surface-card" data-trio="c" style="--d: Fraunces, Georgia, serif; --t: Newsreader, Georgia, serif; --m: Figtree, system-ui, sans-serif;">
+          <header class="trio-head">
+            <span class="study-kicker">C</span>
+            <h3 class="trio-name">The warm one — recommended</h3>
+            <p class="trio-cast"><span class="f-display opsz-fraunces">Fraunces</span> · <span class="f-text">Newsreader</span> · <span class="f-sans">Figtree</span></p>
+            <span class="trio-flag">Recommended</span>
+          </header>
+          <div class="trio-stage">
+            <div class="mini-nav f-sans">
+              <span class="mini-mark f-display opsz-fraunces">Gabe<span class="text-accent-ink">.</span></span>
+              <span>Projects · Philosophy · Résumé</span>
+              <span>Contact</span>
+            </div>
+            <p class="eyebrow">Product designer · Harare</p>
+            <p class="mini-h f-display opsz-fraunces">Calm, considered, <em>quietly</em> distinctive.</p>
+            <p class="mini-lede f-text">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+            <div class="mini-row">
+              <span class="mini-idx f-sans">01</span>
+              <span class="mini-title f-display opsz-fraunces">KAVARA KAVARA</span>
+              <span class="mini-meta f-text">2024 — Brand / Digital Experience</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="trio surface-card" data-trio="d" style="--d: 'Instrument Serif', Georgia, serif; --t: 'Instrument Serif', Georgia, serif; --m: Inter, system-ui, sans-serif;">
+          <header class="trio-head">
+            <span class="study-kicker">D</span>
+            <h3 class="trio-name">The baseline — what ships today</h3>
+            <p class="trio-cast"><span class="f-display">Instrument Serif</span> · <span class="f-text">Instrument Serif</span> · <span class="f-sans">Inter</span></p>
+          </header>
+          <div class="trio-stage">
+            <div class="mini-nav f-sans">
+              <span class="mini-mark f-display">Gabe<span class="text-accent-ink">.</span></span>
+              <span>Projects · Philosophy · Résumé</span>
+              <span>Contact</span>
+            </div>
+            <p class="eyebrow">Product designer · Harare</p>
+            <p class="mini-h f-display" style="font-weight: 400;">Calm, considered, <em>quietly</em> distinctive.</p>
+            <p class="mini-lede f-text">I design calm, considered digital products — with a focus on clarity, usability, and the details that make complex things feel obvious.</p>
+            <div class="mini-row">
+              <span class="mini-idx f-sans">01</span>
+              <span class="mini-title f-display" style="font-weight: 400;">KAVARA KAVARA</span>
+              <span class="mini-meta f-text">2024 — Brand / Digital Experience</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 7. Applied -->
+    <section class="container-page pb-16 md:pb-24" data-trio="c" style="--d: Fraunces, Georgia, serif; --t: Newsreader, Georgia, serif; --m: Figtree, system-ui, sans-serif;">
+      <div class="flex flex-wrap items-end justify-between gap-4 pb-4">
+        <div>
+          <p class="study-kicker">In place — trio C</p>
+          <h2 class="display-3 mt-2">Home, top to sign-off</h2>
+        </div>
+        <p class="max-w-sm text-[0.8125rem] leading-relaxed study-muted">
+          Real copy at real sizes. The one structural change: the lede moves from Inter to
+          Newsreader, because a book serif with nothing to set is a costume.
+        </p>
+      </div>
+
+      <div class="surface-card sample">
+        <div class="px-6 md:px-10">
+          <nav class="sample-nav f-sans" aria-label="Sample navigation">
+            <span class="wordmark f-display opsz-fraunces">Gabe<span>.</span></span>
+            <span class="nav-links">
+              <a href="#" aria-current="page">Home</a>
+              <a href="#">Projects</a>
+              <a href="#">Philosophy</a>
+              <a href="#">Résumé</a>
+            </span>
+            <a href="#" class="pill" style="color: var(--accent-foreground);">Contact</a>
+          </nav>
+        </div>
+
+        <div class="px-6 md:px-10">
+          <div class="sample-hero">
+            <div>
+              <p class="eyebrow">Product designer · Harare, Zimbabwe</p>
+              <h3 class="sample-h1 f-display opsz-fraunces mt-4">
+                Calm, considered,<br>
+                <em>quietly</em> distinctive.
+              </h3>
+              <p class="sample-lede f-text mt-5">
+                I design calm, considered digital products — with a focus on clarity, usability, and
+                the details that make complex things feel obvious.
+              </p>
+              <div class="sample-actions">
+                <a class="pill f-sans" href="#">Let’s make something</a>
+                <a class="rule-link f-sans" href="#">View selected work <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+            <div class="mat" aria-hidden="true">
+              <span class="mat-g f-display opsz-fraunces">G</span>
+              <span class="mat-cap f-sans"><span>Monogram</span><span>Fraunces italic</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="px-6 md:px-10">
+          <figure class="sample-quote">
+            <div>
+              <p class="eyebrow">A working note</p>
+              <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">The quote sets in the text serif, italic — not the display face. Reading copy gets the reading face.</p>
+            </div>
+            <div>
+              <blockquote class="pull f-text" style="font-style: italic;">“Curiosity is a design tool.”</blockquote>
+              <div class="byline f-sans">
+                <span class="byline-name">Gabrielle Nyawera</span>
+                <span>On why the questions come first</span>
+              </div>
+            </div>
+          </figure>
+        </div>
+
+        <div class="px-6 md:px-10 pb-2">
+          <div class="work-row">
+            <span class="work-index f-sans">01</span>
+            <p class="work-title f-display opsz-fraunces">KAVARA KAVARA</p>
+            <p class="work-meta f-text">2024 — Brand / Digital Experience</p>
+            <a class="work-link f-sans" href="#">Read case study</a>
+          </div>
+          <div class="work-row">
+            <span class="work-index f-sans">02</span>
+            <p class="work-title f-display opsz-fraunces">Study App</p>
+            <p class="work-meta f-text">2024–2026 — Education / PWA</p>
+            <a class="work-link f-sans" href="#">Read case study</a>
+          </div>
+          <div class="work-row" style="border-bottom: 1px solid color-mix(in srgb, var(--border) 80%, transparent);">
+            <span class="work-index f-sans">03</span>
+            <p class="work-title f-display opsz-fraunces">Portfolio</p>
+            <p class="work-meta f-text">2026 — Personal / Web Design</p>
+            <a class="work-link f-sans" href="#">Read case study</a>
+          </div>
+        </div>
+
+        <div class="sample-foot mt-8">
+          <div>
+            <p class="f-sans" style="font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dusk-muted-foreground);">The sign-off</p>
+            <p class="sample-foot-line f-display opsz-fraunces mt-3">I design experiences<br>that <span style="color: var(--dusk-accent); font-style: italic;">feel alive.</span></p>
+          </div>
+          <span class="foot-mark f-display opsz-fraunces">G</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Verdict -->
+    <section class="container-page pb-20 md:pb-28">
+      <p class="study-kicker">If you adopt it</p>
+      <h2 class="display-3 mt-2 max-w-2xl">Fraunces, Newsreader, Figtree — and four rules</h2>
+      <p class="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed study-muted">
+        Trio C keeps the reference's structure without borrowing its mood. Fraunces carries the
+        drama, Newsreader does the reading, Figtree stays out of the way. All three are already
+        licensed for this site, and two are already in the font folder — the only new file is
+        Figtree at 20kb, against the ~30kb of Instrument Serif latin files it replaces.
+      </p>
+
+      <table class="notes mt-8">
+        <thead>
+          <tr><th>Slot</th><th>Face</th><th>Why this one</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Display</td>
+            <td>Fraunces</td>
+            <td>Most contrast in this line-up, with flared terminals and a genuinely swashy italic. Behaves at 1.75rem, where Bodoni Moda does not.</td>
+          </tr>
+          <tr>
+            <td>Serif</td>
+            <td>Newsreader</td>
+            <td>Real italics and a full weight range, so emphasis has somewhere to go — which Baskervville's 400-only files do not allow.</td>
+          </tr>
+          <tr>
+            <td>Sans</td>
+            <td>Figtree</td>
+            <td>Closest to Avenir's geometry-plus-warmth. Jost is more convincing as a label but colder across the whole UI.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div class="surface-card p-6">
+          <p class="opt-name">1 — Display ceiling</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">Fraunces never sets below 1.75rem. Under that, the softness reads as a mistake rather than a flourish.</p>
+        </div>
+        <div class="surface-card p-6">
+          <p class="opt-name">2 — Serif owns prose</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">Paragraphs, ledes and quotes are Newsreader. If Inter keeps the lede, you have bought a book face and used it as a label.</p>
+        </div>
+        <div class="surface-card p-6">
+          <p class="opt-name">3 — Sans stays small</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">Figtree handles nav, eyebrows, buttons and metadata. It never sets a headline — that is how the three roles stay legible.</p>
+        </div>
+        <div class="surface-card p-6">
+          <p class="opt-name">4 — One italic per screen</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">The italic is the loudest thing on the page. Once per view — inside the h1, or on the sign-off. Not both.</p>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="surface-card p-6">
+          <p class="opt-name">What it costs</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Adopting trio C in <code class="text-foreground">source.css</code> means three token
+            lines — <code class="text-foreground">--font-display</code>,
+            <code class="text-foreground">--font-serif</code>,
+            <code class="text-foreground">--font-sans</code> — plus moving
+            <code class="text-foreground">.lede</code> and the case-study prose onto the serif.
+            Instrument Serif and its four subset files leave the page weight entirely.
+          </p>
+        </div>
+        <div class="surface-card p-6">
+          <p class="opt-name">What is still commercial</p>
+          <p class="mt-3 text-[0.8125rem] leading-relaxed study-muted">
+            Nothing here needs a licence beyond the OFL. If you later buy Ogg, it drops into the
+            display slot and the other two roles do not move — which is the useful thing about
+            deciding structure before you decide faces.
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-10 text-[0.8125rem] leading-relaxed study-muted">
+        If you want the display face closer to Ogg's italic, that is a narrower brief with no clean
+        free answer:
+        <a class="link-arrow ml-1 text-[0.6875rem] uppercase tracking-[0.16em]" href="/prototype/ogg-direction/italic/">Compare display italics</a>
+      </p>
+
+      <p class="mt-4 text-[0.8125rem] leading-relaxed study-muted">
+        If you would rather the display face carry the page than sit quietly in it:
+        <a class="link-arrow ml-1 text-[0.6875rem] uppercase tracking-[0.16em]" href="/prototype/ogg-direction/bold/">The louder options</a>
+      </p>
+
+      <p class="mt-4 text-[0.8125rem] leading-relaxed study-muted">
+        If the display face should be delicate rather than structural, and a hand rather than a voice:
+        <a class="link-arrow ml-1 text-[0.6875rem] uppercase tracking-[0.16em]" href="/prototype/ogg-direction/warm/">The warm options</a>
+      </p>
+
+      <p class="mt-6 text-[0.8125rem] leading-relaxed study-muted">
+        Throwaway prototype — <code class="text-foreground">site/prototype/ogg-direction/</code>. Nothing here touches
+        <code class="text-foreground">site/assets/css/source.css</code> or the shipped pages.
+        Fonts are latin subsets, self-hosted in this folder.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>
