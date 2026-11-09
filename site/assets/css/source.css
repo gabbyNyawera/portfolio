@@ -559,6 +559,15 @@ div[id] {
   background: none;
 }
 
+/* Mobile: the wash image is landscape, so centre-cropping exposes its diagonal.
+   Bias to the right edge where the vertical gradient is smoothest. */
+@media (max-width: 639px) {
+  .page-wash::before,
+  .page-wash .dark-wash::before {
+    background-position: right center;
+  }
+}
+
 /* Cream bands step aside too; the wash reads through instead. */
 .page-wash .sand-wash {
   background: none;
