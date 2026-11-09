@@ -2,5 +2,8 @@
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "site",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "git": {
+    "deploymentEnabled": false
+  }
 }
