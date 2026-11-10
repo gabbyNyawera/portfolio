@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Paper, Ink, One Signal — Gabrielle Nyawera Design System</title>
+<meta name="description" content="Issue 01 of the Gabrielle Nyawera design system: four values, three voices, five laws. A single self-contained page.">
+<style>
+/* ── Fonts: embedded at build time by scripts/build-specimen.cjs ───────── */
+@font-face{
+  font-family:Boska;font-style:italic;font-weight:300;font-display:swap;
+  src:url(data:font/woff2;base64,%%BOSKA_300%%) format("woff2");
+}
+@font-face{
+  font-family:Boska;font-style:italic;font-weight:400;font-display:swap;
+  src:url(data:font/woff2;base64,%%BOSKA_400%%) format("woff2");
+}
+@font-face{
+  font-family:Boska;font-style:italic;font-weight:500;font-display:swap;
+  src:url(data:font/woff2;base64,%%BOSKA_500%%) format("woff2");
+}
+@font-face{
+  font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-display:swap;
+  src:url(data:font/woff2;base64,%%INSTRUMENT_SANS%%) format("woff2");
+}
+@font-face{
+  font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;
+  src:url(data:font/woff2;base64,%%INTER%%) format("woff2");
+}
+
+/* ── Tokens — mirroring site/assets/css/source.css ────────────────────── */
+:root{
+  --background:#FFFFFF;
+  --surface:#FFFFFF;
+  --surface-strong:#F7F2E2;
+  --foreground:#101010;
+  --muted:#F2EFE6;
+  --muted-foreground:#605F58;
+  --border:#E4E0D6;
+  --accent:#F9C74F;
+  --accent-foreground:#101010;
+  --accent-soft:#FBE9C0;
+  --accent-ink:#2A3FC8;
+  /* The plate's undertone as a ground. Never an ink. */
+  --wash-rose:#F7E3DF;
+
+  --font-display:Boska,Georgia,serif;
+  --font-heading:"Instrument Sans",system-ui,sans-serif;
+  --font-sans:Inter,system-ui,sans-serif;
+
+  --page-max:76rem;
+  --reading-max:42rem;
+  --gutter:clamp(1.25rem,4vw,4rem);
+  --section-y:clamp(4.5rem,9vw,8rem);
+  --header-height:76px;
+
+  --radius-media:.5rem;
+  --radius-card:1.25rem;
+  --radius-panel:1.5rem;
+
+  --text-micro:.6875rem;
+  --text-small:.8125rem;
+  --text-caption:.75rem;
+
+  --tracking-display:-.04em;
+  --tracking-heading:-.025em;
+  --tracking-label:.08em;
+
+  --ease-out-expo:cubic-bezier(.16,1,.3,1);
+  --duration-fast:180ms;
+  --duration-reveal:600ms;
+  --duration-slow:800ms;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--background);color:var(--foreground);
+  font-family:var(--font-sans);font-size:1rem;line-height:1.65;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+img,svg{display:block}
+a{color:inherit}
+::selection{background:var(--accent);color:var(--accent-foreground)}
+:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
+
+/* The page wash: one veiled gradient, fixed under every page. */
+/* The page wash. Identical to site.css: the plate, a token ground of rose,
+   then an 84% paper veil over the whole thing. */
+body.page-wash::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    linear-gradient(
+      color-mix(in srgb,var(--background) 84%,transparent),
+      color-mix(in srgb,var(--background) 84%,transparent)
+    ),
+    radial-gradient(60rem 40rem at 6% 0%,var(--wash-rose),transparent 70%),
+    url(data:image/webp;base64,%%HERO_GRADIENT%%) center / cover no-repeat,
+    var(--background);
+}
+@media (max-width:639px){
+  body.page-wash::before{
+    background:
+      radial-gradient(48rem 30rem at 82% -8%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 68%),
+      var(--background);
+  }
+}
+
+/* One global paper grain. Texture lives on the material, not on components. */
+body::after{
+  content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.11;
+  mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ── Layout ───────────────────────────────────────────────────────────── */
+.wrap{width:100%;max-width:var(--page-max);margin-inline:auto;padding-inline:var(--gutter)}
+.spread{padding-block:var(--section-y);border-top:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+.measure{max-width:var(--reading-max)}
+
+.head{
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.25rem 1rem;
+  padding-bottom:.85rem;border-bottom:1px solid color-mix(in srgb,var(--border) 70%,transparent);
+  font-size:var(--text-micro);font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted-foreground);
+}
+.head span:last-child{white-space:nowrap}
+
+/* ── Type — the shipped system ────────────────────────────────────────── */
+.display-1,.display-2,.display-3{
+  font-family:var(--font-display);font-style:italic;font-weight:400;
+  letter-spacing:var(--tracking-display);line-height:.98;margin:0;text-wrap:balance;
+}
+.display-1{font-size:clamp(3.25rem,7vw,7rem);font-weight:500}
+.display-2{font-size:clamp(2.75rem,5vw,5rem)}
+.display-3{font-size:clamp(2.25rem,4vw,3.75rem);font-weight:300}
+
+.heading-1,.heading-2,.heading-3,.heading-4,.heading-5{
+  font-family:var(--font-heading);margin:0;text-wrap:balance;
+}
+.heading-1{font-size:clamp(2.5rem,4.5vw,4rem);font-weight:600;line-height:1.1;letter-spacing:-.035em}
+.heading-2{font-size:clamp(2rem,3.2vw,3rem);font-weight:600;line-height:1.15;letter-spacing:var(--tracking-heading)}
+.heading-3{font-size:clamp(1.625rem,2.2vw,2rem);font-weight:600;line-height:1.3;letter-spacing:-.015em}
+.heading-4{font-size:clamp(1.25rem,1.5vw,1.5rem);font-weight:500;line-height:1.25;letter-spacing:-.015em}
+.heading-5{font-size:1.25rem;font-weight:500;line-height:1.3;letter-spacing:-.015em}
+
+.title{
+  font-family:var(--font-heading);font-size:clamp(1.25rem,1.5vw,1.5rem);font-weight:600;
+  line-height:1.2;letter-spacing:var(--tracking-heading);margin:0;
+}
+.lede{font-size:clamp(1.125rem,1.4vw,1.25rem);line-height:1.65;color:var(--muted-foreground);margin:0;text-wrap:pretty}
+.eyebrow{
+  margin:0;font-size:var(--text-caption);font-weight:500;letter-spacing:var(--tracking-label);
+  line-height:1.2;text-transform:uppercase;color:var(--muted-foreground);
+}
+.muted{color:var(--muted-foreground)}
+.body-sm{font-size:var(--text-small);line-height:1.6}
+.micro{font-size:var(--text-micro);line-height:1.4}
+
+.section-intro{display:grid;gap:1.25rem;margin-bottom:clamp(2rem,5vw,3.5rem)}
+@media (min-width:900px){
+  .section-intro{grid-template-columns:1.1fr .9fr;align-items:end;gap:3rem}
+  .section-intro .lede{max-width:34ch;justify-self:end}
+}
+
+/* ── Cover ────────────────────────────────────────────────────────────── */
+.cover{
+  position:relative;min-height:100vh;min-height:100svh;overflow:hidden;
+  display:flex;flex-direction:column;padding-block:clamp(1.25rem,3vw,2rem);
+}
+.cover-body{display:flex;flex-direction:column;flex:1;justify-content:center;padding-block:clamp(2.5rem,7vw,5rem)}
+.cover h1{max-width:none}
+.cover .lede{margin-top:clamp(1.25rem,2.5vw,2rem);max-width:44ch}
+.cover .dot{color:var(--accent-ink);font-style:normal}
+
+.chips{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;
+  margin-top:clamp(2rem,5vw,3.5rem);padding-top:1.25rem;
+  border-top:1px solid color-mix(in srgb,var(--border) 70%,transparent);
+}
+@media (min-width:640px){.chips{grid-template-columns:repeat(4,1fr)}}
+.chip{display:flex;flex-direction:column;gap:.5rem;text-decoration:none}
+.chip-swatch{
+  height:3.5rem;border-radius:var(--radius-media);
+  border:1px solid color-mix(in srgb,var(--border) 80%,transparent);
+  transition:transform var(--duration-fast) var(--ease-out-expo);
+}
+.chip:hover .chip-swatch{transform:translateY(-2px)}
+.chip-name{font-size:var(--text-caption);font-weight:500;line-height:1.3}
+.chip-hex{font-family:var(--font-sans);font-size:var(--text-micro);letter-spacing:.06em;color:var(--muted-foreground)}
+
+.cover-foot{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem 1.5rem;
+  padding-top:1rem;border-top:1px solid color-mix(in srgb,var(--border) 70%,transparent);
+  font-size:var(--text-micro);font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted-foreground);
+}
+
+@media (max-height:720px){
+  .cover-body{padding-block:1.25rem}
+  .cover .lede{margin-top:1rem}
+  .chips{margin-top:1.25rem;padding-top:.85rem}
+  .chip-swatch{height:2.5rem}
+}
+
+/* ── Contents ─────────────────────────────────────────────────────────── */
+.contents{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;
+  padding-block:1.1rem;border-bottom:1px solid color-mix(in srgb,var(--border) 70%,transparent);
+  font-size:var(--text-micro);font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+}
+.contents a{text-decoration:none;color:var(--muted-foreground);transition:color var(--duration-fast) var(--ease-out-expo)}
+.contents a:hover{color:var(--foreground)}
+.contents b{font-weight:500;color:var(--foreground);margin-right:.5rem}
+
+/* ── Premise ──────────────────────────────────────────────────────────── */
+.principles{display:grid;gap:0}
+.principle{display:grid;gap:.35rem 1.5rem;padding-block:1.5rem;border-top:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+.principle:last-child{border-bottom:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+@media (min-width:720px){.principle{grid-template-columns:15rem 1fr;align-items:baseline}}
+.principle h3{margin:0}
+.principle p{margin:0;font-size:var(--text-small);line-height:1.65;color:var(--muted-foreground);max-width:52ch}
+
+.before-after{display:grid;gap:1rem;margin-top:clamp(2rem,5vw,3rem)}
+@media (min-width:640px){.before-after{grid-template-columns:1fr 1fr;gap:1.5rem}}
+.ba{padding:1.25rem 1.5rem;border:1px solid color-mix(in srgb,var(--border) 80%,transparent);border-radius:var(--radius-card)}
+.ba.before{color:var(--muted-foreground)}
+.ba dt{font-size:var(--text-micro);font-weight:500;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.5rem}
+.ba dd{margin:0;font-size:var(--text-small);line-height:1.6}
+
+/* ── Values ───────────────────────────────────────────────────────────── */
+.swatches{display:grid;gap:1rem;grid-template-columns:repeat(2,1fr)}
+@media (min-width:860px){.swatches{grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:1.25rem}}
+.swatch{border:1px solid color-mix(in srgb,var(--border) 80%,transparent);border-radius:var(--radius-card);overflow:hidden;background:var(--surface)}
+.swatch-fill{aspect-ratio:4/3;border-bottom:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+.swatch-body{padding:1rem}
+.swatch-body h3{margin:0;font-size:.9375rem;font-weight:500}
+.swatch-hex{margin:.15rem 0 .6rem;font-size:var(--text-micro);letter-spacing:.06em;color:var(--muted-foreground)}
+.swatch-role{margin:0;font-size:var(--text-small);line-height:1.5;color:var(--muted-foreground)}
+.swatch-note{margin:.5rem 0 0;font-size:var(--text-micro);line-height:1.45;color:var(--foreground)}
+
+.ratio{display:flex;height:3.5rem;margin-top:clamp(2rem,5vw,3rem);border:1px solid color-mix(in srgb,var(--border) 80%,transparent);border-radius:var(--radius-media);overflow:hidden}
+.ratio span{display:block;height:100%}
+.ratio-p{width:60%;background:var(--background)}
+.ratio-i{width:30%;background:var(--foreground)}
+.ratio-s{width:10%;background:var(--accent)}
+.ratio-legend{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:.85rem;font-size:var(--text-micro);font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-foreground)}
+.ratio-legend i{display:inline-block;width:.6rem;height:.6rem;border-radius:999px;margin-right:.45rem;border:1px solid var(--border);vertical-align:-1px}
+.ratio-legend .k-p{background:var(--background)}
+.ratio-legend .k-i{background:var(--foreground)}
+.ratio-legend .k-s{background:var(--accent)}
+
+/* ── Signal band ──────────────────────────────────────────────────────── */
+.signal{background:var(--accent);color:var(--accent-foreground);padding-block:clamp(3.5rem,7vw,6rem)}
+.signal .display-2{max-width:16ch}
+.signal p{max-width:52ch;margin:1.25rem 0 0;font-size:1rem;line-height:1.65}
+.signal .tiny{margin-top:1.5rem;font-size:var(--text-micro);font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+
+/* ── Voices ───────────────────────────────────────────────────────────── */
+.voices{display:grid;gap:1rem;margin-bottom:clamp(2.5rem,6vw,4rem)}
+@media (min-width:820px){.voices{grid-template-columns:repeat(3,1fr);gap:1.25rem}}
+.voice{padding:1.5rem;border:1px solid color-mix(in srgb,var(--border) 80%,transparent);border-radius:var(--radius-card);background:var(--surface);display:flex;flex-direction:column;gap:.35rem}
+.voice .aa{font-size:clamp(4rem,7vw,5.5rem);line-height:.9;margin-bottom:.75rem;color:var(--foreground)}
+.voice .aa.serif{font-family:var(--font-display);font-style:italic;font-weight:400}
+.voice .aa.head{font-family:var(--font-heading);font-weight:600;letter-spacing:-.04em}
+.voice .aa.sans{font-family:var(--font-sans);font-weight:400;letter-spacing:-.02em}
+.voice h3{margin:0;font-size:.9375rem;font-weight:500}
+.voice .role{margin:0;font-size:var(--text-micro);text-transform:uppercase;letter-spacing:.14em;color:var(--muted-foreground)}
+.voice p{margin:.4rem 0 0;font-size:var(--text-small);line-height:1.55;color:var(--muted-foreground)}
+.voice .tags{margin-top:auto;padding-top:1rem}
+
+.same-sentence{display:grid;gap:1.5rem;margin-bottom:clamp(2.5rem,6vw,4rem);padding-block:1.5rem;border-top:1px solid color-mix(in srgb,var(--border) 70%,transparent);border-bottom:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+@media (min-width:760px){.same-sentence{grid-template-columns:1fr 1fr 1fr;gap:2rem}}
+.same-sentence p{margin:0}
+.same-sentence .label{display:block;font-size:var(--text-micro);letter-spacing:.16em;text-transform:uppercase;color:var(--muted-foreground);margin-bottom:.75rem}
+.same-sentence .serif{font-family:var(--font-display);font-style:italic;font-size:1.75rem;line-height:1.15}
+.same-sentence .head{font-family:var(--font-heading);font-size:1.25rem;font-weight:600;line-height:1.25;letter-spacing:-.02em}
+.same-sentence .sans{font-size:.9375rem;line-height:1.65;color:var(--muted-foreground)}
+
+.scale{border-top:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+.scale-row{display:grid;gap:.35rem;padding-block:1.15rem;border-bottom:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+@media (min-width:760px){.scale-row{grid-template-columns:13rem 1fr;gap:2rem;align-items:baseline}}
+.scale-meta{font-size:var(--text-micro);font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-foreground)}
+.scale-meta b{display:block;color:var(--foreground);font-weight:500;letter-spacing:.04em;text-transform:none;font-size:var(--text-micro);margin-top:.15rem}
+.scale-row .display-1,.scale-row .display-2,.scale-row .display-3{line-height:.95}
+
+/* ── Laws ─────────────────────────────────────────────────────────────── */
+.laws{border-top:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+.law{display:grid;gap:.75rem 1.5rem;padding-block:clamp(1.5rem,3vw,2rem);border-bottom:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+@media (min-width:760px){.law{grid-template-columns:3.5rem 1fr}}
+.law-num{font-family:var(--font-display);font-style:italic;font-size:2rem;line-height:1;color:var(--muted-foreground)}
+.law h3{margin:0}
+.law-grid{display:grid;gap:.75rem;margin-top:.85rem}
+@media (min-width:640px){.law-grid{grid-template-columns:1fr 1fr;gap:1.5rem}}
+.law-grid dt{font-size:var(--text-micro);font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-foreground)}
+.law-grid dd{margin:.25rem 0 0;font-size:var(--text-small);line-height:1.55}
+
+/* ── Parts ────────────────────────────────────────────────────────────── */
+.parts{display:grid;gap:1rem}
+@media (min-width:760px){.parts{grid-template-columns:1fr 1fr;gap:1.5rem}}
+.spec{
+  border:1px solid color-mix(in srgb,var(--border) 80%,transparent);border-radius:var(--radius-card);
+  padding:1.25rem;background:var(--surface);
+  box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(16,16,16,.04),0 2px 0 rgba(16,16,16,.02);
+  transition:transform var(--duration-fast) var(--ease-out-expo),border-color var(--duration-fast) var(--ease-out-expo);
+}
+.spec:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--foreground) 22%,transparent)}
+.spec-label{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1.25rem;font-size:var(--text-micro);font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-foreground)}
+.spec-label code{font-family:inherit;letter-spacing:.04em;text-transform:none;font-size:var(--text-micro)}
+.stack{display:flex;flex-wrap:wrap;align-items:center;gap:.85rem}
+
+/* Glass pill — the shipped primary action. */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  height:3rem;padding:0 1.5rem;border-radius:999px;text-decoration:none;
+  font-family:var(--font-sans);font-size:.875rem;font-weight:500;cursor:pointer;
+  border:1px solid color-mix(in srgb,var(--foreground) 16%,transparent);
+  background:color-mix(in srgb,var(--surface) 72%,transparent);
+  backdrop-filter:blur(12px);
+  box-shadow:0 4px 12px rgba(0,0,0,.05);
+  transition:border-color .3s var(--ease-out-expo),background-color .3s var(--ease-out-expo),transform .3s var(--ease-out-expo),box-shadow .3s var(--ease-out-expo);
+}
+.btn:hover{
+  border-color:color-mix(in srgb,var(--foreground) 28%,transparent);
+  background:color-mix(in srgb,var(--surface) 92%,transparent);
+  transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+.btn .ic{width:1rem;height:1rem;transition:transform var(--duration-fast) var(--ease-out-expo)}
+.btn:hover .ic{transform:translate(.125rem,-.125rem)}
+
+/* Link arrow — the shipped secondary action. */
+.link-arrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--font-sans);font-weight:500;font-size:var(--text-micro);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);
+  text-decoration:none;transition:color var(--duration-fast) var(--ease-out-expo);
+}
+.link-arrow:hover{color:var(--foreground)}
+.link-arrow .ic{width:.85rem;height:.85rem;transition:transform var(--duration-fast) var(--ease-out-expo)}
+.link-arrow:hover .ic{transform:translate(.125rem,-.125rem)}
+
+.btn-quiet{
+  display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 0;
+  border:0;border-bottom:1px solid color-mix(in srgb,var(--border) 80%,transparent);background:none;
+  font-family:var(--font-sans);font-size:var(--text-small);color:var(--muted-foreground);
+  text-decoration:none;cursor:pointer;transition:color var(--duration-fast) var(--ease-out-expo),border-color var(--duration-fast) var(--ease-out-expo);
+}
+.btn-quiet:hover{color:var(--foreground);border-color:var(--muted-foreground)}
+
+.tag{
+  display:inline-flex;align-items:center;height:1.75rem;padding:0 .75rem;
+  border:1px solid color-mix(in srgb,var(--border) 80%,transparent);border-radius:999px;
+  font-size:var(--text-caption);line-height:1;color:var(--foreground);text-decoration:none;background:transparent;
+  transition:border-color var(--duration-fast) var(--ease-out-expo);
+}
+.tag:hover{border-color:var(--muted-foreground)}
+
+.card{background:var(--surface);border:1px solid color-mix(in srgb,var(--border) 80%,transparent);border-radius:var(--radius-card);padding:1.25rem}
+.card p{margin:.4rem 0 0;font-size:var(--text-small);line-height:1.6;color:var(--muted-foreground)}
+
+.asset-frame{
+  position:relative;isolation:isolate;aspect-ratio:4/3;border-radius:var(--radius-media);overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--border) 80%,transparent);
+  background:linear-gradient(135deg,#101010 0%,#F9C74F 100%);
+}
+.asset-grid{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(to right,rgba(16,16,16,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(16,16,16,.06) 1px,transparent 1px);
+  background-size:36px 36px;
+}
+.asset-frame .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(16,16,16,.8),rgba(16,16,16,.08) 55%,transparent)}
+.asset-frame .edge{position:absolute;left:0;right:0;display:flex;justify-content:space-between;gap:1rem;padding:.75rem .9rem;font-size:.5625rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.asset-frame .edge.top{top:0}
+.asset-frame .edge.bottom{bottom:0;align-items:flex-end}
+.asset-frame .initial{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:3.5rem;line-height:.8;color:#fff}
+
+/* Halftone screen — two dot grids, two angles, one plate. */
+.halftone{position:absolute;inset:0;pointer-events:none}
+.halftone::before,.halftone::after{content:"";position:absolute;inset:-25%}
+.halftone::before{
+  background-image:radial-gradient(circle,rgba(252,253,248,.9) 1.2px,transparent 1.6px);
+  background-size:9px 9px;transform:rotate(15deg);mix-blend-mode:soft-light;opacity:.85;
+}
+.halftone::after{
+  background-image:radial-gradient(circle,rgba(15,31,23,.85) 1px,transparent 1.4px);
+  background-size:13px 13px;transform:rotate(45deg);mix-blend-mode:multiply;opacity:.3;
+}
+
+/* Ledger — the rules are the row separators. */
+.ledger{--ledger-step:7rem;position:relative;
+  background-image:repeating-linear-gradient(to bottom,transparent 0 calc(var(--ledger-step) - 1px),color-mix(in srgb,var(--border) 70%,transparent) calc(var(--ledger-step) - 1px) var(--ledger-step));
+}
+.ledger::before{content:"";position:absolute;top:0;bottom:0;left:4.25rem;width:1px;background:color-mix(in srgb,var(--accent-ink) 30%,transparent);pointer-events:none}
+.ledger > *{height:var(--ledger-step)}
+.ledger-row{height:100%;display:grid;grid-template-columns:3.5rem 1fr;gap:1.25rem;align-items:center;padding-right:1rem}
+.ledger-row span{font-size:var(--text-micro);color:var(--muted-foreground)}
+.ledger-row h4{margin:0;font-family:var(--font-heading);font-size:var(--text-small);font-weight:600;line-height:1.4;letter-spacing:-.01em}
+.ledger-row p{margin:.1rem 0 0;font-size:var(--text-micro);color:var(--muted-foreground)}
+
+.arch{border-radius:999px 999px var(--radius-panel) var(--radius-panel)}
+
+.marks{display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem}
+.mark{
+  --s:32px;position:relative;display:inline-flex;align-items:center;justify-content:center;
+  width:var(--s);height:var(--s);border-radius:calc(var(--s) * .25);background:var(--foreground);flex:none;
+  transition:background-color var(--duration-fast) var(--ease-out-expo);
+}
+.mark-letter{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:calc(var(--s) * .72);line-height:1;color:var(--background);transform:translateY(calc(var(--s) * .02))}
+.mark-stop{position:absolute;width:calc(var(--s) * .09);height:calc(var(--s) * .09);border-radius:999px;background:var(--accent-soft);right:calc(var(--s) * .19);bottom:calc(var(--s) * .19)}
+
+/* ── Dusk ─────────────────────────────────────────────────────────────── */
+/* The same material after dark: the tokens remap, the markup does not. */
+.dusk{
+  --background:#101010;
+  --surface:color-mix(in srgb,#101010 90%,#FFFFFF);
+  --surface-strong:color-mix(in srgb,#101010 80%,#FFFFFF);
+  --foreground:#FFFFFF;
+  --muted:color-mix(in srgb,#101010 90%,#FFFFFF);
+  --muted-foreground:color-mix(in srgb,#FFFFFF 64%,#101010);
+  --border:color-mix(in srgb,#FFFFFF 22%,#101010);
+  --accent-soft:color-mix(in srgb,#F9C74F 24%,#101010);
+  --accent-ink:#F9C74F;
+  position:relative;overflow:hidden;background:#101010;color:var(--foreground);
+  padding-block:clamp(4rem,8vw,7rem);
+}
+.dusk-wash{position:absolute;inset:0;pointer-events:none;
+  background:url(data:image/webp;base64,%%HERO_GRADIENT%%) center / cover no-repeat;
+  filter:brightness(.6);
+}
+.dusk-horizon{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(70rem 26rem at 50% 118%,color-mix(in srgb,var(--accent) 36%,transparent),transparent 72%);
+}
+.dusk-engraving{position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:repeating-radial-gradient(circle at 100% 0%,color-mix(in srgb,var(--accent) 30%,transparent) 0 1px,transparent 1px 44px);
+  -webkit-mask-image:radial-gradient(circle at 100% 0%,#000 0%,transparent 68%);
+  mask-image:radial-gradient(circle at 100% 0%,#000 0%,transparent 68%);
+}
+.dusk .wrap{position:relative;z-index:1}
+.dusk .btn{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.05)}
+.dusk .btn:hover{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.1)}
+.dusk .mark{background:var(--accent)}
+.dusk .mark-letter{color:var(--accent-foreground)}
+.dusk .mark-stop{background:var(--accent-foreground)}
+
+/* ── Tables ───────────────────────────────────────────────────────────── */
+.table-scroll{overflow-x:auto;border-radius:var(--radius-media)}
+table{border-collapse:collapse;width:100%;min-width:34rem;text-align:left}
+th,td{padding:.85rem 1rem .85rem 0;border-bottom:1px solid color-mix(in srgb,var(--border) 70%,transparent);vertical-align:top;font-size:var(--text-small);line-height:1.5}
+th{font-size:var(--text-micro);font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-foreground);border-bottom-color:var(--foreground)}
+td:first-child{font-weight:500;white-space:nowrap;padding-right:1.5rem}
+td:nth-child(2){color:var(--muted-foreground);font-variant-numeric:tabular-nums;padding-right:1.5rem}
+tr:last-child td{border-bottom:0}
+
+.motion{display:grid;gap:1rem;grid-template-columns:1fr}
+@media (min-width:640px){.motion{grid-template-columns:repeat(3,1fr);gap:1.25rem}}
+.motion div{border-top:2px solid var(--foreground);padding-top:.85rem}
+.motion b{display:block;font-size:var(--text-micro);letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.motion span{font-size:var(--text-small);color:var(--muted-foreground)}
+
+/* ── Back cover ───────────────────────────────────────────────────────── */
+.back{padding-block:clamp(5rem,11vw,9rem);border-top:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+.back .display-1{max-width:18ch}
+.three{display:grid;gap:1.5rem;margin-top:clamp(2.5rem,6vw,4rem);padding-top:2rem;border-top:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+@media (min-width:760px){.three{grid-template-columns:repeat(3,1fr);gap:2.5rem}}
+.three p{margin:0;font-size:1rem;line-height:1.6}
+.three b{display:block;font-size:var(--text-micro);font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-foreground);margin-bottom:.5rem}
+
+.files{display:grid;gap:.5rem;margin-top:clamp(2.5rem,6vw,4rem);font-size:var(--text-small)}
+.files div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.25rem 1rem;padding-block:.6rem;border-top:1px solid color-mix(in srgb,var(--border) 70%,transparent)}
+.files span:first-child{font-weight:500}
+.files span:last-child{color:var(--muted-foreground)}
+
+.site-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-top:clamp(3rem,7vw,5rem);padding-top:1.25rem;border-top:1px solid color-mix(in srgb,var(--border) 70%,transparent);font-size:var(--text-micro);font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-foreground)}
+.lockup{display:flex;align-items:center;gap:.6rem;color:var(--foreground);letter-spacing:0;text-transform:none;font-size:1.5rem}
+.lockup .word{font-family:var(--font-display);font-style:italic;line-height:1}
+.lockup .word i{font-style:normal;color:var(--accent-ink)}
+
+/* ── Cursor ───────────────────────────────────────────────────────────── */
+.cursor-dot,.cursor-ring{position:fixed;left:0;top:0;z-index:9999;pointer-events:none;display:none;will-change:transform}
+@media (pointer:fine){.cursor-dot,.cursor-ring{display:block}}
+.cursor-dot{opacity:0;transition:opacity var(--duration-fast) var(--ease-out-expo)}
+.cursor-dot.is-visible{opacity:1}
+.cursor-dot span{position:absolute;width:.625rem;height:.625rem;border-radius:999px;background:var(--accent);transform:translate(-50%,-50%)}
+.cursor-ring{opacity:0;transition:opacity var(--duration-fast) var(--ease-out-expo)}
+.cursor-ring.is-visible{opacity:1}
+.cursor-disc{
+  position:absolute;display:flex;align-items:center;justify-content:center;
+  width:0;height:0;border-radius:999px;overflow:hidden;opacity:0;
+  background:var(--foreground);color:var(--background);transform:translate(-50%,-50%);
+  transition:width .3s var(--ease-out-expo),height .3s var(--ease-out-expo),opacity .2s var(--ease-out-expo);
+}
+.cursor-ring.is-hover .cursor-disc{width:2.25rem;height:2.25rem;opacity:1}
+.cursor-disc svg{width:.875rem;height:.875rem;opacity:0;transition:opacity .2s var(--ease-out-expo)}
+.cursor-ring.is-hover .cursor-disc svg{opacity:1}
+.cursor-ring.on-dark .cursor-disc{background:var(--background);color:var(--foreground)}
+
+/* ── Print ────────────────────────────────────────────────────────────── */
+@media print{
+  body::after,.cursor-dot,.cursor-ring{display:none}
+  body.page-wash::before{background:none}
+  .spread,.back,.signal,.dusk{break-inside:avoid}
+  .cover{min-height:auto;break-after:page}
+  .contents{display:none}
+  .spec:hover{transform:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body class="page-wash">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="arrow-up-right" viewBox="0 0 24 24">
+    <path d="M7 7h10v10M7 17 17 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<div class="cursor-dot" data-cursor-dot aria-hidden="true"><span></span></div>
+<div class="cursor-ring" data-cursor-ring aria-hidden="true"><span class="cursor-disc"><svg aria-hidden="true"><use href="#arrow-up-right"/></svg></span></div>
+
+<a class="sr-only" href="#premise">Skip to content</a>
+
+<!-- ═══ Cover ═══════════════════════════════════════════════════════════ -->
+<header class="cover">
+  <div class="wrap">
+    <div class="head">
+      <span>Gabrielle Nyawera</span>
+      <span>Design System &middot; Issue 01</span>
+    </div>
+  </div>
+
+  <div class="wrap cover-body">
+    <h1 class="display-1">Paper, Ink,<br>One Signal<span class="dot">.</span></h1>
+    <p class="lede">Four values, three voices, one material. A working reference for every visual decision on the portfolio — written as the thing it describes.</p>
+
+    <div class="chips">
+      <a class="chip" href="#values">
+        <span class="chip-swatch" style="background:#FFFFFF"></span>
+        <span class="chip-name">Paper</span>
+        <span class="chip-hex">#FFFFFF</span>
+      </a>
+      <a class="chip" href="#values">
+        <span class="chip-swatch" style="background:#101010"></span>
+        <span class="chip-name">Ink</span>
+        <span class="chip-hex">#101010</span>
+      </a>
+      <a class="chip" href="#values">
+        <span class="chip-swatch" style="background:#F9C74F"></span>
+        <span class="chip-name">Signal</span>
+        <span class="chip-hex">#F9C74F</span>
+      </a>
+      <a class="chip" href="#values">
+        <span class="chip-swatch" style="background:#2A3FC8"></span>
+        <span class="chip-name">Text accent</span>
+        <span class="chip-hex">#2A3FC8</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="cover-foot">
+      <span>Set in Boska, Instrument Sans &amp; Inter</span>
+      <span>No framework &middot; No build step &middot; One file</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ Contents ════════════════════════════════════════════════════════ -->
+<nav class="wrap contents" aria-label="Contents">
+  <a href="#premise"><b>01</b>Premise</a>
+  <a href="#values"><b>02</b>Values</a>
+  <a href="#voices"><b>03</b>Voices</a>
+  <a href="#laws"><b>04</b>Laws</a>
+  <a href="#parts"><b>05</b>Parts</a>
+  <a href="#dusk"><b>06</b>Dusk</a>
+  <a href="#layout"><b>07</b>Layout</a>
+</nav>
+
+<!-- ═══ 01 Premise ══════════════════════════════════════════════════════ -->
+<section class="spread" id="premise">
+  <div class="wrap">
+    <div class="head"><span>01 &mdash; Premise</span><span>One material</span></div>
+
+    <div class="section-intro" style="margin-top:clamp(2rem,5vw,3.5rem)">
+      <h2 class="display-2">One material, used twice a day.</h2>
+      <p class="lede">Every page is built from the same paper, ink and signal. Dark sections are the same material at dusk, not a different theme.</p>
+    </div>
+
+    <div class="principles">
+      <article class="principle">
+        <h3 class="heading-4">Type does the expressive work</h3>
+        <p>Scale, contrast and generous space create drama. Ornament is reserved for a few recurring marks: the arch, the grain, the long rule.</p>
+      </article>
+      <article class="principle">
+        <h3 class="heading-4">Nothing floats</h3>
+        <p>Every element sits on a surface, in a grid, or on a deliberate line. Empty space is composed, not leftover.</p>
+      </article>
+      <article class="principle">
+        <h3 class="heading-4">One signal moment per screen</h3>
+        <p>One band, one filled card, or the badge. Two and the colour stops being a signal and starts being a palette.</p>
+      </article>
+    </div>
+
+    <div class="before-after">
+      <dl class="ba before">
+        <dt>Before</dt>
+        <dd>Four type families. Three themes fighting each other. Bespoke spacing on every section. Placeholders that looked unfinished.</dd>
+      </dl>
+      <dl class="ba">
+        <dt>Now</dt>
+        <dd>Boska for display, Instrument Sans for structure, Inter for reading. One wash under every page. Five spacing tokens.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 02 Values ═══════════════════════════════════════════════════════ -->
+<section class="spread" id="values">
+  <div class="wrap">
+    <div class="head"><span>02 &mdash; Values</span><span>Five tokens, three jobs</span></div>
+
+    <div class="section-intro" style="margin-top:clamp(2rem,5vw,3.5rem)">
+      <h2 class="display-2">Paper and ink build the page.<br>One fill and one accent carry it.</h2>
+      <p class="lede">Nothing else is a colour. Yellow is always a field, blue is always language, and rose is only ever a ground. None of them swap roles.</p>
+    </div>
+
+    <div class="swatches">
+      <article class="swatch">
+        <div class="swatch-fill" style="background:#FFFFFF"></div>
+        <div class="swatch-body">
+          <h3 class="heading-5">Paper</h3>
+          <p class="swatch-hex">#FFFFFF</p>
+          <p class="swatch-role">The page. Roughly 60% of any screen.</p>
+          <p class="swatch-note">19.0:1 against ink</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="swatch-fill" style="background:#101010"></div>
+        <div class="swatch-body">
+          <h3 class="heading-5">Ink</h3>
+          <p class="swatch-hex">#101010</p>
+          <p class="swatch-role">Type, rules, chrome, dusk. Roughly 30%.</p>
+          <p class="swatch-note">Never pure #000</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="swatch-fill" style="background:#F9C74F"></div>
+        <div class="swatch-body">
+          <h3 class="heading-5">Signal</h3>
+          <p class="swatch-hex">#F9C74F</p>
+          <p class="swatch-role">Fills, marks, bands. Roughly 10%.</p>
+          <p class="swatch-note">Black on yellow: 12.1:1</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="swatch-fill" style="background:#2A3FC8"></div>
+        <div class="swatch-body">
+          <h3 class="heading-5">Text accent</h3>
+          <p class="swatch-hex">#2A3FC8</p>
+          <p class="swatch-role">Links, focus rings, accent words.</p>
+          <p class="swatch-note">7.9:1 on paper</p>
+        </div>
+      </article>
+      <article class="swatch">
+        <div class="swatch-fill" style="background:#F7E3DF"></div>
+        <div class="swatch-body">
+          <h3 class="heading-5">Rose</h3>
+          <p class="swatch-hex">#F7E3DF</p>
+          <p class="swatch-role">The wash ground, and quiet bands inside the paper.</p>
+          <p class="swatch-note">Ground only &mdash; never type</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="ratio" role="img" aria-label="Roughly sixty percent paper, thirty percent ink, ten percent signal">
+      <span class="ratio-p"></span><span class="ratio-i"></span><span class="ratio-s"></span>
+    </div>
+    <p class="ratio-legend">
+      <span><i class="k-p"></i>Paper 60</span>
+      <span><i class="k-i"></i>Ink 30</span>
+      <span><i class="k-s"></i>Signal 10</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ Signal band ═════════════════════════════════════════════════════ -->
+<section class="signal">
+  <div class="wrap">
+    <h2 class="display-2">This is the 10%.</h2>
+    <p>One signal moment per screen. If it appeared everywhere, it would stop being a signal — so the rest of this page is deliberately quiet.</p>
+    <p class="tiny">Signal #F9C74F &middot; black type at 12.1:1</p>
+  </div>
+</section>
+
+<!-- ═══ 03 Voices ═══════════════════════════════════════════════════════ -->
+<section class="spread" id="voices">
+  <div class="wrap">
+    <div class="head"><span>03 &mdash; Voices</span><span>Three families</span></div>
+
+    <div class="section-intro" style="margin-top:clamp(2rem,5vw,3.5rem)">
+      <h2 class="display-2">Three voices, one job each.</h2>
+      <p class="lede">Boska does the drama. Instrument Sans does the structure. Inter does the reading. Nothing overlaps.</p>
+    </div>
+
+    <div class="voices">
+      <article class="voice">
+        <p class="aa serif" aria-hidden="true">Aa</p>
+        <h3 class="heading-5">Boska</h3>
+        <p class="role">Display</p>
+        <p>Headlines, pull quotes, editorial accents. Italic by default, 300 / 400 / 500.</p>
+        <div class="tags stack">
+          <span class="tag">display-1</span><span class="tag">display-2</span><span class="tag">display-3</span>
+        </div>
+      </article>
+      <article class="voice">
+        <p class="aa head" aria-hidden="true">Aa</p>
+        <h3 class="heading-5">Instrument Sans</h3>
+        <p class="role">Heading</p>
+        <p>Section structure, card titles, UI labels. 600 for headings, 500 for titles.</p>
+        <div class="tags stack">
+          <span class="tag">heading-1</span><span class="tag">heading-2</span><span class="tag">title</span>
+        </div>
+      </article>
+      <article class="voice">
+        <p class="aa sans" aria-hidden="true">Aa</p>
+        <h3 class="heading-5">Inter</h3>
+        <p class="role">Body</p>
+        <p>Paragraphs, navigation, metadata, labels. Never below 0.8125rem.</p>
+        <div class="tags stack">
+          <span class="tag">body 1rem</span><span class="tag">small .8125</span><span class="tag">micro .6875</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="same-sentence">
+      <p><span class="label">Display</span><span class="serif">Calm, considered digital experiences.</span></p>
+      <p><span class="label">Heading</span><span class="head">Calm, considered digital experiences.</span></p>
+      <p><span class="label">Body</span><span class="sans">Calm, considered digital experiences — the details that make complex things feel obvious.</span></p>
+    </div>
+
+    <div class="scale">
+      <div class="scale-row">
+        <div class="scale-meta">display-1<b>clamp(3.25rem, 7vw, 7rem)</b></div>
+        <p class="display-1">Paper</p>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">display-2<b>clamp(2.75rem, 5vw, 5rem)</b></div>
+        <p class="display-2">Ink</p>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">display-3<b>clamp(2.25rem, 4vw, 3.75rem)</b></div>
+        <p class="display-3">Signal</p>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">heading-1<b>clamp(2.5rem, 4.5vw, 4rem)</b></div>
+        <p class="heading-1">Structure</p>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">heading-2<b>clamp(2rem, 3.2vw, 3rem)</b></div>
+        <p class="heading-2">Hierarchy</p>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">title<b>clamp(1.25rem, 1.5vw, 1.5rem)</b></div>
+        <p class="title">Card and subsection titles</p>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">lede<b>clamp(1.125rem, 1.4vw, 1.25rem)</b></div>
+        <p class="lede">A section introduction, set at reading size with room to breathe.</p>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">eyebrow<b>.75rem / .08em</b></div>
+        <p class="eyebrow" style="color:var(--foreground)">Metadata &middot; dates &middot; counts</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 04 Laws ═════════════════════════════════════════════════════════ -->
+<section class="spread" id="laws">
+  <div class="wrap">
+    <div class="head"><span>04 &mdash; Laws</span><span>Copy these into the review</span></div>
+
+    <div class="section-intro" style="margin-top:clamp(2rem,5vw,3.5rem)">
+      <h2 class="display-2">Five laws that save you a review.</h2>
+      <p class="lede">Each one is a mistake the system has already made. Learn it here instead of in Figma.</p>
+    </div>
+
+    <div class="laws">
+      <article class="law">
+        <span class="law-num" aria-hidden="true">01</span>
+        <div>
+          <h3 class="heading-4">Yellow never sets text on paper.</h3>
+          <dl class="law-grid">
+            <div><dt>Breaks when</dt><dd>You put a yellow heading on white. It is 1.6:1 — it disappears.</dd></div>
+            <div><dt>Instead</dt><dd>Yellow carries black type at 12.1:1. It is always a ground, never a voice.</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="law">
+        <span class="law-num" aria-hidden="true">02</span>
+        <div>
+          <h3 class="heading-4">One signal moment per screen.</h3>
+          <dl class="law-grid">
+            <div><dt>Breaks when</dt><dd>A yellow band sits under a yellow card and a yellow badge.</dd></div>
+            <div><dt>Instead</dt><dd>Keep one. Demote the others to a rule, a tag, or plain ink.</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="law">
+        <span class="law-num" aria-hidden="true">03</span>
+        <div>
+          <h3 class="heading-4">Cards are white on white.</h3>
+          <dl class="law-grid">
+            <div><dt>Breaks when</dt><dd>A grey card sits on a white page to look &ldquo;layered&rdquo;.</dd></div>
+            <div><dt>Instead</dt><dd>Separation is a 1px hairline and letterpress shading — not a second fill.</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="law">
+        <span class="law-num" aria-hidden="true">04</span>
+        <div>
+          <h3 class="heading-4">Ink is #101010, never #000.</h3>
+          <dl class="law-grid">
+            <div><dt>Breaks when</dt><dd>Pure black flattens the grain and kills the warm wash.</dd></div>
+            <div><dt>Instead</dt><dd>Use the ink token. It is the same value in type, chrome and dusk.</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="law">
+        <span class="law-num" aria-hidden="true">05</span>
+        <div>
+          <h3 class="heading-4">No label above a heading.</h3>
+          <dl class="law-grid">
+            <div><dt>Breaks when</dt><dd>&ldquo;01 — Philosophy&rdquo; sits above &ldquo;How I think&rdquo;. That is the same idea twice.</dd></div>
+            <div><dt>Instead</dt><dd>Delete it. A section is a heading and, at most, one line of lede.</dd></div>
+          </dl>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 05 Parts ════════════════════════════════════════════════════════ -->
+<section class="spread" id="parts">
+  <div class="wrap">
+    <div class="head"><span>05 &mdash; Parts</span><span>One action, two quiet ones</span></div>
+
+    <div class="section-intro" style="margin-top:clamp(2rem,5vw,3.5rem)">
+      <h2 class="display-2">Every control is one of four.</h2>
+      <p class="lede">One glass pill per section. If two actions feel equally important, one of them becomes a link arrow.</p>
+    </div>
+
+    <div class="parts">
+      <div class="spec">
+        <div class="spec-label"><span>Actions</span><code>52px &middot; 44px</code></div>
+        <div class="stack" style="align-items:flex-start;flex-direction:column;gap:1rem">
+          <a class="btn" href="#parts">Start a conversation
+            <svg class="ic" aria-hidden="true"><use href="#arrow-up-right"/></svg>
+          </a>
+          <a class="link-arrow" href="#parts">View selected work
+            <svg class="ic" aria-hidden="true"><use href="#arrow-up-right"/></svg>
+          </a>
+          <a class="btn-quiet" href="#parts">Read the philosophy</a>
+        </div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-label"><span>Tags</span><code>.tag</code></div>
+        <div class="stack">
+          <span class="tag">Design systems</span>
+          <span class="tag">2024</span>
+          <span class="tag">Remote</span>
+          <span class="tag">Case study</span>
+        </div>
+        <p class="body-sm muted" style="margin:1.25rem 0 0;max-width:36ch">Transparent fill, 1px border, pill radius. Tags are metadata, not buttons.</p>
+      </div>
+
+      <div class="spec">
+        <div class="spec-label"><span>Surface card</span><code>.surface-card</code></div>
+        <div class="card">
+          <h3 class="title">KAVARA KAVARA</h3>
+          <p>A storytelling-driven brand and digital experience built around fire, food and outdoor living.</p>
+          <div class="stack" style="margin-top:.85rem">
+            <span class="tag">Designer</span><span class="tag">2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-label"><span>Artwork</span><code>.asset-frame + .halftone</code></div>
+        <div class="asset-frame">
+          <div class="asset-grid" aria-hidden="true"></div>
+          <div class="halftone" aria-hidden="true"></div>
+          <div class="scrim" aria-hidden="true"></div>
+          <div class="edge top"><span>01 &mdash; Case study</span><span>2024</span></div>
+          <div class="edge bottom">
+            <span class="initial" aria-hidden="true">K</span>
+            <span>Brand / Digital</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-label"><span>Ledger</span><code>.ledger</code></div>
+        <div class="ledger">
+          <div class="ledger-row"><span>2025</span><div><h4>Google AI Professional Certificate</h4><p>Coursera</p></div></div>
+          <div class="ledger-row"><span>2024</span><div><h4>Google UX Design Professional Certificate</h4><p>Coursera</p></div></div>
+        </div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-label"><span>Mark</span><code>25% &middot; 72% &middot; 9%</code></div>
+        <div class="marks">
+          <span class="mark" aria-hidden="true" style="--s:32px"><span class="mark-letter">G</span><span class="mark-stop"></span></span>
+          <span class="mark" aria-hidden="true" style="--s:56px"><span class="mark-letter">G</span><span class="mark-stop"></span></span>
+          <span class="mark-caption body-sm muted" style="max-width:18ch">Square plate, italic G, butter stop. One object for logo, icon and favicon.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 06 Dusk ═════════════════════════════════════════════════════════ -->
+<section class="dusk" id="dusk">
+  <div class="dusk-wash" aria-hidden="true"></div>
+  <div class="dusk-horizon" aria-hidden="true"></div>
+  <div class="dusk-engraving" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="head"><span>06 &mdash; Dusk</span><span>Same classes</span></div>
+
+    <div class="section-intro" style="margin-top:clamp(2rem,5vw,3.5rem)">
+      <h2 class="display-2">The same material at night.</h2>
+      <p class="lede">Dark sections remap the tokens and dim the same wash. The markup below is identical to the paper version above.</p>
+    </div>
+
+    <div class="parts">
+      <div class="spec">
+        <div class="spec-label"><span>Actions, dusk</span><code>.dark-section</code></div>
+        <div class="stack" style="align-items:flex-start;flex-direction:column;gap:1rem">
+          <a class="btn" href="#dusk">Start a conversation
+            <svg class="ic" aria-hidden="true"><use href="#arrow-up-right"/></svg>
+          </a>
+          <a class="link-arrow" href="#dusk">View selected work
+            <svg class="ic" aria-hidden="true"><use href="#arrow-up-right"/></svg>
+          </a>
+          <span class="tag">Design systems</span>
+        </div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-label"><span>Card + mark, dusk</span><code>token flip</code></div>
+        <div class="card">
+          <div class="marks" style="margin-bottom:.85rem">
+            <span class="mark" aria-hidden="true" style="--s:40px"><span class="mark-letter">G</span><span class="mark-stop"></span></span>
+            <span class="mark-caption body-sm muted">Plate goes yellow; letter goes ink.</span>
+          </div>
+          <h3 class="title">Dusk is not a theme</h3>
+          <p>It is the same paper and ink after dark, over one dimmed gradient with a yellow horizon rising from the base.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 07 Layout ═══════════════════════════════════════════════════════ -->
+<section class="spread" id="layout">
+  <div class="wrap">
+    <div class="head"><span>07 &mdash; Layout &amp; motion</span><span>Parameters, not opinions</span></div>
+
+    <div class="section-intro" style="margin-top:clamp(2rem,5vw,3.5rem)">
+      <h2 class="display-2">Five spacing tokens. One easing curve.</h2>
+      <p class="lede">If a value is not in this table, it should not appear in a component. That is the whole enforcement policy.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>--page-max</td><td>76rem</td><td>Page width, centred</td></tr>
+          <tr><td>--reading-max</td><td>42rem</td><td>Readable text width</td></tr>
+          <tr><td>--gutter</td><td>clamp(1.25rem, 4vw, 4rem)</td><td>Page edges, mobile-first</td></tr>
+          <tr><td>--section-y</td><td>clamp(4.5rem, 9vw, 8rem)</td><td>Section rhythm</td></tr>
+          <tr><td>--header-height</td><td>76px</td><td>Fixed chrome offset</td></tr>
+          <tr><td>--radius-card</td><td>1.25rem</td><td>Cards and surfaces</td></tr>
+          <tr><td>--ease-out-expo</td><td>cubic-bezier(.16, 1, .3, 1)</td><td>Every transition</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="motion" style="margin-top:clamp(2.5rem,6vw,4rem)">
+      <div><b>180ms</b><span>Hover and focus</span></div>
+      <div><b>600ms</b><span>Reveals, 80ms stagger</span></div>
+      <div><b>800ms</b><span>Large image scale</span></div>
+    </div>
+
+    <p class="body-sm muted" style="margin-top:1.5rem;max-width:56ch">
+      Reduced motion collapses transforms and durations to near zero and switches off the pointer light, magnetism, tilt and cursor. Content always reads without JavaScript — the wash, the type and the colour are all CSS.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ Back cover ══════════════════════════════════════════════════════ -->
+<section class="back" id="close">
+  <div class="wrap">
+    <h2 class="display-1">If a value isn&#8217;t in the file, it doesn&#8217;t ship.</h2>
+
+    <div class="three">
+      <p><b>Colour</b>Yellow is a field. Blue is language. Rose is only ever a ground.</p>
+      <p><b>Material</b>One paper, one ink, one signal — used twice a day.</p>
+      <p><b>Type</b>Boska for drama. Instrument Sans for structure. Inter for reading.</p>
+    </div>
+
+    <div class="files">
+      <div><span>Source of truth</span><span>site/assets/css/source.css</span></div>
+      <div><span>Tokens and utilities</span><span>docs/design-system.md</span></div>
+      <div><span>Behaviour</span><span>site/assets/js/site.js</span></div>
+      <div><span>Live reference</span><span>site/design-system/index.html</span></div>
+    </div>
+
+    <div class="site-foot">
+      <span class="lockup">
+        <span class="mark" aria-hidden="true" style="--s:32px"><span class="mark-letter">G</span><span class="mark-stop"></span></span>
+        <span class="word">Gabe<i>.</i></span>
+      </span>
+      <span>Issue 01 &middot; November 2026</span>
+      <span>Made from the system it documents</span>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Cursor — the shipped behaviour, ported for a single file. */
+(function () {
+  var fine = window.matchMedia("(pointer: fine)").matches;
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!fine || calm) return;
+
+  var dot = document.querySelector("[data-cursor-dot]");
+  var ring = document.querySelector("[data-cursor-ring]");
+  if (!dot || !ring) return;
+
+  var disc = ring.firstElementChild;
+  var pointer = { x: 0, y: 0 };
+  var dotPos = { x: 0, y: 0 };
+  var ringPos = { x: 0, y: 0 };
+  var visible = false;
+  var hovering = false;
+
+  function sync() {
+    dot.classList.toggle("is-visible", visible && !hovering);
+    ring.classList.toggle("is-visible", visible);
+  }
+
+  document.addEventListener("mousemove", function (event) {
+    pointer.x = event.clientX;
+    pointer.y = event.clientY;
+    if (!visible) { visible = true; sync(); }
+  }, { passive: true });
+
+  document.addEventListener("mouseleave", function () {
+    visible = false;
+    hovering = false;
+    ring.classList.remove("is-hover");
+    sync();
+  });
+
+  document.addEventListener("mouseover", function (event) {
+    var target = event.target;
+    if (!(target instanceof Element)) return;
+    ring.classList.toggle("on-dark", Boolean(target.closest(".dusk")));
+
+    var next = Boolean(target.closest("a, button, [role='button'], input[type='submit'], label"));
+    if (next === hovering) return;
+    hovering = next;
+    ring.classList.toggle("is-hover", hovering);
+    sync();
+  }, { passive: true });
+
+  function loop() {
+    dotPos.x += (pointer.x - dotPos.x) * 0.4;
+    dotPos.y += (pointer.y - dotPos.y) * 0.4;
+    ringPos.x += (pointer.x - ringPos.x) * 0.13;
+    ringPos.y += (pointer.y - ringPos.y) * 0.13;
+    dot.style.transform = "translate3d(" + dotPos.x + "px," + dotPos.y + "px,0)";
+    ring.style.transform = "translate3d(" + ringPos.x + "px," + ringPos.y + "px,0)";
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body>
+</html>

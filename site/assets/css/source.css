@@ -24,12 +24,16 @@
   --muted: #F2EFE6;
   --muted-foreground: #6B6A63;
   --border: #E4E0D6;
-  /* The pop: grove green. Fills and text — 5.02:1 on paper. */
+  /* The pop: signal yellow. Fills and text — 12.1:1 with ink on top. */
   --accent: #F9C74F;
   --accent-foreground: #101010;
   --accent-soft: #FBE9C0;
   /* The pop as text. Shares the value here, kept as its own role. */
   --accent-ink: #2A3FC8;
+  /* The plate's undertone, as a ground. Never an ink: rose cannot set type.
+     #FCEFED is what the wash reads as; the token holds a step stronger so it
+     survives a change of gradient image. */
+  --wash-rose: #F7E3DF;
 
   /* Compatibility aliases for shadcn primitives */
   --primary: var(--foreground);
@@ -59,7 +63,7 @@
   --z-grain: 9999;
   --z-cursor: 9999;
 
-  /* Dusk palette — deep forest, the same material after dark */
+  /* Dusk palette — the same material after dark */
   --dusk-background: #101010;
   --dusk-surface: color-mix(in srgb, #101010 90%, #FFFFFF);
   --dusk-surface-strong: color-mix(in srgb, #101010 80%, #FFFFFF);
@@ -70,6 +74,8 @@
   --dusk-accent: #F9C74F;
   --dusk-accent-foreground: #101010;
   --dusk-accent-soft: color-mix(in srgb, #F9C74F 24%, #101010);
+  /* The rose ground after dark: 25% of the plate rose over ink. */
+  --dusk-wash-rose: #47322F;
 }
 
 @theme inline {
@@ -84,6 +90,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-soft: var(--accent-soft);
   --color-accent-ink: var(--accent-ink);
+  --color-wash-rose: var(--wash-rose);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -510,6 +517,9 @@ div[id] {
       color-mix(in srgb, var(--background) 84%, transparent),
       color-mix(in srgb, var(--background) 84%, transparent)
     ),
+    /* The token ground. The plate carries this warmth in pixels; the token
+       keeps it when the plate is replaced. Rose only ever sits under ink. */
+    radial-gradient(60rem 40rem at 6% 0%, var(--wash-rose), transparent 70%),
     url("/images/hero/hero-gradient.webp") center / cover no-repeat,
     var(--background);
   pointer-events: none;
@@ -645,6 +655,7 @@ div[id] {
   --accent-soft: var(--dusk-accent-soft);
   /* Accent-as-text flips to lime here: 12.7:1 on forest. */
   --accent-ink: var(--dusk-accent);
+  --wash-rose: var(--dusk-wash-rose);
   --primary: var(--foreground);
   --primary-foreground: var(--background);
   --secondary: var(--surface-strong);
